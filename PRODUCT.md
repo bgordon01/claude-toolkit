@@ -30,7 +30,9 @@ It moves the work to the parts only the user can do — deciding what to build a
 - Name: Frontier.
 - Gate mark: a horizon line broken by a gate, path `M2 20H12V13M20 13V20H30` in a 32×32 box. The same glyph marks "waits for your go" steps.
 - Orange accent: `#C2410C` (lighter `#F28C4B` on dark grounds).
-- Voice: blunt, second person, opinionated; mechanisms and numbers over adjectives.
+- Voice: blunt, second person, opinionated; mechanisms and numbers over adjectives. Concise: one-line ledes, nothing that doesn't earn its place.
+- Light theme only. No dark mode, no automatic or manual theme switch.
+- Clean, with generous white space.
 
 ## Evidence on Hand
 - 18 skills from 4 authors: Matt Pocock (MIT), Paul Bakaus / Impeccable (Apache 2.0), Hardik Pandya / stop-slop (MIT), Corey Haines / marketingskills (MIT).

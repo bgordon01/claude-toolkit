@@ -7,7 +7,7 @@ related_targets: []
 
 # Landing page (site/index.html)
 
-Mode: Persuade. Visitor: a vibe coder arriving from a link or the repo. Action: Add to Claude (marketplace path), with Claude Code and cloud setup as secondary paths. Proof: the real workflow, the real commands, the real gate behaviour, the transcript. No invented users or numbers.
+Mode: Persuade. Light theme only (user-pinned): no dark mode. Clean, generous white space, concise one-line copy. Visitor: a vibe coder arriving from a link or the repo. Action: Add to Claude (marketplace path), with Claude Code and cloud setup as secondary paths. Proof: the real workflow, the real commands, the real gate behaviour, the transcript. No invented users or numbers.
 
 ## Direction contract
 THESIS: The workflow is a transit line you ride. Refuses the stacked editorial page with a static step diagram; the line map is the page's spine and its one bold element.
