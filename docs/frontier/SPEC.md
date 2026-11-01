@@ -45,8 +45,9 @@ The sets are mapped onto the single workflow, not shown as three equal sections.
 ## Logo
 - Wordmark "Frontier" in Source Serif 4, plus a symbol that stands alone as favicon and plugin icon.
 - Symbol concept: a horizon line broken by a gate — the review point where you say go. Single stroke, deep orange.
-- Three takes (A step, B gate, C crossing point) shown side by side in the preview. **Open: the user picks one.**
-- Deliverables: SVG full logo, SVG symbol, SVG favicon; PNG exports and a 1200×630 social card after the pick.
+- Chosen: **B, gate**. Two horizon arms with raised posts either side of a gap. Mark path in a 32×32 box: `M2 20H12V13M20 13V20H30`. Arms are longer than posts so it reads as a line first, not as brackets.
+- The same gate glyph marks "waits for your go" steps in the workflow diagram.
+- Files in `site/assets/`: `logo.svg` (follows light/dark), `logo-on-light.svg`, `logo-on-dark.svg`, `mark.svg`, `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` (180), `icon-512.png`, `logo.png` (4×), `og.png` (1200×630 social card). Wordmark is outlined Source Serif 4 600, so it renders without the font installed.
 
 ## Tech and delivery
 - Static `site/index.html`, no build step. JavaScript only for copy buttons.
