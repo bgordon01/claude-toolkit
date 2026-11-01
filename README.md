@@ -9,11 +9,11 @@
 
 **Frontier** is 18 skills and one workflow that make Claude question, plan, test and review before anything ships. It works in the Claude app (phone, web, desktop) and in [Claude Code](https://claude.com/claude-code).
 
-Once it's installed, you only need to remember one thing: say **"start here"**, or type `/start-here`. It tells you the next step and hands you the command to run.
+Once it's installed, you only need to remember one thing: say **"start here"**, or type `/start`. It tells you the next step and hands you the command to run.
 
 Landing page: [bgordon01.github.io/claude-toolkit](https://bgordon01.github.io/claude-toolkit)
 
-> **About the name.** Frontier is the new name for claude-toolkit. The repo (`claude-toolkit`), the plugin (`toolkit@bgordon01`) and the commands (`/toolkit:start-here`) keep their old names until a separate rename, so every install step below is correct as written.
+> **About the name.** Frontier is the new name for claude-toolkit. The repo (`claude-toolkit`), the plugin (`toolkit@bgordon01`) and its `toolkit:` command prefix keep their old names until a separate rename, so every install step below is correct as written.
 
 ## Why
 
@@ -42,7 +42,7 @@ Add it once to your Claude account:
 2. Tap **Add**, then **Add marketplace**, and enter `bgordon01/claude-toolkit`.
 3. Find **toolkit** under **Discover** and tap **Add**.
 
-The plugin is now part of your Claude account and works in app chats. If you sign in to Claude Code on your Mac with the same account, it appears there too at the next start, with a `toolkit:` prefix on each command, for example `/toolkit:start-here`.
+The plugin is now part of your Claude account and works in app chats. If you sign in to Claude Code on your Mac with the same account, it appears there too at the next start, with a `toolkit:` prefix on each command, for example `/toolkit:start`.
 
 It does **not** reach coding sessions in the app's **Code** tab. Those need the one-time setup in [Cloud coding sessions](#cloud-coding-sessions-the-code-tab) below.
 
@@ -56,7 +56,7 @@ Inside Claude Code, run:
 
 ### With the install script (Mac)
 
-Use this instead of the plugin if you want shorter commands (`/start-here` rather than `/toolkit:start-here`) and the house rules always on. Pick one method per Mac. Using both gives you every skill twice.
+Use this instead of the plugin if you want shorter commands (`/start` rather than `/toolkit:start`) and the house rules always on. Pick one method per Mac. Using both gives you every skill twice.
 
 You need a Mac with Claude Code already installed.
 
@@ -83,13 +83,13 @@ Coding sessions you start from the app's **Code** tab or [claude.ai/code](https:
    curl -fsSL https://raw.githubusercontent.com/bgordon01/claude-toolkit/main/install.sh | bash || true
    ```
 
-3. Start a **new** session and type `/start-here`, with no `toolkit:` prefix here.
+3. Start a **new** session and type `/start`, with no `toolkit:` prefix here.
 
 The cloud keeps a ready-made copy of the setup for about a week, then rebuilds it with the latest toolkit. To get an update sooner, say "update my skills" inside a cloud session.
 
 ## Use it
 
-Open Claude Code in any project and type `/start-here`, or just say what you want, like "help me redesign this project". It asks what you'd like to do:
+Open Claude Code in any project and type `/start`, or just say what you want, like "help me redesign this project". It asks what you'd like to do:
 
 | You want to… | The route |
 |---|---|
@@ -112,9 +112,9 @@ Open Claude Code in any project and type `/start-here`, or just say what you wan
 
 Improving a project rejoins this route at 03 Tickets. Fixing a bug rejoins it at 06 Review.
 
-### How `/start-here` guides you
+### How `/start` guides you
 
-`/start-here` is a mentor, not an autopilot. It recommends the next step, gives you one sentence on why it matters, and hands you the command to copy and paste. You run it. It never runs a work skill or edits your code itself.
+`/start` is a mentor, not an autopilot. It recommends the next step, gives you one sentence on why it matters, and hands you the command to copy and paste. You run it. It never runs a work skill or edits your code itself.
 
 Each recommendation carries a mark:
 
@@ -124,7 +124,7 @@ Each recommendation carries a mark:
 
 **Nothing changes your files until you say go.** You make the decisions. Claude does the typing.
 
-**It keeps its place in a file.** For build, improve and bug-fix routes, `/start-here` writes a checklist to `tasks/plan.md` in your project: one box per step per ticket, plus your build and test commands, which command form to hand you (`/tdd` or `/toolkit:tdd`), and any corner you chose to cut. Every time you run it, it reads that file and reads the checklist back to you, so a long build never loses its thread. The file is committed by default; gitignore it if you'd rather not track it.
+**It keeps its place in a file.** For build, improve and bug-fix routes, `/start` writes a checklist to `tasks/plan.md` in your project: one box per step per ticket, plus your build and test commands, which command form to hand you (`/tdd` or `/toolkit:tdd`), and any corner you chose to cut. Every time you run it, it reads that file and reads the checklist back to you, so a long build never loses its thread. The file is committed by default; gitignore it if you'd rather not track it.
 
 **It checks before it ticks.** After a build it re-runs your tests itself. After a wording step it re-runs the banned-words search. For judgement steps like the grill, a design critique or a code review, it ticks the box only once you confirm what you did with the findings. If a check fails, it says so plainly and waits for you to decide. It never re-runs to get green and never switches a test off.
 
@@ -134,11 +134,11 @@ The first time you use it in a project, it may suggest a setup step: `setup-matt
 
 ### Prefer typing commands yourself?
 
-Every step is also a command. Use `/start-here` and let it choose, or call any of these directly. With the plugin, add the `toolkit:` prefix, for example `/toolkit:tdd`.
+Every step is also a command. Use `/start` and let it choose, or call any of these directly. With the plugin, add the `toolkit:` prefix, for example `/toolkit:tdd`.
 
 | Command | What it does | Set |
 |---|---|---|
-| `/start-here` | Asks what you want to do and walks you through the right route. | Frontier |
+| `/start` | Asks what you want to do and walks you through the right route. | Frontier |
 | `/grill-me` | Questions your idea until it holds up. | Engineering |
 | `/to-spec` | Turns the conversation into a spec in your issue tracker. | Engineering |
 | `/to-tickets` | Splits a spec into small tickets with blocking order. | Engineering |

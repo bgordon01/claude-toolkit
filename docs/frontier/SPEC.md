@@ -4,7 +4,7 @@ Decisions from the grilling session on 2026-11-01. Each line is settled unless m
 
 ## Name and scope
 - The toolkit is presented as **Frontier** on the landing page only.
-- The plugin (`toolkit@bgordon01`), commands (`/toolkit:start-here`) and repo (`claude-toolkit`) keep their names for now. Renaming them is a separate ticket, so the page's install steps stay correct.
+- The plugin (`toolkit@bgordon01`), commands (`/toolkit:start`) and repo (`claude-toolkit`) keep their names for now. Renaming them is a separate ticket, so the page's install steps stay correct.
 
 ## Goal and audience
 - Audience: vibe coders who go straight from prompt to code.

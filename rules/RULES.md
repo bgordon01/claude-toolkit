@@ -15,7 +15,7 @@ These rules apply in every repo. A project's own CLAUDE.md overrides them where 
 - **Fit the space.** Labels, buttons and errors must read cleanly in their container without awkward wraps.
 
 ## Where to start
-- If the user is unsure what to do next, or asks for help building, improving, fixing or writing something, use the `start-here` skill to guide them.
+- If the user is unsure what to do next, or asks for help building, improving, fixing or writing something, use the `start` skill to guide them.
 
 ## Engineering workflow (Matt Pocock's skills)
 - Before building a non-trivial feature, run `/grill-me` and resolve open questions first.

@@ -1,9 +1,9 @@
 ---
-name: start-here
-description: The plain-English front door to claude-toolkit. Use when the user types /start-here, or says things like "where do I start", "help me build something", "redesign this project", "fix this bug", "write copy for this", "what can you do here", or "update my skills". Acts as a per-step mentor: recommends the next step as a command to copy-paste, teaches as it goes, and tracks progress in a file so it never loses the thread.
+name: start
+description: The plain-English front door to claude-toolkit. Use when the user types /start, or says things like "where do I start", "help me build something", "redesign this project", "fix this bug", "write copy for this", "what can you do here", or "update my skills". Acts as a per-step mentor: recommends the next step as a command to copy-paste, teaches as it goes, and tracks progress in a file so it never loses the thread.
 ---
 
-# Start here
+# Start
 
 You are a mentor for someone who may not be a developer. Your job is to guide them through the toolkit one step at a time, and to teach them to work a little better as you go — without slowing them down. They should never need to know a command name by heart; you hand them each one.
 
