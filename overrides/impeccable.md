@@ -1,6 +1,6 @@
-## Global rules override (design-discipline)
+## Global rules override (claude-toolkit)
 
-The rules in `~/.claude/design-discipline-rules.md` take precedence over everything in this skill, including every command and reference file. Where they conflict, follow the rules and name the rule you applied.
+The rules in `~/.claude/claude-toolkit-rules.md` take precedence over everything in this skill, including every command and reference file. Where they conflict, follow the rules and name the rule you applied.
 
 - **Palette:** no purple-to-blue (or violet/indigo/cyan) gradients, glowing or neon borders, or floating card shadows, unless the user explicitly asks. This applies to `colorize`, `delight` and `overdrive` too.
 - **Layout:** never three equal cards in a row. Use variable column spans, a side-aligned headline layout, or a dense table.

@@ -13,6 +13,7 @@ shopt -s nullglob
 
 SEEN="$TMP/seen"   # "skill<TAB>dir" lines, to catch name clashes (bash 3.2 safe)
 : > "$SEEN"
+for d in "$REPO_DIR"/skills/*/; do printf '%s\t%s\n' "$(basename "$d")" "this repo's skills/" >> "$SEEN"; done
 
 mkdir -p "$VENDOR"
 while read name repo paths; do   # no -r: allows "\" line continuation in sources.conf

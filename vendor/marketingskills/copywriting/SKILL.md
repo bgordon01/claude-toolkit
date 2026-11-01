@@ -339,9 +339,9 @@ For headlines and CTAs, provide 2-3 options:
 - **popups**: For popup and modal copy
 - **ab-testing**: To test copy variations
 
-## Global rules override (design-discipline)
+## Global rules override (claude-toolkit)
 
-The copy rules in `~/.claude/design-discipline-rules.md` take precedence over this skill. Where they conflict, follow the rules.
+The copy rules in `~/.claude/claude-toolkit-rules.md` take precedence over this skill. Where they conflict, follow the rules.
 
 - **Banned words:** revolutionize, seamless, empower, elevate, unleash, robust, supercharge, next-gen, game-changer, "unlock your potential", and their variants.
 - **No throat-clearing:** the first sentence of every section carries information.
