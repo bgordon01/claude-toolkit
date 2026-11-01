@@ -14,7 +14,9 @@ Add it once to your Claude account:
 2. Tap **Add**, then **Add marketplace**, and enter `bgordon01/claude-toolkit`.
 3. Find **toolkit** under **Discover** and tap **Add**.
 
-That's it. The toolkit is now part of your Claude account. If you sign in to Claude Code on your Mac with the same account, it appears there too at the next start. In Claude Code, the commands carry a `toolkit:` prefix, for example `/toolkit:start-here`.
+That's it. The toolkit is now part of your Claude account and works in app chats. If you sign in to Claude Code on your Mac with the same account, it appears there too at the next start, with a `toolkit:` prefix on each command, for example `/toolkit:start-here`.
+
+It does **not** reach coding sessions in the app's **Code** tab. Those need the one-time setup in [Cloud coding sessions](#cloud-coding-sessions-the-code-tab) below.
 
 ### In Claude Code only
 
@@ -43,7 +45,7 @@ If Terminal says you need git, it will tell you the one command to run first. Ru
 
 ### Cloud coding sessions (the Code tab)
 
-Coding sessions you start from the app's **Code** tab or [claude.ai/code](https://claude.ai/code) run on a fresh cloud computer each time. If the toolkit's commands don't show up there, set this up once:
+Coding sessions you start from the app's **Code** tab or [claude.ai/code](https://claude.ai/code) run on a fresh cloud computer each time, and they don't load plugins from your Claude account. Set this up once:
 
 1. In a browser, open [claude.ai/code](https://claude.ai/code) and open your cloud environment's settings. Usually it's called **Default**.
 2. Paste this into the **Setup script** box and save:
@@ -53,7 +55,7 @@ Coding sessions you start from the app's **Code** tab or [claude.ai/code](https:
    curl -fsSL https://raw.githubusercontent.com/bgordon01/claude-toolkit/main/install.sh | bash || true
    ```
 
-3. Start a new session and type `/start-here`.
+3. Start a **new** session and type `/start-here`, with no `toolkit:` prefix here.
 
 The cloud keeps a ready-made copy of the setup for about a week, then rebuilds it with the latest toolkit. To get an update sooner, say "update my skills" inside a cloud session.
 
