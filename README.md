@@ -1,27 +1,19 @@
 # design-discipline
 
-A curated Claude Code setup: 14 skills from four upstream authors for planning, building, designing and writing, plus a strict design-and-copy rules layer. Installs globally, so every repo on your machine gets it, and stays in sync with upstream.
+My personal Claude Code setup for macOS: 14 skills from four upstream authors for planning, building, designing and writing, plus a design-and-copy rules layer that overrides them. Installs globally into `~/.claude`, so every repo gets it. Nothing runs automatically: no hooks, no scheduled jobs.
 
-## Install (macOS / Linux)
+## Install
 
 ```bash
 git clone https://github.com/bgordon01/design-discipline.git ~/code/design-discipline
 ~/code/design-discipline/install.sh
 ```
 
-Restart Claude Code. In each new project, run `/setup-matt-pocock-skills` once (tells the ticket skills where your issues live) and `/impeccable init` once (captures the project's design context).
-
-## Stay in sync
-
-```bash
-~/code/design-discipline/update.sh
-```
-
-Pulls the latest repo and re-links: new skills appear, removed ones disappear.
+Restart Claude Code.
 
 ## How to use it together
 
-One feature, start to finish. The rules layer and Impeccable's design-check hook run in the background the whole time.
+One feature, start to finish. The rules layer applies throughout without being asked.
 
 **0. Once per project**
 ```
@@ -29,7 +21,7 @@ One feature, start to finish. The rules layer and Impeccable's design-check hook
 /impeccable init               the product's users, brand and design direction
 ```
 
-**1. Think — before any code**
+**1. Think, before any code**
 ```
 /grill-me add a CSV export to the reports page
 ```
@@ -41,19 +33,19 @@ Answer its questions until the plan holds. Then `/to-spec` writes it up.
 ```
 Splits the spec into small tickets that each ship end to end.
 
-**3. Build — one ticket at a time**
+**3. Build, one ticket at a time**
 ```
-/tdd T-1                       test-first, or /implement T-1 for straight build
+/tdd T-1                       test-first, or /implement T-1 for a straight build
 ```
-For UI work, the hook flags design problems after each edit. The 4pt grid, palette and one-bold-element rules apply automatically.
+The 4pt grid, palette and one-bold-element rules apply to any UI written here.
 
-**4. Design pass — any UI the ticket touched**
+**4. Design pass, on any UI the ticket touched**
 ```
 /impeccable critique reports page     see what's wrong, no edits
 /impeccable polish reports page       fix it
 ```
 
-**5. Copy pass — any words a user will read**
+**5. Copy pass, on any words a user will read**
 ```
 /impeccable clarify reports page      labels, buttons, errors, empty states
 /copywriting                          new marketing or landing-page copy
@@ -71,7 +63,7 @@ Then take the next ticket back to step 3.
 
 ## What's included
 
-### Plan → build → review · [mattpocock/skills](https://github.com/mattpocock/skills) (MIT)
+### Plan, build, review · [mattpocock/skills](https://github.com/mattpocock/skills) (MIT)
 
 | Skill | Use it to |
 |---|---|
@@ -91,7 +83,8 @@ Support skills, called by the ones above: `grilling`, `setup-matt-pocock-skills`
 |---|---|
 | `/impeccable` | One skill, 24 commands: `critique`, `audit`, `polish`, `clarify`, `quieter`, `bolder`, `harden`, `init` and more |
 | 4 subagents | finish-reviewer, documenter, asset-producer, manual-edit-applier |
-| Design-check hook | Scans UI files after every edit and before Claude finishes; does nothing in repos without UI |
+
+Impeccable's automatic design-check hook is deliberately left out. Its detector still runs when you call an `/impeccable` command that uses it.
 
 ### Copy · [hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop), [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) (MIT)
 
@@ -101,24 +94,46 @@ Support skills, called by the ones above: `grilling`, `setup-matt-pocock-skills`
 | `/copywriting` | Write conversion copy for pages |
 | `/copy-editing` | Tighten existing copy |
 
-### Rules layer · this repo
+## The rules layer
 
-Always on, via `~/.claude/CLAUDE.md`. Wins over Impeccable's defaults where they differ.
+The rules apply in every repo through one import line in `~/.claude/CLAUDE.md`.
 
 - **Design:** no purple-to-blue gradients, neon borders or floating shadows · no equal 3-card rows · all spacing on a 4pt grid · exactly one bold element per view.
 - **Copy:** banned: revolutionize, seamless, empower, elevate, unleash, robust, supercharge, next-gen, game-changer, "unlock your potential" · no throat-clearing · mechanism and number over adjectives · short strings fit their containers.
 
 Full text: [`rules/RULES.md`](rules/RULES.md). A project's own `CLAUDE.md` overrides it.
 
-## Change the set
+### How the rules win over upstream skills
 
-Edit [`sources.conf`](sources.conf), then run `./sync.sh`. Each line names an upstream repo and the exact skill folders to take. `sync.sh` copies them into `vendor/<source>/` and records the upstream commit in `vendor/<source>/SOURCE`. If any skill name clashes across sources, it stops.
+Vendored skills can't be edited directly, because every sync overwrites them. Changes live in [`overrides/`](overrides/) instead, and `sync.sh` re-applies them after each pull:
 
-## How upstream sync works
+- **`overrides/<skill>.md`** is appended to that skill's `SKILL.md`. This is how Impeccable, `copywriting`, `copy-editing` and `stop-slop` learn your rules. For example, `bolder` strengthens your one bold element instead of adding a second.
+- **`overrides/frontmatter.conf`** sets frontmatter keys. It makes 9 skills invoke-only (`disable-model-invocation: true`): they run only when you type their command, and their descriptions stay out of Claude's context. `impeccable` and `stop-slop` can still trigger on their own. So can the three support skills, because other skills call them.
 
-A GitHub Action (`.github/workflows/sync-upstream.yml`) runs `sync.sh` every Monday. When an upstream skill changes, it opens a pull request. Merge it, and everyone gets the update on their next `update.sh`.
+## Keep in sync
 
-**One-time repo setting:** Settings → Actions → General → enable *Allow GitHub Actions to create and approve pull requests*.
+**Update this Mac from the repo:**
+```bash
+~/code/design-discipline/update.sh
+```
+Pulls the repo and re-links skills: new skills appear, removed ones disappear.
+
+**Pull upstream changes into the repo**, whenever you choose:
+```bash
+cd ~/code/design-discipline
+./sync.sh
+```
+`sync.sh` clones each upstream at its latest commit, copies the chosen skills into `vendor/`, re-applies `overrides/`, and stages the result. It never commits. It lists any changed scripts separately so you read those first. Then:
+
+```bash
+git diff --cached -- vendor                              # review
+git commit -m "Sync upstream skills" && git push         # accept
+git restore --staged --worktree vendor                   # or reject
+```
+
+Each `vendor/<source>/SOURCE` records the upstream commit you accepted.
+
+**Change the set:** edit the paths in [`sources.conf`](sources.conf) and run `./sync.sh`. If two skills share a name, or an override names a skill that isn't vendored, it stops.
 
 ## What install.sh changes
 
@@ -128,13 +143,12 @@ A GitHub Action (`.github/workflows/sync-upstream.yml`) runs `sync.sh` every Mon
 ├── design-discipline-rules.md    → rules/RULES.md
 ├── skills/<14 skills>            → vendor/*/
 ├── agents/<4 agents>             → vendor/impeccable/_agents/
-├── settings.json                 ← 3 Impeccable hooks merged in, tagged [design-discipline]
-└── .design-discipline-installed  ← what we own, for clean updates
+└── .design-discipline-installed  ← what it owns, for clean updates
 ```
 
-- Your own skills, agents and hooks are never overwritten. A same-name file is renamed `*.bak-<timestamp>`, and `settings.json` is backed up once before the first merge.
-- Hooks need `python3`, which comes with Xcode Command Line Tools.
-- Use `./install.sh --copy` for standalone copies instead of symlinks.
+- Everything is symlinked, so a pull takes effect immediately. Use `./install.sh --copy` for standalone copies.
+- An existing skill or agent with the same name is renamed `*.bak-<timestamp>`, never overwritten.
+- `settings.json` is never touched.
 
 ## Uninstall
 
@@ -142,11 +156,11 @@ A GitHub Action (`.github/workflows/sync-upstream.yml`) runs `sync.sh` every Mon
 ~/code/design-discipline/uninstall.sh
 ```
 
-Removes every skill, agent, hook and import it installed. Your own files and backups stay.
+Removes every skill, agent and import it installed. Your own files and backups stay.
 
 ## Credits
 
-Vendored skills are the work of Matt Pocock, Paul Bakaus, Hardik Pandya and Corey Haines. They are redistributed unmodified under their original licences, kept in each `vendor/<source>/` folder. This repo isn't affiliated with any of them.
+Vendored skills are the work of Matt Pocock, Paul Bakaus, Hardik Pandya and Corey Haines, used under their original licences, which are kept in each `vendor/<source>/` folder. Local changes are applied by `overrides/` and marked in each modified `SKILL.md` with a "Global rules override (design-discipline)" heading. This repo isn't affiliated with any of them.
 
 ## License
 

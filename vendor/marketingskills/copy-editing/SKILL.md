@@ -3,6 +3,7 @@ name: copy-editing
 description: "When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' 'copy sweep,' 'tighten this up,' 'this reads awkwardly,' 'clean up this text,' 'too wordy,' 'sharpen the messaging,' 'refresh this content,' 'update this page,' 'this content is outdated,' or 'content audit,' 'this sounds like AI,' 'AI slop,' 'de-slop this,' or 'make it sound human.' Use this when the user already has copy and wants it improved or refreshed rather than rewritten from scratch. Every edit removes AI tells such as 'it's not X, it's Y' reveals, 'no X, no Y, no Z' lists, and sentences that trail into extra comma clauses. A request to fix one line gets a point edit that changes only that line. For writing new copy, see copywriting."
 metadata:
   version: 2.2.1
+disable-model-invocation: true
 ---
 
 # Copy Editing
@@ -489,3 +490,12 @@ Copy editing isn't just for new content. Existing pages decay over time — outd
 | Reviewing and improving existing copy | copy-editing (this skill) |
 | Editing copy you just wrote | copy-editing (this skill) |
 | Structural or strategic page changes | cro |
+
+## Global rules override (design-discipline)
+
+The copy rules in `~/.claude/design-discipline-rules.md` take precedence over this skill. Where they conflict, follow the rules.
+
+- **Banned words:** revolutionize, seamless, empower, elevate, unleash, robust, supercharge, next-gen, game-changer, "unlock your potential", and their variants.
+- **No throat-clearing:** the first sentence of every section carries information.
+- **Concrete over vague:** lead with the mechanism and a real number ("Deploy in 30 seconds"). If there is no real number, describe the mechanism. Never invent metrics, testimonials or customer counts.
+- **Fit the space:** headlines, buttons and labels must read cleanly in their container at mobile width.

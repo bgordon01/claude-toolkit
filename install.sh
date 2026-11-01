@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Installs every skill in this repo globally for Claude Code (~/.claude/skills),
-# plus the /stop-slop command and the global rules import.
+# Installs every vendored skill and agent globally for Claude Code (~/.claude),
+# plus the global rules import. Installs no hooks: nothing runs automatically.
 #
 # Symlinks by default, so ./update.sh (git pull + re-run) keeps a laptop in sync.
 # Re-running is safe: new skills get linked, skills removed upstream get unlinked.
@@ -40,9 +40,8 @@ place() { # place <source> <dest>
 : > "$MANIFEST.new"
 echo "Installing into $CLAUDE_DIR ($MODE mode)"
 
-# Skill sources: this repo's own skills first, then each vendored source
-for group in "$REPO_DIR/skills" "$REPO_DIR"/vendor/*; do
-  label="$(basename "$group")"; [[ "$label" == "skills" ]] && label="design-discipline"
+for group in "$REPO_DIR"/vendor/*; do
+  label="$(basename "$group")"
   names=()
   for d in "$group"/*/; do
     d="${d%/}"; [[ -f "$d/SKILL.md" ]] || continue
@@ -68,17 +67,6 @@ if ! grep -qF "$MARK_START" "$CLAUDE_MD"; then
   { [[ -s "$CLAUDE_MD" ]] && echo; echo "$MARK_START"; echo "@design-discipline-rules.md"; echo "$MARK_END"; } >> "$CLAUDE_MD"
 fi
 echo "  ✓ global rules imported in CLAUDE.md"
-
-# Hooks from vendored sources -> settings.json
-hook_files=("$REPO_DIR"/vendor/*/_hooks.json)
-if [[ ${#hook_files[@]} -gt 0 ]]; then
-  if command -v python3 >/dev/null 2>&1; then
-    n="$(python3 "$REPO_DIR/lib/hooks.py" add "$CLAUDE_DIR/settings.json" "$CLAUDE_DIR" "${hook_files[@]}")"
-    echo "  ✓ $n hooks merged into settings.json (original backed up once as settings.json.bak-design-discipline)"
-  else
-    echo "  ✗ python3 not found — skipped hooks. Install Xcode Command Line Tools and re-run."
-  fi
-fi
 
 # Unlink anything we installed last time that no longer exists in the repo
 while read -r old; do
