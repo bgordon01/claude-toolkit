@@ -11,6 +11,11 @@ if [[ -f "$MANIFEST" ]]; then
   rm -f "$MANIFEST"
 fi
 
+if [[ -f "$CLAUDE_DIR/settings.json" ]] && command -v python3 >/dev/null 2>&1; then
+  python3 "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/lib/hooks.py" remove "$CLAUDE_DIR/settings.json" >/dev/null
+  echo "  removed hooks from settings.json"
+fi
+
 CLAUDE_MD="$CLAUDE_DIR/CLAUDE.md"
 if [[ -f "$CLAUDE_MD" ]]; then
   tmp="$(mktemp)"

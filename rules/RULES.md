@@ -16,8 +16,14 @@ These rules apply in every repo. A project's own CLAUDE.md overrides them where 
 
 ## Engineering workflow (Matt Pocock's skills)
 - Before building a non-trivial feature, run `/grill-me` and resolve open questions first.
-- Break agreed work into tickets with `/to-tickets`; build one at a time with `/implement`.
+- Capture the result with `/to-spec`, break it down with `/to-tickets`, build one ticket at a time with `/implement` (test-first via `/tdd`).
+- Review with `/code-review`; use `/diagnosing-bugs` for hard bugs.
 
 ## Design workflow (Impeccable)
 - Use `/impeccable critique`, `/impeccable polish` and `/impeccable clarify` for design and UX-copy passes.
-- The four strict design laws above take precedence over Impeccable's defaults where they differ.
+- The four design laws above take precedence over Impeccable's defaults where they differ.
+
+## Copy workflow
+- Write new marketing or landing-page copy with `/copywriting`; tighten existing copy with `/copy-editing`.
+- Run `/stop-slop` over any prose before it ships.
+- The banned-words list above applies on top of both.

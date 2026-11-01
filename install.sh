@@ -18,7 +18,7 @@ MARK_START="<!-- design-discipline:start -->"
 MARK_END="<!-- design-discipline:end -->"
 shopt -s nullglob
 
-mkdir -p "$CLAUDE_DIR/skills" "$CLAUDE_DIR/commands"
+mkdir -p "$CLAUDE_DIR/skills" "$CLAUDE_DIR/commands" "$CLAUDE_DIR/agents"
 touch "$MANIFEST"
 
 owned() { grep -qxF "$1" "$MANIFEST"; }
@@ -52,6 +52,11 @@ for group in "$REPO_DIR/skills" "$REPO_DIR"/vendor/*; do
   [[ ${#names[@]} -gt 0 ]] && echo "  ✓ $label (${#names[@]}): ${names[*]}"
 done
 
+for f in "$REPO_DIR"/vendor/*/_agents/*.md; do
+  place "$f" "$CLAUDE_DIR/agents/$(basename "$f")"
+  echo "  ✓ agent: $(basename "$f" .md)"
+done
+
 for f in "$REPO_DIR"/commands/*.md; do
   place "$f" "$CLAUDE_DIR/commands/$(basename "$f")"
   echo "  ✓ command: /$(basename "$f" .md)"
@@ -63,6 +68,17 @@ if ! grep -qF "$MARK_START" "$CLAUDE_MD"; then
   { [[ -s "$CLAUDE_MD" ]] && echo; echo "$MARK_START"; echo "@design-discipline-rules.md"; echo "$MARK_END"; } >> "$CLAUDE_MD"
 fi
 echo "  ✓ global rules imported in CLAUDE.md"
+
+# Hooks from vendored sources -> settings.json
+hook_files=("$REPO_DIR"/vendor/*/_hooks.json)
+if [[ ${#hook_files[@]} -gt 0 ]]; then
+  if command -v python3 >/dev/null 2>&1; then
+    n="$(python3 "$REPO_DIR/lib/hooks.py" add "$CLAUDE_DIR/settings.json" "$CLAUDE_DIR" "${hook_files[@]}")"
+    echo "  ✓ $n hooks merged into settings.json (original backed up once as settings.json.bak-design-discipline)"
+  else
+    echo "  ✗ python3 not found — skipped hooks. Install Xcode Command Line Tools and re-run."
+  fi
+fi
 
 # Unlink anything we installed last time that no longer exists in the repo
 while read -r old; do

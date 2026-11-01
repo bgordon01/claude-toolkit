@@ -15,7 +15,7 @@ SEEN="$TMP/seen"   # "skill<TAB>source" lines, to catch name clashes (bash 3.2 s
 for d in "$REPO_DIR"/skills/*/; do printf '%s\tthis repo\n' "$(basename "$d")" >> "$SEEN"; done
 
 mkdir -p "$VENDOR"
-while read -r name repo paths; do
+while read name repo paths; do   # no -r: allows "\" line continuation in sources.conf
   [[ -z "${name:-}" || "$name" == \#* ]] && continue
   echo "== $name  ($repo)"
   git clone -q --depth 1 "https://github.com/$repo.git" "$TMP/$name"
@@ -26,8 +26,20 @@ while read -r name repo paths; do
   count=0
   set -f; patterns=($paths); set +f   # split without expanding globs here
   for pattern in "${patterns[@]}"; do
+    case "$pattern" in
+      agents=*)
+        mkdir -p "$out/_agents"
+        for f in "$TMP/$name"/${pattern#agents=}; do cp "$f" "$out/_agents/"; done
+        echo "   $(ls "$out/_agents" | wc -l | tr -d ' ') agents"
+        continue ;;
+      hooks=*)
+        cp "$TMP/$name/${pattern#hooks=}" "$out/_hooks.json"
+        echo "   hooks from ${pattern#hooks=}"
+        continue ;;
+    esac
     for src in "$TMP/$name"/$pattern; do
       [[ -f "$src/SKILL.md" ]] || continue
+      src="$(cd "$src" && pwd)"
       skill="$(basename "$src")"
       clash="$(awk -F'\t' -v s="$skill" '$1==s{print $2}' "$SEEN")"
       if [[ -n "$clash" ]]; then
@@ -35,6 +47,7 @@ while read -r name repo paths; do
       fi
       printf '%s\t%s\n' "$skill" "$name" >> "$SEEN"
       cp -R "$src" "$out/$skill"
+      rm -rf "$out/$skill/.git"
       count=$((count + 1))
     done
   done
