@@ -9,7 +9,10 @@ claude-toolkit/
 ├── install.sh          one-line installer; bootstraps ~/.claude-toolkit when piped from curl
 ├── update.sh           git pull + re-run install.sh, with a summary of changed skills
 ├── uninstall.sh        removes everything listed in the install manifest
-├── sync.sh             pulls upstream skills into vendor/ and re-applies overrides/
+├── sync.sh             pulls upstream skills into vendor/, re-applies overrides/, rebuilds plugin/
+├── build-plugin.sh     assembles plugin/ from skills/, vendor/ and rules/
+├── .claude-plugin/     marketplace.json: this repo is the "bgordon01" marketplace
+├── plugin/             the built "toolkit" plugin (generated; don't edit by hand)
 ├── sources.conf        which upstream repos and skill folders to vendor
 ├── rules/RULES.md      the house rules, in precise form, for Claude
 ├── skills/             this repo's own skills (start-here)
@@ -48,6 +51,17 @@ Impeccable's automatic design-check hook is deliberately left out. Its detector 
 - On the first run after the rename from `design-discipline`, the old manifest, rules link and CLAUDE.md block are cleaned up automatically.
 - Set `CLAUDE_TOOLKIT_DIR` to install the repo somewhere other than `~/.claude-toolkit`.
 
+## The plugin
+
+The repo is also a plugin marketplace named `bgordon01`, with one plugin, `toolkit`. The plugin is built from the same files as the script install.
+
+- **Build:** `./build-plugin.sh` writes `plugin/`. It copies every skill, drops `disable-model-invocation` (in Claude app chats, Claude picks skills itself, so invoke-only skills would be unreachable), adds `rules/RULES.md` as a `house-rules` skill (plugins can't add `CLAUDE.md` instructions), copies the agents, and collects the licences into `plugin/licenses/`. `sync.sh` runs it automatically. Run it by hand after editing `skills/` or `rules/`, then commit `plugin/`.
+- **Validate:** `claude plugin validate ./plugin` and `claude plugin validate .`
+- **Test locally:** `claude plugin marketplace add ./` then `claude plugin install toolkit@bgordon01`
+- **Naming:** plugin names can't start with `claude-`, which is why the plugin is `toolkit` while the repo is `claude-toolkit`. Plugin skills are namespaced (`/toolkit:grill-me`).
+- **Versioning:** `plugin.json` has no `version`, so each commit counts as a new version and every push reaches users on their next update.
+- **Script install vs plugin:** don't use both on one machine, or every skill appears twice. Differences: the script gives bare command names and always-on house rules through `CLAUDE.md`, and keeps the invoke-only flags. The plugin works in the Claude app and syncs to Claude Code through the claude.ai account.
+
 ## Pulling upstream changes
 
 Run this whenever you choose. Nothing pulls automatically.
@@ -68,7 +82,7 @@ Then decide:
 
 ```bash
 git diff --cached -- vendor                              # review
-git commit -m "Sync upstream skills" && git push         # accept
+git commit -m "Sync upstream skills" && git push         # accept (includes the rebuilt plugin/)
 git restore --staged --worktree vendor                   # reject
 ```
 

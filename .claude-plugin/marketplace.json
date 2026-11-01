@@ -1,0 +1,17 @@
+{
+  "name": "bgordon01",
+  "owner": {
+    "name": "Brent Gordon"
+  },
+  "metadata": {
+    "description": "Plan, build, design and write with Claude. One plugin: toolkit."
+  },
+  "plugins": [
+    {
+      "name": "toolkit",
+      "source": "./plugin",
+      "description": "18 skills for planning, building, designing and writing, plus house rules. Start with /start-here.",
+      "category": "productivity"
+    }
+  ]
+}

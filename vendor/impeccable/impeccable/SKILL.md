@@ -88,7 +88,7 @@ After init writes PRODUCT.md, resume without rerunning `impeccable context`; ini
 **Never repair drift as a side effect of a design task.** A `CONTEXT_STALE` finding is reported, not acted on, unless the user asks. The one exception is a finding marked `auto`, which the next write to that file performs anyway.
 ## Global rules override (claude-toolkit)
 
-The rules in `~/.claude/claude-toolkit-rules.md` take precedence over everything in this skill, including every command and reference file. Where they conflict, follow the rules and name the rule you applied.
+The house rules (the `house-rules` skill, or `~/.claude/claude-toolkit-rules.md` for a script install) take precedence over everything in this skill, including every command and reference file. Where they conflict, follow the rules and name the rule you applied.
 
 - **Palette:** no purple-to-blue (or violet/indigo/cyan) gradients, glowing or neon borders, or floating card shadows, unless the user explicitly asks. This applies to `colorize`, `delight` and `overdrive` too.
 - **Layout:** never three equal cards in a row. Use variable column spans, a side-aligned headline layout, or a dense table.

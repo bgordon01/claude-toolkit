@@ -90,10 +90,14 @@ for f in "$OVR"/*.md; do
   echo "   $skill: appended $(basename "$f")"
 done
 
+# ---------- plugin ----------
+echo
+"$REPO_DIR/build-plugin.sh"
+
 # ---------- review ----------
 echo
-git -C "$REPO_DIR" add -A vendor
-if git -C "$REPO_DIR" diff --cached --quiet -- vendor; then
+git -C "$REPO_DIR" add -A vendor plugin
+if git -C "$REPO_DIR" diff --cached --quiet -- vendor plugin; then
   echo "No upstream changes."
   exit 0
 fi

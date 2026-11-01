@@ -1,10 +1,32 @@
 # claude-toolkit
 
-A set of skills for [Claude Code](https://claude.com/claude-code) that help you plan, build, design and write, without needing to know how any of it works underneath.
+A set of skills for Claude and [Claude Code](https://claude.com/claude-code) that help you plan, build, design and write, without needing to know how any of it works underneath.
 
-Once it's installed, you only need to remember one thing: type **`/start-here`**.
+Once it's installed, you only need to remember one thing: say **"start here"**, or type `/start-here`.
 
 ## Install
+
+### In the Claude app (phone, web or desktop)
+
+Add it once to your Claude account:
+
+1. Open **Customize → Plugins**.
+2. Tap **Add**, then **Add marketplace**, and enter `bgordon01/claude-toolkit`.
+3. Find **toolkit** under **Discover** and tap **Add**.
+
+That's it. The toolkit is now part of your Claude account. If you sign in to Claude Code on your Mac with the same account, it appears there too at the next start. In Claude Code, the commands carry a `toolkit:` prefix, for example `/toolkit:start-here`.
+
+### In Claude Code only
+
+Inside Claude Code, run:
+
+```
+/plugin install toolkit --marketplace bgordon01/claude-toolkit
+```
+
+### With the install script (Mac)
+
+Use this instead of the plugin if you want shorter commands (`/start-here` rather than `/toolkit:start-here`) and the house rules always on. Pick one method per Mac. Using both gives you every skill twice.
 
 You need a Mac with Claude Code already installed.
 
@@ -19,9 +41,9 @@ You need a Mac with Claude Code already installed.
 
 If Terminal says you need git, it will tell you the one command to run first. Run it, then paste the line above again.
 
-### On your phone and in cloud sessions
+### Cloud coding sessions (the Code tab)
 
-Coding sessions you start from the Claude app or [claude.ai/code](https://claude.ai/code) run on a fresh cloud computer each time, so they don't see what's installed on your Mac. Set this up once:
+Coding sessions you start from the app's **Code** tab or [claude.ai/code](https://claude.ai/code) run on a fresh cloud computer each time. If the toolkit's commands don't show up there, set this up once:
 
 1. In a browser, open [claude.ai/code](https://claude.ai/code) and open your cloud environment's settings. Usually it's called **Default**.
 2. Paste this into the **Setup script** box and save:
@@ -78,21 +100,14 @@ These apply to everything the toolkit builds or writes, in every project:
 
 ## Update
 
-Say **"update my skills"** in Claude Code, or paste this in Terminal:
-
-```bash
-~/.claude-toolkit/update.sh
-```
-
-Then restart Claude Code.
+- **Plugin, in the Claude app:** new versions come from GitHub. Check under **Customize → Plugins**.
+- **Plugin, in Claude Code:** run `/plugin`, open **Marketplaces**, select `bgordon01` and choose **Update**, or turn on **auto-update** there so it updates by itself.
+- **Install script:** say **"update my skills"** in Claude Code, or paste `~/.claude-toolkit/update.sh` in Terminal, then restart Claude Code.
 
 ## Remove it
 
-```bash
-~/.claude-toolkit/uninstall.sh
-```
-
-This removes everything the toolkit added to Claude Code and leaves your own files alone. To delete the downloaded toolkit too, also run `rm -rf ~/.claude-toolkit`.
+- **Plugin:** remove **toolkit** under **Customize → Plugins** in the app, or with `/plugin` in Claude Code.
+- **Install script:** paste `~/.claude-toolkit/uninstall.sh` in Terminal. It removes everything the toolkit added and leaves your own files alone. To delete the downloaded toolkit too, also run `rm -rf ~/.claude-toolkit`.
 
 ## Where the skills come from
 

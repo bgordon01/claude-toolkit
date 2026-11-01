@@ -9,7 +9,7 @@ You are guiding someone who may not be a developer. They should never need to kn
 
 ## How to run a step
 
-Each step below names a skill. To run it, read `~/.claude/skills/<skill>/SKILL.md` and follow its instructions exactly, as if the user had typed `/<skill>`. (Several of these skills are set to run only on request, so read the file directly rather than calling the Skill tool.)
+Each step below names a skill. Run it with the Skill tool. Depending on how the toolkit was installed, the name is either bare (`grill-me`) or carries the plugin prefix (`toolkit:grill-me`); use whichever is available. If the Skill tool refuses because a skill is set to run only on request, read that skill's `SKILL.md` instead and follow it exactly. It sits next to this file's folder, as `../<skill>/SKILL.md`.
 
 Before every step:
 1. Say in one plain sentence what the step does and why.
@@ -74,12 +74,15 @@ Ask: the code, the design, or both? Then:
 
 ## Path 5: Update my skills
 
-1. Find the toolkit folder: it is the target of the `~/.claude/skills/start-here` link (normally `~/.claude-toolkit`).
-2. ✏️ Run `<toolkit folder>/update.sh` in the terminal.
-3. Report in plain words: whether anything changed, which skills were added or removed, and that the user should restart Claude Code to pick up changes.
+How the toolkit updates depends on how it was installed:
+
+- **Installed with the install script** (a `~/.claude-toolkit/update.sh` file exists):
+  1. ✏️ Run `~/.claude-toolkit/update.sh` in the terminal.
+  2. Report in plain words whether anything changed and which skills were added or removed. Say that the user should restart Claude Code to pick up changes.
+- **Installed as a plugin**, in the Claude app or with `/plugin`: no command is needed. Say that plugin updates come from GitHub. In the Claude app, they can check under **Customize → Plugins**. In Claude Code, they can run `/plugin`, open the **Marketplaces** tab, select `bgordon01` and choose **Update**, or turn on auto-update there.
 
 If the update fails, show the error message and say what it means in one sentence. The most common cause is changes the user made inside the toolkit folder. Don't try to fix git problems without asking.
 
 ## House rules
 
-The rules in `~/.claude/claude-toolkit-rules.md` apply to everything built or written along the way. If a step's output breaks one, fix it before moving on and say which rule you applied.
+The house rules apply to everything built or written along the way. They are in `~/.claude/claude-toolkit-rules.md` for a script install, or in the `house-rules` skill for a plugin install. If a step's output breaks one, fix it before moving on and say which rule you applied.
