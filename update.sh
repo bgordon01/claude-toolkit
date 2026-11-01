@@ -4,12 +4,16 @@
 set -euo pipefail
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-before="$(git -C "$REPO_DIR" rev-parse HEAD)"
-if ! git -C "$REPO_DIR" pull --ff-only -q; then
-  echo
+if [[ -n "$(git -C "$REPO_DIR" status --porcelain)" ]]; then
   echo "Couldn't update: files inside $REPO_DIR were changed on this Mac."
   echo "To discard those changes and update, run:"
   echo "  git -C $REPO_DIR reset --hard origin/main && $REPO_DIR/update.sh"
+  exit 1
+fi
+
+before="$(git -C "$REPO_DIR" rev-parse HEAD)"
+if ! git -C "$REPO_DIR" pull --ff-only -q >/dev/null; then
+  echo "Couldn't download the update. Check your internet connection and try again."
   exit 1
 fi
 after="$(git -C "$REPO_DIR" rev-parse HEAD)"
