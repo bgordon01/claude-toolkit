@@ -14,6 +14,10 @@ These rules apply in every repo. A project's own CLAUDE.md overrides them where 
 - **Concrete over vague.** Lead with the mechanism and a number: "Deploy in 30 seconds", not "Blazing fast deployments".
 - **Fit the space.** Labels, buttons and errors must read cleanly in their container without awkward wraps.
 
-## Engineering workflow
+## Engineering workflow (Matt Pocock's skills)
 - Before building a non-trivial feature, run `/grill-me` and resolve open questions first.
-- Break agreed work into tickets with `/to-tickets`; implement one at a time with `/implement`.
+- Break agreed work into tickets with `/to-tickets`; build one at a time with `/implement`.
+
+## Design workflow (Impeccable)
+- Use `/impeccable critique`, `/impeccable polish` and `/impeccable clarify` for design and UX-copy passes.
+- The four strict design laws above take precedence over Impeccable's defaults where they differ.

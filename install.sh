@@ -1,61 +1,75 @@
 #!/usr/bin/env bash
-# Installs design-discipline globally into ~/.claude so every repo gets it.
-# Default: symlinks, so `git pull` in this repo updates every project instantly.
-# Use --copy to copy files instead (e.g. if you'll delete this clone).
+# Installs every skill in this repo globally for Claude Code (~/.claude/skills),
+# plus the /stop-slop command and the global rules import.
+#
+# Symlinks by default, so ./update.sh (git pull + re-run) keeps a laptop in sync.
+# Re-running is safe: new skills get linked, skills removed upstream get unlinked.
+#
+#   --copy   copy files instead of symlinking (re-run after every update)
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
+MANIFEST="$CLAUDE_DIR/.design-discipline-installed"
 MODE="link"
 [[ "${1:-}" == "--copy" ]] && MODE="copy"
-
+STAMP="$(date +%Y%m%d%H%M%S)"
 MARK_START="<!-- design-discipline:start -->"
 MARK_END="<!-- design-discipline:end -->"
-RULES_TARGET="$CLAUDE_DIR/design-discipline-rules.md"
-STAMP="$(date +%Y%m%d%H%M%S)"
+shopt -s nullglob
+
+mkdir -p "$CLAUDE_DIR/skills" "$CLAUDE_DIR/commands"
+touch "$MANIFEST"
+
+owned() { grep -qxF "$1" "$MANIFEST"; }
 
 place() { # place <source> <dest>
   local src="$1" dest="$2"
-  # Already ours? Replace silently.
-  if [[ -L "$dest" && "$(readlink "$dest")" == "$src" ]]; then rm "$dest"
-  elif [[ -e "$dest" || -L "$dest" ]]; then
-    mv "$dest" "$dest.bak-$STAMP"
-    echo "  backed up existing $(basename "$dest") -> $(basename "$dest").bak-$STAMP"
+  if [[ -L "$dest" || -e "$dest" ]]; then
+    if [[ -L "$dest" && "$(readlink "$dest")" == "$src" ]] || owned "$dest"; then
+      rm -rf "$dest"
+    else
+      mv "$dest" "$dest.bak-$STAMP"
+      echo "  backed up your existing $(basename "$dest") -> $(basename "$dest").bak-$STAMP"
+    fi
   fi
   if [[ "$MODE" == "link" ]]; then ln -s "$src" "$dest"; else cp -R "$src" "$dest"; fi
+  echo "$dest" >> "$MANIFEST.new"
 }
 
-echo "Installing design-discipline into $CLAUDE_DIR ($MODE mode)"
-mkdir -p "$CLAUDE_DIR/commands" "$CLAUDE_DIR/skills"
+: > "$MANIFEST.new"
+echo "Installing into $CLAUDE_DIR ($MODE mode)"
 
-echo "Commands:"
+# Skill sources: this repo's own skills first, then each vendored source
+for group in "$REPO_DIR/skills" "$REPO_DIR"/vendor/*; do
+  label="$(basename "$group")"; [[ "$label" == "skills" ]] && label="design-discipline"
+  names=()
+  for d in "$group"/*/; do
+    d="${d%/}"; [[ -f "$d/SKILL.md" ]] || continue
+    place "$d" "$CLAUDE_DIR/skills/$(basename "$d")"
+    names+=("$(basename "$d")")
+  done
+  [[ ${#names[@]} -gt 0 ]] && echo "  ✓ $label (${#names[@]}): ${names[*]}"
+done
+
 for f in "$REPO_DIR"/commands/*.md; do
   place "$f" "$CLAUDE_DIR/commands/$(basename "$f")"
-  echo "  /$(basename "$f" .md)"
+  echo "  ✓ command: /$(basename "$f" .md)"
 done
 
-echo "Skills:"
-for d in "$REPO_DIR"/skills/*/; do
-  d="${d%/}"
-  place "$d" "$CLAUDE_DIR/skills/$(basename "$d")"
-  echo "  $(basename "$d")"
-done
-
-echo "Global rules:"
-place "$REPO_DIR/rules/RULES.md" "$RULES_TARGET"
-CLAUDE_MD="$CLAUDE_DIR/CLAUDE.md"
-touch "$CLAUDE_MD"
+place "$REPO_DIR/rules/RULES.md" "$CLAUDE_DIR/design-discipline-rules.md"
+CLAUDE_MD="$CLAUDE_DIR/CLAUDE.md"; touch "$CLAUDE_MD"
 if ! grep -qF "$MARK_START" "$CLAUDE_MD"; then
-  {
-    [[ -s "$CLAUDE_MD" ]] && echo
-    echo "$MARK_START"
-    echo "@design-discipline-rules.md"
-    echo "$MARK_END"
-  } >> "$CLAUDE_MD"
-  echo "  imported into $CLAUDE_MD"
-else
-  echo "  already imported in $CLAUDE_MD"
+  { [[ -s "$CLAUDE_MD" ]] && echo; echo "$MARK_START"; echo "@design-discipline-rules.md"; echo "$MARK_END"; } >> "$CLAUDE_MD"
 fi
+echo "  ✓ global rules imported in CLAUDE.md"
+
+# Unlink anything we installed last time that no longer exists in the repo
+while read -r old; do
+  [[ -n "$old" ]] || continue
+  grep -qxF "$old" "$MANIFEST.new" || { rm -rf "$old"; echo "  - removed $(basename "$old") (gone upstream)"; }
+done < "$MANIFEST"
+mv "$MANIFEST.new" "$MANIFEST"
 
 echo
-echo "Done. Restart any open Claude Code sessions to pick up the changes."
+echo "Done. Restart Claude Code. Keep in sync with: $REPO_DIR/update.sh"
