@@ -11,9 +11,9 @@
 
 Once it's installed, you only need to remember one thing: say **"start here"**, or type `/start`. It tells you the next step and hands you the command to run.
 
-Landing page: [bgordon01.github.io/claude-toolkit](https://bgordon01.github.io/claude-toolkit)
+Landing page: [bgordon01.github.io/frontier](https://bgordon01.github.io/frontier)
 
-> **About the name.** Frontier is the new name for claude-toolkit. The repo (`claude-toolkit`), the plugin (`toolkit@bgordon01`) and its `toolkit:` command prefix keep their old names until a separate rename, so every install step below is correct as written.
+> **About the name.** Frontier is the new name for claude-toolkit. The repo is now [`bgordon01/frontier`](https://github.com/bgordon01/frontier); links to the old `claude-toolkit` address redirect here. The plugin (`toolkit@bgordon01`) and its `toolkit:` command prefix keep their old names until a separate rename, so every install step below is correct as written.
 
 ## Why
 
@@ -39,7 +39,7 @@ Pick where you use Claude. Each path takes under a minute.
 Add it once to your Claude account:
 
 1. Open **Customize → Plugins**.
-2. Tap **Add**, then **Add marketplace**, and enter `bgordon01/claude-toolkit`.
+2. Tap **Add**, then **Add marketplace**, and enter `bgordon01/frontier`.
 3. Find **toolkit** under **Discover** and tap **Add**.
 
 The plugin is now part of your Claude account and works in app chats. If you sign in to Claude Code on your Mac with the same account, it appears there too at the next start, with a `toolkit:` prefix on each command, for example `/toolkit:start`.
@@ -51,7 +51,7 @@ It does **not** reach coding sessions in the app's **Code** tab. Those need the 
 Inside Claude Code, run:
 
 ```
-/plugin install toolkit --marketplace bgordon01/claude-toolkit
+/plugin install toolkit --marketplace bgordon01/frontier
 ```
 
 ### With the install script (Mac)
@@ -64,7 +64,7 @@ You need a Mac with Claude Code already installed.
 2. Paste this line and press Return:
 
    ```bash
-   curl -fsSL https://raw.githubusercontent.com/bgordon01/claude-toolkit/main/install.sh | bash
+   curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash
    ```
 
 3. Restart Claude Code.
@@ -80,7 +80,7 @@ Coding sessions you start from the app's **Code** tab or [claude.ai/code](https:
 
    ```bash
    #!/bin/bash
-   curl -fsSL https://raw.githubusercontent.com/bgordon01/claude-toolkit/main/install.sh | bash || true
+   curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash || true
    ```
 
 3. Start a **new** session and type `/start`, with no `toolkit:` prefix here.
@@ -208,7 +208,7 @@ Files in [`site/assets/`](site/assets):
 
 ## Landing page
 
-The page lives in [`site/index.html`](site/index.html): one static file, no build step, JavaScript only for the copy buttons, no analytics. On every push to `main` that touches `site/`, the [Pages workflow](.github/workflows/pages.yml) publishes it to [bgordon01.github.io/claude-toolkit](https://bgordon01.github.io/claude-toolkit). Pages has to be switched on once in the repo settings (**Settings → Pages → Source: GitHub Actions**).
+The page lives in [`site/index.html`](site/index.html): one static file, no build step, JavaScript only for the copy buttons, no analytics. On every push to `main` that touches `site/`, the [Pages workflow](.github/workflows/pages.yml) publishes it to [bgordon01.github.io/frontier](https://bgordon01.github.io/frontier). Pages has to be switched on once in the repo settings (**Settings → Pages → Source: GitHub Actions**).
 
 The decisions behind the page, name and logo are in [`docs/frontier/SPEC.md`](docs/frontier/SPEC.md).
 

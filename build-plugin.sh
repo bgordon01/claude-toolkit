@@ -52,8 +52,8 @@ cat > "$OUT/.claude-plugin/plugin.json" <<EOF
   "name": "toolkit",
   "description": "Plan, build, design and write with Claude. Say 'start here' or type /start.",
   "author": { "name": "Brent Gordon" },
-  "homepage": "https://github.com/bgordon01/claude-toolkit",
-  "repository": "https://github.com/bgordon01/claude-toolkit",
+  "homepage": "https://github.com/bgordon01/frontier",
+  "repository": "https://github.com/bgordon01/frontier",
   "license": "MIT"
 }
 EOF

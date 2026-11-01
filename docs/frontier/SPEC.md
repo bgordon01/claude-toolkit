@@ -4,7 +4,7 @@ Decisions from the grilling session on 2026-11-01. Each line is settled unless m
 
 ## Name and scope
 - The toolkit is presented as **Frontier** on the landing page only.
-- The plugin (`toolkit@bgordon01`), commands (`/toolkit:start`) and repo (`claude-toolkit`) keep their names for now. Renaming them is a separate ticket, so the page's install steps stay correct.
+- The plugin (`toolkit@bgordon01`), plugin name and `toolkit:` command prefix (`/toolkit:start`) keep their names for now. The repo was renamed to `bgordon01/frontier`; old `claude-toolkit` links redirect. Renaming them is a separate ticket, so the page's install steps stay correct.
 
 ## Goal and audience
 - Audience: vibe coders who go straight from prompt to code.
@@ -51,6 +51,6 @@ The sets are mapped onto the single workflow, not shown as three equal sections.
 
 ## Tech and delivery
 - Static `site/index.html`, no build step. JavaScript only for copy buttons.
-- Deployed by a GitHub Actions workflow to GitHub Pages on push to `main`, at `bgordon01.github.io/claude-toolkit`. Pages must be enabled once in repo settings (Source: GitHub Actions).
+- Deployed by a GitHub Actions workflow to GitHub Pages on push to `main`, at `bgordon01.github.io/frontier`. Pages must be enabled once in repo settings (Source: GitHub Actions).
 - No analytics.
 - Built on a branch, previewed as an Artifact, PR opened only after approval.

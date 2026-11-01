@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # claude-toolkit installer (macOS).
 #
-#   curl -fsSL https://raw.githubusercontent.com/bgordon01/claude-toolkit/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash
 #
 # Downloads the toolkit to ~/.claude-toolkit and links its skills, agents and
 # house rules into ~/.claude. Safe to run again at any time. Installs no hooks:
@@ -10,7 +10,7 @@
 #   --copy   copy files instead of linking them (re-run after every update)
 set -euo pipefail
 
-REPO_URL="https://github.com/bgordon01/claude-toolkit.git"
+REPO_URL="https://github.com/bgordon01/frontier.git"
 TOOLKIT_DIR="${CLAUDE_TOOLKIT_DIR:-$HOME/.claude-toolkit}"
 
 # ---------- bootstrap: run from curl, or from outside a copy of the repo ----------
