@@ -195,12 +195,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .kinds svg { width: 64px; height: 64px; overflow: visible; }
 .kinds strong { display: block; font: 800 19px/1.25 var(--sans); }
 .kinds span { color: var(--muted); font-size: 16px; }
-.term { border-radius: 16px; background: var(--sign); color: var(--sign-fg); overflow: hidden; }
-.term-bar { display: flex; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid var(--sign-2); font: 400 12px/1.6 var(--mono); color: var(--sign-muted); }
-.term pre { margin: 0; padding: 24px 20px 28px; overflow-x: auto; font: 400 14px/1.9 var(--mono); }
-.term .you { color: var(--sign-line); }
-.term .dim { color: var(--sign-muted); }
-.term .ask { font-weight: 600; }
+.terminal { border-radius: 16px; background: var(--sign); color: var(--sign-fg); overflow: hidden; }
+.terminal-bar { display: flex; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid var(--sign-2); font: 400 12px/1.6 var(--mono); color: var(--sign-muted); }
+.terminal pre { margin: 0; padding: 24px 20px 28px; overflow-x: auto; font: 400 14px/1.9 var(--mono); }
+.terminal .you { color: var(--sign-line); }
+.terminal .dim { color: var(--sign-muted); }
+.terminal .ask { font-weight: 600; }
 
 /* Change here: branch routes */
 .routes { margin-top: 80px; display: grid; gap: 0; border-top: 2px solid var(--ink); }
@@ -403,8 +403,8 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
         <li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M0 32H24V12M40 12V32H64" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 32H44" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/></svg><div><strong>Gate</strong><span>Writes code, edits files or creates tickets. Waits for your go.</span></div></li>
       </ul>
     </div>
-    <div class="term" role="img" aria-label="Example session: /start-here asks what you want, runs the grilling step straight away, then asks before writing the spec.">
-      <div class="term-bar" aria-hidden="true"><span>claude</span><span>~/my-app</span></div>
+    <div class="terminal" role="img" aria-label="Example session: /start-here asks what you want, runs the grilling step straight away, then asks before writing the spec.">
+      <div class="terminal-bar" aria-hidden="true"><span>claude</span><span>~/my-app</span></div>
 <pre><span class="you">› /start-here</span>
 <span class="dim">What do you want to do?</span>
 <span class="you">› Build something new</span>
