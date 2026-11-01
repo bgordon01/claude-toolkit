@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Frontier</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="18 Claude skills and one workflow that make Claude question, plan, test and review before anything ships.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+<style>
+/* Layout: left-aligned editorial column; the workflow runs as a horizon line across the full width and is the page's one bold element. */
+:root {
+  --paper: #F6F4EF;
+  --paper-2: #EDEAE3;
+  --ink: #1B1A17;
+  --muted: #625E56;
+  --rule: #D9D4CA;
+  --accent: #C2410C;
+  --accent-soft: #F3E1D6;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --max: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141311; --paper-2: #1E1C19; --ink: #EDEAE3; --muted: #A49F95;
+    --rule: #35322D; --accent: #F28C4B; --accent-soft: #3A2418; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141311; --paper-2: #1E1C19; --ink: #EDEAE3; --muted: #A49F95;
+  --rule: #35322D; --accent: #F28C4B; --accent-soft: #3A2418; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-color: var(--rule); text-underline-offset: 4px; }
+a:hover { text-decoration-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+code, .mono { font-family: var(--mono); font-size: 0.875em; }
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); }
+}
+section { padding-block: 64px; border-top: 1px solid var(--rule); }
+@media (min-width: 720px) { section { padding-block: 96px; } }
+
+.eyebrow {
+  font: 500 12px/1.4 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+h2 {
+  font: 600 clamp(28px, 4vw, 36px)/1.15 var(--serif);
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+.lede { color: var(--muted); max-width: 60ch; margin: 0; }
+
+/* Header */
+.top { padding-block: 24px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font: 600 22px/1 var(--serif); letter-spacing: -0.01em; }
+.brand svg { width: 28px; height: 28px; flex: none; }
+.top nav { display: flex; gap: 24px; font-size: 14px; color: var(--muted); }
+.top nav a { text-decoration: none; }
+.top nav a:hover { color: var(--ink); }
+@media (max-width: 560px) { .top nav .opt { display: none; } }
+
+/* Hero */
+.hero { padding-block: 48px 64px; border-top: 0; }
+@media (min-width: 720px) { .hero { padding-block: 72px 96px; } }
+.hero-grid { display: grid; gap: 32px; }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 64px; align-items: end; } }
+.hero h1 {
+  font: 500 clamp(36px, 6vw, 60px)/1.05 var(--serif);
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+  text-wrap: balance;
+}
+.hero p.sub { font-size: 18px; color: var(--muted); max-width: 44ch; margin: 0 0 32px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font: 600 15px/1.2 var(--sans);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.btn.primary { background: var(--accent); color: var(--paper); }
+.btn.primary:hover { filter: brightness(1.08); }
+.btn.quiet { color: var(--ink); border-color: var(--rule); }
+.btn.quiet:hover { border-color: var(--ink); }
+.hero-aside { font-size: 14px; color: var(--muted); display: grid; gap: 12px; }
+.hero-aside div { display: grid; grid-template-columns: 96px 1fr; gap: 12px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.hero-aside dt { font: 500 12px/1.6 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; }
+.hero-aside dd { margin: 0; color: var(--ink); }
+.hero-aside dl { margin: 0; display: grid; gap: 12px; }
+
+/* Before / after */
+.contrast { display: grid; gap: 32px; margin-top: 40px; }
+@media (min-width: 900px) { .contrast { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 64px; } }
+.flow { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.flow li { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; }
+.flow li + li::before { content: "→"; color: var(--muted); }
+.before .flow li span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--rule); }
+.after .flow li span { font-weight: 500; }
+.contrast h3 { font: 500 12px/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
+.contrast .after h3 { color: var(--accent); }
+.contrast p { margin: 16px 0 0; color: var(--muted); font-size: 15px; }
+.contrast .after p { color: var(--ink); }
+
+/* Workflow: the bold element */
+.workflow { background: var(--paper-2); }
+.track { list-style: none; margin: 56px 0 0; padding: 0; display: grid; gap: 0; position: relative; }
+.step { position: relative; padding: 0 0 40px 48px; min-width: 0; }
+.step::before { /* the horizon line, vertical on narrow screens */
+  content: ""; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: var(--accent);
+}
+.step:last-child::before { bottom: auto; height: 16px; }
+.node { position: absolute; left: 0; top: 0; width: 32px; height: 32px; display: grid; place-items: center; background: var(--paper-2); }
+.node svg { width: 32px; height: 32px; }
+.num { font: 500 12px/1 var(--mono); color: var(--accent); letter-spacing: 0.08em; display: block; margin: 8px 0 8px; }
+.step h3 { font: 600 28px/1.1 var(--serif); letter-spacing: -0.01em; margin: 0 0 12px; }
+.step .cmd { display: flex; flex-wrap: wrap; gap: 4px 8px; margin: 0 0 12px; }
+.step .cmd code { font-size: 13px; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.step p { margin: 0 0 8px; font-size: 15px; max-width: 36ch; }
+.step .by { font-size: 13px; color: var(--muted); }
+@media (min-width: 1000px) {
+  .track { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; }
+  .step { padding: 56px 0 0; }
+  .step::before { left: 0; right: -24px; top: 15px; bottom: auto; width: auto; height: 2px; }
+  .step:last-child::before { right: 0; height: 2px; }
+  .node { top: 0; left: 0; }
+  .num { margin-top: 0; }
+  .step h3 { font-size: 26px; }
+}
+.legend { display: flex; flex-wrap: wrap; gap: 12px 32px; margin-top: 24px; font-size: 14px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend svg { width: 24px; height: 24px; }
+
+.routes { margin-top: 64px; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.route { display: grid; gap: 8px; padding-block: 20px; border-bottom: 1px solid var(--rule); }
+@media (min-width: 900px) { .route { grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 3fr); gap: 32px; align-items: baseline; } }
+.route h4 { font: 600 18px/1.3 var(--serif); margin: 0; }
+.route p { margin: 0; font-size: 15px; }
+.route .join { font-size: 13px; color: var(--muted); }
+.route code { font-size: 13px; }
+
+/* Gates */
+.gates-grid { display: grid; gap: 40px; }
+@media (min-width: 900px) { .gates-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 64px; align-items: start; } }
+.gates-grid p { margin: 0 0 16px; max-width: 52ch; }
+.term { overflow-x: auto; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 24px; font: 400 13px/1.8 var(--mono); }
+.term pre { margin: 0; font: inherit; white-space: pre; }
+.term .you { color: var(--accent); }
+.term .dim { color: var(--muted); }
+.term .ask { font-weight: 500; }
+
+/* House rules */
+.rules { display: grid; gap: 0; margin-top: 40px; border-top: 1px solid var(--rule); }
+@media (min-width: 720px) { .rules { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; } }
+.rule { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; padding-block: 20px; border-bottom: 1px solid var(--rule); }
+.rule .tag { font: 500 12px/1.8 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.rule strong { display: block; font-weight: 600; margin-bottom: 4px; }
+.rule span.d { color: var(--muted); font-size: 15px; }
+
+/* Command table */
+.table-wrap { overflow-x: auto; margin-top: 40px; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 640px; }
+th { text-align: left; font: 500 12px/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding: 0 16px 12px 0; border-bottom: 1px solid var(--ink); }
+td { padding: 12px 16px 12px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td:first-child { white-space: nowrap; }
+td code { font-size: 14px; color: var(--accent); }
+td.set { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.support { margin-top: 16px; font-size: 14px; color: var(--muted); }
+
+/* Install */
+.install-grid { display: grid; gap: 40px; margin-top: 40px; }
+@media (min-width: 900px) { .install-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 64px; } }
+.install-grid > div, .gates-grid > div, .hero-grid > div, .contrast > div { min-width: 0; }
+.path h3 { font: 600 22px/1.2 var(--serif); margin: 0 0 4px; }
+.path .where { font-size: 14px; color: var(--muted); margin: 0 0 16px; }
+.path ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+.path + .path { margin-top: 40px; }
+.copy { display: flex; align-items: stretch; gap: 0; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper-2); margin-top: 12px; min-width: 0; }
+.copy pre { margin: 0; padding: 12px 16px; overflow-x: auto; flex: 1; min-width: 0; font: 400 13px/1.6 var(--mono); }
+.copy button { flex: none; border: 0; border-left: 1px solid var(--rule); background: transparent; color: var(--ink); font: 500 13px/1 var(--sans); padding: 0 16px; cursor: pointer; border-radius: 0 8px 8px 0; min-width: 72px; }
+.copy button:hover { color: var(--accent); }
+.note { font-size: 14px; color: var(--muted); margin-top: 24px; }
+
+/* Built on */
+.authors { display: grid; gap: 0; margin-top: 40px; border-top: 1px solid var(--rule); }
+.author { display: grid; gap: 4px; padding-block: 20px; border-bottom: 1px solid var(--rule); }
+@media (min-width: 720px) { .author { grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 2fr); gap: 32px; align-items: baseline; } }
+.author a.name { font: 600 20px/1.3 var(--serif); text-decoration: none; }
+.author a.name:hover { color: var(--accent); }
+.author .what { font-size: 15px; }
+.author .lic { font: 400 13px/1.6 var(--mono); color: var(--muted); }
+
+footer { border-top: 1px solid var(--rule); padding-block: 32px 48px; font-size: 14px; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: space-between; align-items: center; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .copy button, a { transition: color .15s, border-color .15s, filter .15s, text-decoration-color .15s; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="gate" viewBox="0 0 32 32"><path d="M3 21H11V11M21 11V21H29" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="open" viewBox="0 0 32 32"><circle cx="16" cy="16" r="6" fill="var(--paper-2)" stroke="currentColor" stroke-width="2.5"/></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Frontier home">
+      <svg viewBox="0 0 32 32" aria-hidden="true" style="color: var(--accent)"><use href="#gate"/></svg>
+      Frontier
+    </a>
+    <nav aria-label="Sections">
+      <a class="opt" href="#workflow">Workflow</a>
+      <a class="opt" href="#commands">Commands</a>
+      <a href="#install">Install</a>
+      <a class="opt" href="https://github.com/bgordon01/claude-toolkit">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Frontier · for Claude Code and the Claude app</p>
+      <h1>Plan first. Then let Claude code.</h1>
+      <p class="sub">18 skills and one workflow that make Claude question, plan, test and review before anything ships.</p>
+      <div class="actions">
+        <a class="btn primary" href="#install">Add to Claude</a>
+        <a class="btn quiet" href="#workflow">See the workflow</a>
+      </div>
+    </div>
+    <aside class="hero-aside" aria-label="At a glance">
+      <dl>
+        <div><dt>Start</dt><dd>Type <code>/start-here</code>. It picks the next step.</dd></div>
+        <div><dt>Gates</dt><dd>Nothing changes your files until you say go.</dd></div>
+        <div><dt>Sets</dt><dd>Engineering, design and copy skills from 4 authors.</dd></div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section aria-labelledby="shift-h">
+  <div class="wrap">
+    <p class="eyebrow">The shift</p>
+    <h2 id="shift-h">Most of the work happens before the code.</h2>
+    <p class="lede">Vibe coding skips straight to the part Claude is fastest at. Frontier moves your time to the parts only you can do: deciding what to build and checking what got built.</p>
+    <div class="contrast">
+      <div class="before">
+        <h3>Without a method</h3>
+        <ol class="flow">
+          <li><span>Prompt</span></li>
+          <li><span>400 lines of code</span></li>
+          <li><span>Something breaks</span></li>
+          <li><span>Prompt again</span></li>
+        </ol>
+        <p>Every fix starts from a guess.</p>
+      </div>
+      <div class="after">
+        <h3>With Frontier</h3>
+        <ol class="flow">
+          <li><span>Get questioned</span></li>
+          <li><span>Write the spec</span></li>
+          <li><span>Split into tickets</span></li>
+          <li><span>Build one, test first</span></li>
+          <li><span>Review</span></li>
+        </ol>
+        <p>Every change starts from a decision you made.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="workflow" id="workflow" aria-labelledby="wf-h">
+  <div class="wrap">
+    <p class="eyebrow">The workflow · build something new</p>
+    <h2 id="wf-h">Six steps from idea to reviewed change.</h2>
+    <p class="lede">Each step is a skill you can call yourself, or let <code>/start-here</code> call for you. Engineering is the spine; design and copy plug in before review.</p>
+
+    <ol class="track">
+      <li class="step">
+        <span class="node" style="color: var(--accent)"><svg aria-label="Runs straight away"><use href="#open"/></svg></span>
+        <span class="num">01</span>
+        <h3>Grill</h3>
+        <div class="cmd"><code>/grill-me</code></div>
+        <p>Questions your idea, one round at a time, until every decision is made.</p>
+        <span class="by">Matt Pocock</span>
+      </li>
+      <li class="step">
+        <span class="node" style="color: var(--accent)"><svg aria-label="Waits for your go"><use href="#gate"/></svg></span>
+        <span class="num">02</span>
+        <h3>Spec</h3>
+        <div class="cmd"><code>/to-spec</code></div>
+        <p>Writes what you agreed into one spec in your issue tracker.</p>
+        <span class="by">Matt Pocock</span>
+      </li>
+      <li class="step">
+        <span class="node" style="color: var(--accent)"><svg aria-label="Waits for your go"><use href="#gate"/></svg></span>
+        <span class="num">03</span>
+        <h3>Tickets</h3>
+        <div class="cmd"><code>/to-tickets</code></div>
+        <p>Splits the spec into small tickets, each with what blocks it.</p>
+        <span class="by">Matt Pocock</span>
+      </li>
+      <li class="step">
+        <span class="node" style="color: var(--accent)"><svg aria-label="Waits for your go"><use href="#gate"/></svg></span>
+        <span class="num">04</span>
+        <h3>Build</h3>
+        <div class="cmd"><code>/implement</code><code>/tdd</code></div>
+        <p>Builds one ticket at a time. A failing test comes first, then the code.</p>
+        <span class="by">Matt Pocock</span>
+      </li>
+      <li class="step">
+        <span class="node" style="color: var(--accent)"><svg aria-label="Waits for your go"><use href="#gate"/></svg></span>
+        <span class="num">05</span>
+        <h3>Polish</h3>
+        <div class="cmd"><code>/impeccable polish</code><code>/copywriting</code><code>/stop-slop</code></div>
+        <p>Fixes the screen's design, writes the words, removes machine-sounding text.</p>
+        <span class="by">Paul Bakaus, Corey Haines, Hardik Pandya</span>
+      </li>
+      <li class="step">
+        <span class="node" style="color: var(--accent)"><svg aria-label="Runs straight away"><use href="#open"/></svg></span>
+        <span class="num">06</span>
+        <h3>Review</h3>
+        <div class="cmd"><code>/code-review</code><code>/impeccable critique</code></div>
+        <p>Checks the change against the spec and the house rules before you move on.</p>
+        <span class="by">Matt Pocock, Paul Bakaus</span>
+      </li>
+    </ol>
+
+    <div class="legend" aria-label="Legend">
+      <span style="color: var(--accent)"><svg aria-hidden="true"><use href="#open"/></svg><span style="color: var(--muted)">Looks and reports. Runs straight away.</span></span>
+      <span style="color: var(--accent)"><svg aria-hidden="true"><use href="#gate"/></svg><span style="color: var(--muted)">Changes files. Waits for your go.</span></span>
+    </div>
+
+    <div class="routes" aria-label="Other routes">
+      <div class="route">
+        <h4>Improve an existing project</h4>
+        <p><code>/improve-codebase-architecture</code> or <code>/impeccable critique</code> reads the code or the screens and lists what's worth fixing. Nothing changes.</p>
+        <span class="join">You pick the fixes, then rejoin at 03 Tickets.</span>
+      </div>
+      <div class="route">
+        <h4>Fix a bug</h4>
+        <p><code>/diagnosing-bugs</code> finds the cause before touching anything, then fixes it with a test that fails first.</p>
+        <span class="join">Rejoins at 06 Review.</span>
+      </div>
+      <div class="route">
+        <h4>Write or improve copy</h4>
+        <p><code>/copywriting</code> writes new copy and <code>/copy-editing</code> tightens what's there. <code>/stop-slop</code> runs last.</p>
+        <span class="join">Stands alone.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="gates-h">
+  <div class="wrap gates-grid">
+    <div>
+      <p class="eyebrow">Review gates</p>
+      <h2 id="gates-h">Nothing changes your files until you say go.</h2>
+      <p>Steps that only read and report run straight away. Steps that write code, edit files or create tickets stop and ask first.</p>
+      <p>Before each step runs, you get one sentence on what it does. You stay the one making decisions; Claude does the typing.</p>
+    </div>
+    <div class="term" role="img" aria-label="Example session: /start-here asks what you want, runs the grilling step straight away, then asks before writing the spec.">
+<pre><span class="you">› /start-here</span>
+<span class="dim">What do you want to do?</span>
+<span class="you">› Build something new</span>
+
+<span class="dim">Next: /grill-me questions your idea until it</span>
+<span class="dim">holds up. It only reads. Running now.</span>
+  …
+<span class="dim">Next: /to-spec writes the plan to your</span>
+<span class="dim">issue tracker. This changes things.</span>
+<span class="ask">Go ahead?</span>
+<span class="you">› go</span></pre>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="rules-h">
+  <div class="wrap">
+    <p class="eyebrow">House rules</p>
+    <h2 id="rules-h">Opinions it enforces on everything it builds.</h2>
+    <p class="lede">These rules sit on top of every skill, in every project. Your project's own CLAUDE.md wins where they conflict.</p>
+    <div class="rules">
+      <div class="rule"><span class="tag">Design</span><div><strong>No AI look</strong><span class="d">No purple-to-blue gradients, glowing borders or floating card shadows.</span></div></div>
+      <div class="rule"><span class="tag">Design</span><div><strong>Not everything in threes</strong><span class="d">Variable column spans and dense tables instead of three equal cards.</span></div></div>
+      <div class="rule"><span class="tag">Design</span><div><strong>A 4px grid</strong><span class="d">Every padding, margin and gap is a multiple of 4px.</span></div></div>
+      <div class="rule"><span class="tag">Design</span><div><strong>One bold thing per screen</strong><span class="d">One statement element. Everything else stays quiet.</span></div></div>
+      <div class="rule"><span class="tag">Copy</span><div><strong>Banned words</strong><span class="d">Never "seamless", "empower", "revolutionize", "supercharge" and the rest.</span></div></div>
+      <div class="rule"><span class="tag">Copy</span><div><strong>Specifics over hype</strong><span class="d">"Exports in 2 seconds", not "Blazing fast".</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="commands" aria-labelledby="cmd-h">
+  <div class="wrap">
+    <p class="eyebrow">Commands</p>
+    <h2 id="cmd-h">Every step is also a command.</h2>
+    <p class="lede">Use <code>/start-here</code> and let it choose, or call any of these directly.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Command</th><th scope="col">What it does</th><th scope="col">Set</th></tr></thead>
+        <tbody>
+          <tr><td><code>/start-here</code></td><td>Asks what you want to do and walks you through the right route.</td><td class="set">Frontier</td></tr>
+          <tr><td><code>/grill-me</code></td><td>Questions your idea until it holds up.</td><td class="set">Engineering</td></tr>
+          <tr><td><code>/to-spec</code></td><td>Turns the conversation into a spec in your issue tracker.</td><td class="set">Engineering</td></tr>
+          <tr><td><code>/to-tickets</code></td><td>Splits a spec into small tickets with blocking order.</td><td class="set">Engineering</td></tr>
+          <tr><td><code>/implement</code></td><td>Builds a piece of work from a spec or ticket.</td><td class="set">Engineering</td></tr>
+          <tr><td><code>/tdd</code></td><td>Builds test-first: red, green, refactor.</td><td class="set">Engineering</td></tr>
+          <tr><td><code>/code-review</code></td><td>Reviews changes since a commit or branch against your standards.</td><td class="set">Engineering</td></tr>
+          <tr><td><code>/diagnosing-bugs</code></td><td>Finds the real cause of a hard bug before fixing it.</td><td class="set">Engineering</td></tr>
+          <tr><td><code>/improve-codebase-architecture</code></td><td>Scans a codebase and reports what's worth restructuring.</td><td class="set">Engineering</td></tr>
+          <tr><td><code>/impeccable critique</code></td><td>Reviews a screen's design without changing it.</td><td class="set">Design</td></tr>
+          <tr><td><code>/impeccable polish</code></td><td>Fixes a screen's layout, type, colour and spacing.</td><td class="set">Design</td></tr>
+          <tr><td><code>/impeccable clarify</code></td><td>Rewrites labels, buttons and errors so they read clearly.</td><td class="set">Design</td></tr>
+          <tr><td><code>/copywriting</code></td><td>Writes marketing and landing-page copy.</td><td class="set">Copy</td></tr>
+          <tr><td><code>/copy-editing</code></td><td>Tightens copy you already have.</td><td class="set">Copy</td></tr>
+          <tr><td><code>/stop-slop</code></td><td>Removes phrasing that sounds machine-written.</td><td class="set">Copy</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="support">Plus 5 support skills the others call for you: grilling, codebase-design, domain-modeling, setup-matt-pocock-skills and house-rules. Impeccable also brings 4 helper agents.</p>
+  </div>
+</section>
+
+<section id="install" aria-labelledby="inst-h">
+  <div class="wrap">
+    <p class="eyebrow">Install</p>
+    <h2 id="inst-h">Add it once. Type <code style="font-size:0.8em">/start-here</code>.</h2>
+    <div class="install-grid">
+      <div>
+        <div class="path">
+          <h3>Claude app</h3>
+          <p class="where">Phone, web or desktop. Also reaches Claude Code on the same account.</p>
+          <ol>
+            <li>Open <strong>Customize → Plugins</strong>.</li>
+            <li>Tap <strong>Add</strong>, then <strong>Add marketplace</strong>, and enter:</li>
+          </ol>
+          <div class="copy"><pre id="c-market">bgordon01/claude-toolkit</pre><button type="button" data-copy="c-market">Copy</button></div>
+          <ol start="3" style="margin-top:12px">
+            <li>Find <strong>toolkit</strong> under <strong>Discover</strong> and tap <strong>Add</strong>.</li>
+          </ol>
+        </div>
+        <div class="path">
+          <h3>Claude Code</h3>
+          <p class="where">Run this inside Claude Code.</p>
+          <div class="copy"><pre id="c-plugin">/plugin install toolkit --marketplace bgordon01/claude-toolkit</pre><button type="button" data-copy="c-plugin">Copy</button></div>
+        </div>
+      </div>
+      <div>
+        <div class="path">
+          <h3>Cloud coding sessions</h3>
+          <p class="where">The Code tab and claude.ai/code start a fresh computer each time and don't load account plugins. Paste this into your environment's <strong>Setup script</strong> box once.</p>
+          <div class="copy"><pre id="c-cloud">#!/bin/bash
+curl -fsSL https://raw.githubusercontent.com/bgordon01/claude-toolkit/main/install.sh | bash || true</pre><button type="button" data-copy="c-cloud">Copy</button></div>
+        </div>
+        <p class="note">The plugin is still listed as <code>toolkit</code> while the Frontier name rolls out. Prefer a Mac install script with shorter commands? See the <a href="https://github.com/bgordon01/claude-toolkit#with-the-install-script-mac">README</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="built-h">
+  <div class="wrap">
+    <p class="eyebrow">Built on</p>
+    <h2 id="built-h">Four authors' skills, one set of opinions.</h2>
+    <p class="lede">Frontier picks the skills, wires them into one workflow and adds the house rules. The skills themselves come from these authors, each under its original licence.</p>
+    <div class="authors">
+      <div class="author"><a class="name" href="https://github.com/mattpocock/skills">Matt Pocock</a><span class="what">Planning, tickets, test-first building, code review, bug diagnosis.</span><span class="lic">MIT</span></div>
+      <div class="author"><a class="name" href="https://github.com/pbakaus/impeccable">Paul Bakaus</a><span class="what">Impeccable: design critique, polish and UX copy, with 4 helper agents.</span><span class="lic">Apache 2.0</span></div>
+      <div class="author"><a class="name" href="https://github.com/hardikpandya/stop-slop">Hardik Pandya</a><span class="what">Stop-slop: strips AI writing patterns from prose.</span><span class="lic">MIT</span></div>
+      <div class="author"><a class="name" href="https://github.com/coreyhaines31/marketingskills">Corey Haines</a><span class="what">Copywriting and copy editing for marketing pages.</span><span class="lic">MIT</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Frontier · MIT licence · by Brent Gordon</span>
+    <a href="https://github.com/bgordon01/claude-toolkit">github.com/bgordon01/claude-toolkit</a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.getAttribute('data-copy'));
+    var text = el.textContent;
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Press ⌘C';
+    };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+      else fallback();
+    } catch (e) { fallback(); }
+  });
+});
+</script>
+</body>
+</html>

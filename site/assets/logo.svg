@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 40" width="184" height="40" fill="none" role="img" aria-label="Frontier">
+  <style>
+    .m{stroke:#C2410C}.t{fill:#1B1A17}
+    @media (prefers-color-scheme: dark){.m{stroke:#F28C4B}.t{fill:#EDEAE3}}
+  </style>
+  <path class="m" d="M4 27H14V14M26 14V27H36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="t" x="48" y="29" font-family="'Source Serif 4', Georgia, 'Times New Roman', serif" font-size="28" font-weight="600" letter-spacing="-0.5">Frontier</text>
+</svg>
