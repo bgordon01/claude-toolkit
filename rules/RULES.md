@@ -1,0 +1,19 @@
+# Design Discipline — global rules
+
+These rules apply in every repo. A project's own CLAUDE.md overrides them where the two conflict.
+
+## Design rules — apply to all UI code
+- **No AI-default palette.** No purple-to-blue gradients, glowing/neon borders, or floating card shadows unless explicitly requested.
+- **Asymmetry over grids.** Avoid the 3-equal-cards-in-a-row pattern. Prefer variable column spans, side-aligned headline layouts, or dense tables.
+- **4pt hard grid.** Every padding, margin and gap is a multiple of 4px (Tailwind: `p-1`, `gap-2`, `p-6`, `gap-8`). No arbitrary values like `p-[13px]`.
+- **One bold element per view.** Pick exactly one statement element (a large serif headline, or a striking data layout). Everything else stays quiet: neutral colours, restrained type, minimal decoration.
+
+## Copy rules — apply to all UI text, labels, headings and docs
+- **Banned words:** revolutionize, seamless, empower, elevate, unleash, robust, supercharge, next-gen, game-changer, "unlock your potential".
+- **No throat-clearing.** Never open with "In today's fast-paced world…" or "Here is your updated code…". Start with the point.
+- **Concrete over vague.** Lead with the mechanism and a number: "Deploy in 30 seconds", not "Blazing fast deployments".
+- **Fit the space.** Labels, buttons and errors must read cleanly in their container without awkward wraps.
+
+## Engineering workflow
+- Before building a non-trivial feature, run `/grill-me` and resolve open questions first.
+- Break agreed work into tickets with `/to-tickets`; implement one at a time with `/implement`.
