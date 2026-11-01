@@ -1,0 +1,448 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-01T23:01:47+00:00",
+  "title": "Design System: Frontier",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Map White",
+        "canonical": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#242424",
+          "#404040",
+          "#5D5D5D",
+          "#7D7D7D",
+          "#9E9E9E",
+          "#C4C4C4",
+          "#EEEEEE"
+        ]
+      },
+      "ground-2": {
+        "role": "neutral",
+        "displayName": "Platform Grey",
+        "canonical": "oklch(96.1% 0.003 106)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#242423",
+          "#40403E",
+          "#5E5E5C",
+          "#7D7D7B",
+          "#9E9E9D",
+          "#C4C4C3",
+          "#EEEEEE"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Signage Black",
+        "canonical": "oklch(18.2% 0.000 90)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#242424",
+          "#404040",
+          "#5D5D5D",
+          "#7D7D7D",
+          "#9E9E9E",
+          "#C4C4C4",
+          "#EEEEEE"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Timetable Grey",
+        "canonical": "oklch(44.8% 0.006 107)",
+        "tonalRamp": [
+          "#0B0B0A",
+          "#242422",
+          "#40403D",
+          "#5E5E5A",
+          "#7D7D79",
+          "#9F9F9A",
+          "#C4C4C1",
+          "#EEEEED"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(89.9% 0.005 107)",
+        "tonalRamp": [
+          "#0B0B0A",
+          "#242422",
+          "#40403D",
+          "#5E5E5A",
+          "#7D7D7A",
+          "#9F9F9B",
+          "#C4C4C2",
+          "#EEEEED"
+        ]
+      },
+      "line": {
+        "role": "primary",
+        "displayName": "Frontier Orange",
+        "canonical": "oklch(55.3% 0.174 38)",
+        "tonalRamp": [
+          "#1C0300",
+          "#431001",
+          "#702102",
+          "#9F350B",
+          "#CF4D1E",
+          "#F2744C",
+          "#FFAD93",
+          "#FFE9E2"
+        ]
+      },
+      "line-text": {
+        "role": "primary",
+        "displayName": "Frontier Orange, Text Weight",
+        "canonical": "oklch(51.6% 0.163 38)",
+        "tonalRamp": [
+          "#1B0300",
+          "#431101",
+          "#702204",
+          "#A23202",
+          "#CA5229",
+          "#ED7852",
+          "#FEAD93",
+          "#FFE9E2"
+        ]
+      },
+      "sign": {
+        "role": "neutral",
+        "displayName": "Signage Black (surface)",
+        "canonical": "oklch(18.2% 0.000 90)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#242424",
+          "#404040",
+          "#5D5D5D",
+          "#7D7D7D",
+          "#9E9E9E",
+          "#C4C4C4",
+          "#EEEEEE"
+        ]
+      },
+      "sign-2": {
+        "role": "neutral",
+        "displayName": "Board Black, Raised",
+        "canonical": "oklch(26.0% 0.004 107)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#242423",
+          "#40403E",
+          "#5E5E5B",
+          "#7D7D7B",
+          "#9E9E9C",
+          "#C4C4C2",
+          "#EEEEED"
+        ]
+      },
+      "sign-muted": {
+        "role": "neutral",
+        "displayName": "Board Grey",
+        "canonical": "oklch(76.8% 0.008 107)",
+        "tonalRamp": [
+          "#0B0B0A",
+          "#242421",
+          "#40403C",
+          "#5E5E59",
+          "#7E7E78",
+          "#9F9F99",
+          "#C4C4C0",
+          "#EEEFEC"
+        ]
+      },
+      "sign-line": {
+        "role": "primary",
+        "displayName": "Signal Orange",
+        "canonical": "oklch(73.8% 0.147 51)",
+        "tonalRamp": [
+          "#180600",
+          "#3C1801",
+          "#652E02",
+          "#91460A",
+          "#BF5E12",
+          "#E28246",
+          "#F8B28A",
+          "#FFEADE"
+        ]
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "Branch Blue",
+        "canonical": "oklch(48.9% 0.140 256)",
+        "tonalRamp": [
+          "#000A1F",
+          "#01234C",
+          "#033E7E",
+          "#1C5CAA",
+          "#3F7ECE",
+          "#64A0EF",
+          "#9EC7FD",
+          "#E5F0FE"
+        ]
+      },
+      "green": {
+        "role": "secondary",
+        "displayName": "Branch Green",
+        "canonical": "oklch(53.0% 0.116 156)",
+        "tonalRamp": [
+          "#001005",
+          "#012C17",
+          "#044D2C",
+          "#106F43",
+          "#369160",
+          "#60B382",
+          "#9BD4B0",
+          "#D9F7E3"
+        ]
+      },
+      "yellow": {
+        "role": "secondary",
+        "displayName": "Branch Yellow",
+        "canonical": "oklch(60.9% 0.126 82)",
+        "tonalRamp": [
+          "#120A00",
+          "#312100",
+          "#533B05",
+          "#795705",
+          "#A07509",
+          "#C3963C",
+          "#DFBF86",
+          "#FEECCD"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only; tracking tightened to -0.02em at 800."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings, 900 at -0.03em, max 18ch, balanced."
+      },
+      "station": {
+        "displayName": "Station",
+        "purpose": "Station names on the line and notice headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "List, route and panel headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "One-line section intros, muted, max 54ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Table headers, line bullet, nav."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Anything the reader types: commands, terminal, copy fields."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Exponential ease-out for the train, gate bar, board fade and button arrow."
+      },
+      {
+        "name": "state",
+        "value": "150ms",
+        "purpose": "Colour, background, filter and border transitions on buttons and links."
+      },
+      {
+        "name": "arrow",
+        "value": "300ms",
+        "purpose": "Button arrow slides 4px right on hover."
+      },
+      {
+        "name": "board-swap",
+        "value": "350ms",
+        "purpose": "Departure board content fades and rises 8px on station change."
+      },
+      {
+        "name": "gate-lift",
+        "value": "600ms",
+        "purpose": "Gate bar lifts 24px and fades on Go."
+      },
+      {
+        "name": "train-travel",
+        "value": "400ms + 260ms per stop, max 1400ms",
+        "purpose": "Train eases into the next station."
+      },
+      {
+        "name": "circle-line",
+        "value": "7000ms loop",
+        "purpose": "Circle-line train loops while visible; paused off-screen and under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "vs-vertical",
+        "value": "640px"
+      },
+      {
+        "name": "nav-collapse",
+        "value": "680px"
+      },
+      {
+        "name": "wrap",
+        "value": "720px"
+      },
+      {
+        "name": "line-horizontal",
+        "value": "900px"
+      },
+      {
+        "name": "section",
+        "value": "960px"
+      },
+      {
+        "name": "hero-split",
+        "value": "1000px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Orange pill for the main action (Add to Claude, Install).",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\">Add to Claude <svg class=\"ds-arr\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M2 8H13M9 4L13 8L9 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ":host{--ground:#FFFFFF;--ground-2:#F2F2F0;--ink:#121212;--muted:#555551;--rule:#DEDEDA;--line:#C2410C;--line-text:#B13A09;--sign:#121212;--sign-2:#242422;--sign-fg:#FFFFFF;--sign-muted:#B4B4AE;--sign-line:#F28C4B;--on-line:#FFFFFF;--sans:\"Overpass\",ui-sans-serif,system-ui,sans-serif;--mono:\"Overpass Mono\",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1);} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:12px 24px;border-radius:999px;font:800 17px/1 var(--sans);text-decoration:none;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,background-color .15s,filter .15s,border-color .15s;} .ds-btn:focus-visible{outline:3px solid var(--line);outline-offset:4px;} .ds-arr{width:16px;height:16px;flex:none;transition:transform .3s var(--ease);} .ds-btn:hover .ds-arr{transform:translateX(4px);} .ds-btn-primary{background:var(--line);color:var(--on-line);} .ds-btn-primary:hover{filter:brightness(1.08);} .ds-btn-primary:active{transform:translateY(1px);}"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Black-outlined pill for the secondary action; fills black on hover.",
+      "html": "<a class=\"ds-btn ds-btn-quiet\" href=\"#\">Why a line?</a>",
+      "css": ":host{--ground:#FFFFFF;--ground-2:#F2F2F0;--ink:#121212;--muted:#555551;--rule:#DEDEDA;--line:#C2410C;--line-text:#B13A09;--sign:#121212;--sign-2:#242422;--sign-fg:#FFFFFF;--sign-muted:#B4B4AE;--sign-line:#F28C4B;--on-line:#FFFFFF;--sans:\"Overpass\",ui-sans-serif,system-ui,sans-serif;--mono:\"Overpass Mono\",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1);} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:12px 24px;border-radius:999px;font:800 17px/1 var(--sans);text-decoration:none;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,background-color .15s,filter .15s,border-color .15s;} .ds-btn:focus-visible{outline:3px solid var(--line);outline-offset:4px;} .ds-arr{width:16px;height:16px;flex:none;transition:transform .3s var(--ease);} .ds-btn:hover .ds-arr{transform:translateX(4px);} .ds-btn-quiet{border-color:var(--ink);background:transparent;color:var(--ink);} .ds-btn-quiet:hover{background:var(--ink);color:#FFFFFF;}"
+    },
+    {
+      "name": "Go Button",
+      "kind": "button",
+      "refersTo": "button-go",
+      "description": "Signal-orange pill on black; releases the train at a gate.",
+      "html": "<div class=\"ds-onblack\"><button class=\"ds-btn ds-btn-go\" type=\"button\">Go <svg class=\"ds-arr\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M2 8H13M9 4L13 8L9 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button></div>",
+      "css": ":host{--ground:#FFFFFF;--ground-2:#F2F2F0;--ink:#121212;--muted:#555551;--rule:#DEDEDA;--line:#C2410C;--line-text:#B13A09;--sign:#121212;--sign-2:#242422;--sign-fg:#FFFFFF;--sign-muted:#B4B4AE;--sign-line:#F28C4B;--on-line:#FFFFFF;--sans:\"Overpass\",ui-sans-serif,system-ui,sans-serif;--mono:\"Overpass Mono\",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1);} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:12px 24px;border-radius:999px;font:800 17px/1 var(--sans);text-decoration:none;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,background-color .15s,filter .15s,border-color .15s;} .ds-btn:focus-visible{outline:3px solid var(--line);outline-offset:4px;} .ds-arr{width:16px;height:16px;flex:none;transition:transform .3s var(--ease);} .ds-btn:hover .ds-arr{transform:translateX(4px);} .ds-onblack{background:var(--sign);padding:24px;border-radius:16px;} .ds-btn-go{background:var(--sign-line);color:var(--ink);} .ds-btn-go:hover{filter:brightness(1.08);}"
+    },
+    {
+      "name": "Signage Band",
+      "kind": "nav",
+      "refersTo": "signage-band",
+      "description": "Sticky 64px black header with the gate mark, ringed nav links and Install.",
+      "html": "<header class=\"ds-top\"><a class=\"ds-brand\" href=\"#\"><svg viewBox=\"0 0 32 32\" aria-hidden=\"true\"><path d=\"M2 20H12V13M20 13V20H30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Frontier</a><nav class=\"ds-nav\"><a class=\"ds-opt\" href=\"#\"><i></i>The line</a><a class=\"ds-opt\" href=\"#\"><i></i>Timetable</a><a class=\"ds-btn ds-btn-primary ds-btn-sm\" href=\"#\">Install</a></nav></header>",
+      "css": ":host{--ground:#FFFFFF;--ground-2:#F2F2F0;--ink:#121212;--muted:#555551;--rule:#DEDEDA;--line:#C2410C;--line-text:#B13A09;--sign:#121212;--sign-2:#242422;--sign-fg:#FFFFFF;--sign-muted:#B4B4AE;--sign-line:#F28C4B;--on-line:#FFFFFF;--sans:\"Overpass\",ui-sans-serif,system-ui,sans-serif;--mono:\"Overpass Mono\",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1);} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:12px 24px;border-radius:999px;font:800 17px/1 var(--sans);text-decoration:none;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,background-color .15s,filter .15s,border-color .15s;} .ds-btn:focus-visible{outline:3px solid var(--line);outline-offset:4px;} .ds-arr{width:16px;height:16px;flex:none;transition:transform .3s var(--ease);} .ds-btn:hover .ds-arr{transform:translateX(4px);} .ds-top{background:var(--sign);color:var(--sign-fg);display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px;padding:0 24px;} .ds-brand{display:inline-flex;align-items:center;gap:12px;color:inherit;text-decoration:none;font:800 24px/1 var(--sans);letter-spacing:-0.02em;} .ds-brand svg{width:36px;height:36px;color:var(--sign-line);} .ds-nav{display:flex;align-items:center;gap:24px;font:600 15px/1 var(--sans);} .ds-opt{display:inline-flex;align-items:center;gap:8px;color:var(--sign-muted);text-decoration:none;transition:color .15s;} .ds-opt:hover{color:var(--sign-fg);} .ds-opt i{width:12px;height:12px;border-radius:50%;border:3px solid var(--sign-line);box-sizing:border-box;} .ds-btn-primary{background:var(--line);color:var(--on-line);} .ds-btn-sm{min-height:40px;padding:8px 20px;font-size:15px;}"
+    },
+    {
+      "name": "Station Markers",
+      "kind": "custom",
+      "description": "The station vocabulary on the Frontier Line: terminus, open ring, gate.",
+      "html": "<div class=\"ds-line\"><span class=\"ds-mk\"><svg viewBox=\"0 0 64 64\"><rect x=\"16\" y=\"16\" width=\"32\" height=\"32\" rx=\"8\" fill=\"var(--ink)\"/></svg><b>Start</b><code>/start-here</code></span><span class=\"ds-mk\"><svg viewBox=\"0 0 64 64\"><circle cx=\"32\" cy=\"32\" r=\"14\" fill=\"var(--ground)\" stroke=\"var(--ink)\" stroke-width=\"4\"/></svg><b>Grill</b><code>/grill-me</code></span><span class=\"ds-mk\"><svg viewBox=\"0 0 64 64\" style=\"overflow:visible\"><rect x=\"26\" y=\"26\" width=\"12\" height=\"12\" fill=\"var(--ground)\"/><path d=\"M0 32H24V12M40 12V32H64\" fill=\"none\" stroke=\"var(--line)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line class=\"ds-bar\" x1=\"20\" y1=\"32\" x2=\"44\" y2=\"32\" stroke=\"var(--ink)\" stroke-width=\"6\" stroke-linecap=\"round\"/></svg><b>Spec</b><code>/to-spec</code></span></div>",
+      "css": ":host{--ground:#FFFFFF;--ground-2:#F2F2F0;--ink:#121212;--muted:#555551;--rule:#DEDEDA;--line:#C2410C;--line-text:#B13A09;--sign:#121212;--sign-2:#242422;--sign-fg:#FFFFFF;--sign-muted:#B4B4AE;--sign-line:#F28C4B;--on-line:#FFFFFF;--sans:\"Overpass\",ui-sans-serif,system-ui,sans-serif;--mono:\"Overpass Mono\",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1);} .ds-line{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--ground);padding:16px 0;} .ds-line::before{content:'';position:absolute;height:12px;top:42px;left:16.6%;right:16.6%;background:var(--line);border-radius:4px;} .ds-mk{position:relative;display:grid;justify-items:center;gap:4px;cursor:pointer;} .ds-mk svg{width:64px;height:64px;margin-bottom:8px;} .ds-mk b{font:900 22px/1 var(--sans);letter-spacing:-0.02em;color:var(--ink);} .ds-mk:hover b{color:var(--line-text);} .ds-mk code{font:400 12px/1.3 var(--mono);color:var(--muted);} .ds-bar{transition:transform .6s var(--ease),opacity .4s;} .ds-mk:hover .ds-bar{transform:translateY(-24px);opacity:0;}"
+    },
+    {
+      "name": "Departure Board",
+      "kind": "card",
+      "refersTo": "departure-board",
+      "description": "Black board under the line showing the current station, its commands and the gate status.",
+      "html": "<div class=\"ds-board\"><div><span class=\"ds-seq\">03 / 08</span><h3>Spec</h3></div><div><p>Writes what you agreed into one spec in your issue tracker.</p><code>/to-spec</code></div><div class=\"ds-status\"><p><strong>Doors held.</strong>This step changes files, so the train waits for you.</p><button class=\"ds-btn ds-btn-go\" type=\"button\">Go <svg class=\"ds-arr\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M2 8H13M9 4L13 8L9 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button></div></div>",
+      "css": ":host{--ground:#FFFFFF;--ground-2:#F2F2F0;--ink:#121212;--muted:#555551;--rule:#DEDEDA;--line:#C2410C;--line-text:#B13A09;--sign:#121212;--sign-2:#242422;--sign-fg:#FFFFFF;--sign-muted:#B4B4AE;--sign-line:#F28C4B;--on-line:#FFFFFF;--sans:\"Overpass\",ui-sans-serif,system-ui,sans-serif;--mono:\"Overpass Mono\",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1);} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:12px 24px;border-radius:999px;font:800 17px/1 var(--sans);text-decoration:none;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,background-color .15s,filter .15s,border-color .15s;} .ds-btn:focus-visible{outline:3px solid var(--line);outline-offset:4px;} .ds-arr{width:16px;height:16px;flex:none;transition:transform .3s var(--ease);} .ds-btn:hover .ds-arr{transform:translateX(4px);} .ds-board{background:var(--sign);color:var(--sign-fg);border-radius:16px;padding:28px 40px;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,5fr) minmax(0,4fr);gap:40px;align-items:center;font:400 17px/1.55 var(--sans);} .ds-seq{font:600 13px/1 var(--mono);color:var(--sign-line);} .ds-board h3{font:800 36px/1 var(--sans);letter-spacing:-0.01em;margin:8px 0 0;} .ds-board p{margin:0 0 12px;font-size:18px;line-height:1.45;} .ds-board code{font:400 13px/1.3 var(--mono);background:var(--sign-2);padding:4px 8px;border-radius:4px;} .ds-status{display:grid;gap:16px;justify-items:start;} .ds-status p{color:var(--sign-muted);font-size:16px;} .ds-status strong{display:block;color:var(--sign-fg);font-size:18px;} .ds-btn-go{background:var(--sign-line);color:var(--ink);} .ds-btn-go:hover{filter:brightness(1.08);}"
+    },
+    {
+      "name": "Posted Notice",
+      "kind": "card",
+      "refersTo": "notice",
+      "description": "A house rule posted as a station notice: line pictogram, heavy heading, muted line.",
+      "html": "<div class=\"ds-notice\"><svg viewBox=\"0 0 48 48\"><rect x=\"4\" y=\"6\" width=\"40\" height=\"18\" rx=\"2\" fill=\"none\" stroke=\"var(--line)\" stroke-width=\"3\"/><path d=\"M4 32H28M4 40H20\" fill=\"none\" stroke=\"var(--ink)\" stroke-width=\"3\" stroke-linecap=\"round\"/></svg><div><strong>One bold thing per screen</strong><span>Everything else stays quiet.</span></div></div>",
+      "css": ":host{--ground:#FFFFFF;--ground-2:#F2F2F0;--ink:#121212;--muted:#555551;--rule:#DEDEDA;--line:#C2410C;--line-text:#B13A09;--sign:#121212;--sign-2:#242422;--sign-fg:#FFFFFF;--sign-muted:#B4B4AE;--sign-line:#F28C4B;--on-line:#FFFFFF;--sans:\"Overpass\",ui-sans-serif,system-ui,sans-serif;--mono:\"Overpass Mono\",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1);} .ds-notice{background:var(--ground);border:2px solid var(--ink);border-radius:12px;padding:24px;display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start;font-family:var(--sans);} .ds-notice svg{width:48px;height:48px;} .ds-notice strong{display:block;font:900 22px/1.1 var(--sans);letter-spacing:-0.01em;margin-bottom:4px;color:var(--ink);} .ds-notice span{color:var(--muted);font-size:16px;}"
+    },
+    {
+      "name": "Copy Field",
+      "kind": "input",
+      "refersTo": "copy-field",
+      "description": "Grey strip with a mono command and a text Copy button.",
+      "html": "<div class=\"ds-copy\"><pre>bgordon01/claude-toolkit</pre><button type=\"button\">Copy</button></div>",
+      "css": ":host{--ground:#FFFFFF;--ground-2:#F2F2F0;--ink:#121212;--muted:#555551;--rule:#DEDEDA;--line:#C2410C;--line-text:#B13A09;--sign:#121212;--sign-2:#242422;--sign-fg:#FFFFFF;--sign-muted:#B4B4AE;--sign-line:#F28C4B;--on-line:#FFFFFF;--sans:\"Overpass\",ui-sans-serif,system-ui,sans-serif;--mono:\"Overpass Mono\",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1);} .ds-copy{display:flex;align-items:stretch;border-radius:8px;background:var(--ground-2);} .ds-copy pre{margin:0;padding:12px 16px;flex:1;overflow-x:auto;font:400 14px/1.6 var(--mono);color:var(--ink);} .ds-copy button{flex:none;border:0;background:transparent;font:800 14px/1 var(--sans);padding:0 16px;min-width:84px;cursor:pointer;color:var(--line-text);border-radius:0 8px 8px 0;} .ds-copy button:hover{text-decoration:underline;text-underline-offset:4px;} .ds-copy button:focus-visible{outline:3px solid var(--line);outline-offset:4px;}"
+    },
+    {
+      "name": "Timetable Row",
+      "kind": "custom",
+      "description": "Ruled command table with a line-colour stop dot.",
+      "html": "<table class=\"ds-tt\"><thead><tr><th>Command</th><th>What it does</th><th>Stop</th></tr></thead><tbody><tr><td><code>/grill-me</code></td><td>Questions your idea until it holds up.</td><td class=\"ds-set\"><i style=\"background:var(--line)\"></i>Grill</td></tr><tr><td><code>/diagnosing-bugs</code></td><td>Finds the real cause before fixing it.</td><td class=\"ds-set\"><i style=\"background:#1E7F4F\"></i>Fix a bug</td></tr></tbody></table>",
+      "css": ":host{--ground:#FFFFFF;--ground-2:#F2F2F0;--ink:#121212;--muted:#555551;--rule:#DEDEDA;--line:#C2410C;--line-text:#B13A09;--sign:#121212;--sign-2:#242422;--sign-fg:#FFFFFF;--sign-muted:#B4B4AE;--sign-line:#F28C4B;--on-line:#FFFFFF;--sans:\"Overpass\",ui-sans-serif,system-ui,sans-serif;--mono:\"Overpass Mono\",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1);} .ds-tt{width:100%;border-collapse:collapse;font:400 16px/1.55 var(--sans);color:var(--ink);font-variant-numeric:tabular-nums;} .ds-tt th{text-align:left;font:800 13px/1.4 var(--sans);padding:0 24px 12px 0;border-bottom:2px solid var(--ink);} .ds-tt td{padding:16px 24px 16px 0;border-bottom:1px solid var(--rule);transition:background-color .15s;} .ds-tt tbody tr:hover td{background:var(--ground-2);} .ds-tt code{font:600 14px/1 var(--mono);} .ds-set{color:var(--muted);font-size:14px;white-space:nowrap;} .ds-set i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Line Map",
+    "overview": "Frontier is drawn as transit-authority signage: a crisp white map ground, black signage bands with white type, and one orange through line that carries the workflow. Beck and Vignelli diagrams are the source. Lines are thick and round-capped, routes bend at 45 degrees, and stations are a small fixed vocabulary of marks. Each one tells you whether the train runs on or waits for you.\n\nThe page is light only (user-pinned): no dark mode and no theme switch. Density is low. Sections breathe on 128px to 192px of vertical padding, copy runs one line per idea, and everything except the Frontier Line stays neutral. Depth comes from black-on-white contrast and tonal panels, never from shadows.",
+    "keyCharacteristics": [
+      "White map ground, black signage bands, orange Frontier Line.",
+      "Overpass for every word, Overpass Mono for every command.",
+      "Station vocabulary: open ring, gate mark, rounded-square terminus.",
+      "Thick round-capped strokes (8px to 12px), 45-degree kinks.",
+      "Flat: no shadows, no gradients, no glows."
+    ],
+    "rules": [
+      {
+        "name": "The One Line Rule",
+        "body": "Orange belongs to the Frontier Line and the actions that move along it. Branch colours never fill a surface or set text.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Oranges Rule",
+        "body": "Use `sign-line` on black and `line` on white. Small orange text on white uses `line-text`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Typed-Thing Rule",
+        "body": "If a reader would type it, set it in Overpass Mono. Everything else is Overpass.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sign Case Rule",
+        "body": "Signage is sentence case at heavy weight with tight negative tracking. Nothing is uppercase and nothing is letter-spaced open.",
+        "section": "typography"
+      },
+      {
+        "name": "The Spine Rule",
+        "body": "The line map is the page's one bold element. Section headings are large but neutral black; nothing else gets orange mass.",
+        "section": "layout"
+      },
+      {
+        "name": "The Printed Sign Rule",
+        "body": "Surfaces are printed, not lifted. Separate with tone or a 2px black stroke, never a shadow or a glow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do draw workflow as a line with stations: round caps, 8px to 12px strokes, 45-degree bends.",
+      "Do use the open ring for steps that only read, and the gate mark for steps that change files.",
+      "Do put commands in Overpass Mono, and on black surfaces put them in `sign-2` chips.",
+      "Do separate list rows with a 2px black top rule and 1px hairlines.",
+      "Do keep every padding, margin and gap on the 4px grid.",
+      "Do keep the light theme; set `color-scheme: light`."
+    ],
+    "donts": [
+      "Don't add shadows, gradients, glows, or purple-to-blue colour of any kind.",
+      "Don't lay out three equal cards in a row; use variable spans or ruled rows.",
+      "Don't give a view a second bold element alongside the Frontier Line.",
+      "Don't use branch blue, green or yellow for text, fills or buttons.",
+      "Don't use `line` orange for small text on white; use `line-text`.",
+      "Don't add a dark mode or a theme switch."
+    ]
+  }
+}
