@@ -5,7 +5,7 @@ Global Claude Code rules and commands for building UI without default-AI styling
 ## Install (macOS / Linux)
 
 ```bash
-git clone https://github.com/<your-username>/design-discipline.git ~/code/design-discipline
+git clone https://github.com/bgordon01/design-discipline.git ~/code/design-discipline
 cd ~/code/design-discipline
 ./install.sh
 ```
