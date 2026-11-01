@@ -2,6 +2,8 @@
 # Gets the latest claude-toolkit and re-links everything into ~/.claude.
 #   ~/.claude-toolkit/update.sh
 set -euo pipefail
+# Wrapped in a function so bash reads it all before git pull replaces this file.
+main() {
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [[ -n "$(git -C "$REPO_DIR" status --porcelain)" ]]; then
@@ -26,4 +28,6 @@ else
   echo "Updated. Skills changed: ${changed:-none}"
 fi
 echo
-"$REPO_DIR/install.sh" "$@"
+exec "$REPO_DIR/install.sh" "$@"
+}
+main "$@"; exit
