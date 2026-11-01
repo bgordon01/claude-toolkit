@@ -1,9 +1,9 @@
 ---
 name: house-rules
-description: claude-toolkit's design and copy rules. Apply whenever building or changing any user interface, or writing any text a user will read (UI labels, pages, emails, docs, marketing copy). They override other design and copy skills where they conflict.
+description: Frontier's design and copy rules. Apply whenever building or changing any user interface, or writing any text a user will read (UI labels, pages, emails, docs, marketing copy). They override other design and copy skills where they conflict.
 ---
 
-# claude-toolkit — house rules
+# Frontier — house rules
 
 These rules apply in every repo. A project's own CLAUDE.md overrides them where the two conflict.
 

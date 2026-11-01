@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Builds plugin/ — the "toolkit" plugin that the Claude app (Customize →
+# Builds plugin/ — the "frontier" plugin that the Claude app (Customize →
 # Plugins) and Claude Code install from this repo's marketplace.
 #
 # Assembled from: skills/ (this repo), vendor/*/ (upstream skills with overrides
@@ -29,7 +29,7 @@ mkdir -p "$OUT/skills/house-rules"
 {
   echo "---"
   echo "name: house-rules"
-  echo "description: claude-toolkit's design and copy rules. Apply whenever building or changing any user interface, or writing any text a user will read (UI labels, pages, emails, docs, marketing copy). They override other design and copy skills where they conflict."
+  echo "description: Frontier's design and copy rules. Apply whenever building or changing any user interface, or writing any text a user will read (UI labels, pages, emails, docs, marketing copy). They override other design and copy skills where they conflict."
   echo "---"
   echo
   cat "$REPO_DIR/rules/RULES.md"
@@ -45,15 +45,15 @@ for src in "$REPO_DIR"/vendor/*/; do
   n="$(basename "$src")"
   for f in "$src"LICENSE* "$src"NOTICE*; do cp "$f" "$OUT/licenses/$n-$(basename "$f")"; done
 done
-cp "$REPO_DIR/LICENSE" "$OUT/licenses/claude-toolkit-LICENSE"
+cp "$REPO_DIR/LICENSE" "$OUT/licenses/frontier-LICENSE"
 
 cat > "$OUT/.claude-plugin/plugin.json" <<EOF
 {
-  "name": "toolkit",
+  "name": "frontier",
   "description": "Plan, build, design and write with Claude. Say 'start here' or type /start-here.",
   "author": { "name": "Brent Gordon" },
-  "homepage": "https://github.com/bgordon01/claude-toolkit",
-  "repository": "https://github.com/bgordon01/claude-toolkit",
+  "homepage": "https://github.com/bgordon01/frontier",
+  "repository": "https://github.com/bgordon01/frontier",
   "license": "MIT"
 }
 EOF

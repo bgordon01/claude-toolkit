@@ -339,9 +339,9 @@ For headlines and CTAs, provide 2-3 options:
 - **popups**: For popup and modal copy
 - **ab-testing**: To test copy variations
 
-## Global rules override (claude-toolkit)
+## Global rules override (Frontier)
 
-The copy rules in the house rules (the `house-rules` skill, or `~/.claude/claude-toolkit-rules.md` for a script install) take precedence over this skill. Where they conflict, follow the rules.
+The copy rules in the house rules (the `house-rules` skill, or `~/.claude/frontier-rules.md` for a script install) take precedence over this skill. Where they conflict, follow the rules.
 
 - **Banned words:** revolutionize, seamless, empower, elevate, unleash, robust, supercharge, next-gen, game-changer, "unlock your potential", and their variants.
 - **No throat-clearing:** the first sentence of every section carries information.
