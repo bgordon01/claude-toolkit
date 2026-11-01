@@ -1,4 +1,4 @@
-# claude-toolkit — house rules
+# Frontier — house rules
 
 These rules apply in every repo. A project's own CLAUDE.md overrides them where the two conflict.
 

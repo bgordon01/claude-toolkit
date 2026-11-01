@@ -8,6 +8,6 @@ fi
 
 cd "${CLAUDE_PROJECT_DIR:-.}"
 
-# Install the toolkit from this checkout into ~/.claude.
+# Install Frontier from this checkout into ~/.claude.
 # Idempotent; the install fills ~/.claude (not a git-ignored dir here), so it runs every time.
 bash ./install.sh

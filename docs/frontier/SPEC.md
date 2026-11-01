@@ -3,8 +3,9 @@
 Decisions from the grilling session on 2026-11-01. Each line is settled unless marked open.
 
 ## Name and scope
-- The toolkit is presented as **Frontier** on the landing page only.
-- The plugin (`toolkit@bgordon01`), commands (`/toolkit:start-here`) and repo (`claude-toolkit`) keep their names for now. Renaming them is a separate ticket, so the page's install steps stay correct.
+- The toolkit is called **Frontier** everywhere: repo `bgordon01/frontier`, plugin `frontier@bgordon01`, commands `/frontier:start-here`, install folder `~/.frontier`, rules file `frontier-rules.md`.
+- Existing installs: `install.sh` moves `~/.claude-toolkit` to `~/.frontier`, re-points the git remote, and swaps the old rules file and CLAUDE.md block. Plugin users remove `toolkit` and add `frontier`; the README and landing page say so. No `toolkit` alias is kept in the marketplace, so nobody gets every skill twice.
+- The GitHub repo itself is renamed by hand in Settings → General. GitHub redirects old clone, web and raw links; the old Pages address does not redirect.
 
 ## Goal and audience
 - Audience: vibe coders who go straight from prompt to code.
@@ -51,6 +52,6 @@ The sets are mapped onto the single workflow, not shown as three equal sections.
 
 ## Tech and delivery
 - Static `site/index.html`, no build step. JavaScript only for copy buttons.
-- Deployed by a GitHub Actions workflow to GitHub Pages on push to `main`, at `bgordon01.github.io/claude-toolkit`. Pages must be enabled once in repo settings (Source: GitHub Actions).
+- Deployed by a GitHub Actions workflow to GitHub Pages on push to `main`, at `bgordon01.github.io/frontier`. Pages must be enabled once in repo settings (Source: GitHub Actions).
 - No analytics.
 - Built on a branch, previewed as an Artifact, PR opened only after approval.

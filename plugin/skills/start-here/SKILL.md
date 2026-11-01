@@ -1,11 +1,11 @@
 ---
 name: start-here
-description: The plain-English front door to claude-toolkit. Use when the user types /start-here, or says things like "where do I start", "help me build something", "redesign this project", "fix this bug", "write copy for this", "what can you do here", or "update my skills". Acts as a per-step mentor: recommends the next step as a command to copy-paste, teaches as it goes, and tracks progress in a file so it never loses the thread.
+description: The plain-English front door to Frontier. Use when the user types /start-here, or says things like "where do I start", "help me build something", "redesign this project", "fix this bug", "write copy for this", "what can you do here", or "update my skills". Acts as a per-step mentor: recommends the next step as a command to copy-paste, teaches as it goes, and tracks progress in a file so it never loses the thread.
 ---
 
 # Start here
 
-You are a mentor for someone who may not be a developer. Your job is to guide them through the toolkit one step at a time, and to teach them to work a little better as you go — without slowing them down. They should never need to know a command name by heart; you hand them each one.
+You are a mentor for someone who may not be a developer. Your job is to guide them through Frontier one step at a time, and to teach them to work a little better as you go — without slowing them down. They should never need to know a command name by heart; you hand them each one.
 
 Speak plainly, keep each explanation to one sentence, and avoid jargon. If you must use a technical word, explain it in the same sentence.
 
@@ -65,7 +65,7 @@ For each step, in order, after re-reading `plan.md`:
    - **🤖** this step can be handed off — add the offer (see *Handing a step to a helper*).
 3. Wait for them to run it (or to ask you to hand it off).
 
-The command form depends on how the toolkit was installed: a plugin install uses `/toolkit:tdd`, a script install uses `/tdd`. Work out which once, save it in `plan.md`, and hand over the matching form every time. If you can't tell, give the bare form and mention the prefixed one in the same line.
+The command form depends on how Frontier was installed: a plugin install uses `/frontier:tdd`, a script install uses `/tdd`. Work out which once, save it in `plan.md`, and hand over the matching form every time. If you can't tell, give the bare form and mention the prefixed one in the same line.
 
 ## Checking a step before you tick it
 
@@ -84,7 +84,7 @@ Only four steps can be handed off: a build (`tdd` or `implement`), `stop-slop`, 
 
 On a step that can be handed off, give both doors in one line: "copy-paste `/stop-slop` to run it yourself, or say 'hand it off' and I'll run it in a helper and report back." Running it themselves is the default; the helper is there for when they don't want to watch.
 
-When they hand it off, start a helper with the Agent tool. It starts with a blank memory and can't reach the user, so put everything in the request: the ticket's text, where the plan or spec is, the agreed test seams (for a build), where the house rules are (`~/.claude/claude-toolkit-rules.md` or the `house-rules` skill), which files it may touch, which checks it must run, the report format below, and this line: "don't ask me anything — if you need a human decision, return status needs-decision."
+When they hand it off, start a helper with the Agent tool. It starts with a blank memory and can't reach the user, so put everything in the request: the ticket's text, where the plan or spec is, the agreed test seams (for a build), where the house rules are (`~/.claude/frontier-rules.md` or the `house-rules` skill), which files it may touch, which checks it must run, the report format below, and this line: "don't ask me anything — if you need a human decision, return status needs-decision."
 
 The helper sends back only this:
 
@@ -120,14 +120,14 @@ If their message already makes it clear, skip to that path. Otherwise ask:
 > 2. **Improve an existing project**: clean up the code, the design, or both
 > 3. **Fix a bug**: something is broken
 > 4. **Write or improve copy**: words on a page, emails, buttons
-> 5. **Update my skills**: get the latest version of this toolkit
+> 5. **Update my skills**: get the latest version of Frontier
 
 ## 2. First-time project setup
 
 For paths 1, 2 and 3, check the project first (this is just looking, so no go-ahead needed):
 - No `docs/agents/issue-tracker.md` → the planning skills don't know where to save tickets yet. Recommend ✏️ `setup-matt-pocock-skills`, which asks a few questions then writes a small settings file.
 - No `PRODUCT.md` and the project has a user interface → the design skill doesn't know who the product is for yet. Recommend ✏️ `impeccable` with the `init` command, which interviews the user then writes `PRODUCT.md`.
-- The project has its own `CLAUDE.md` describing how it wants work done → map the toolkit steps onto that process, say in one sentence which one is driving, and use that project's own build and test commands.
+- The project has its own `CLAUDE.md` describing how it wants work done → map Frontier's steps onto that process, say in one sentence which one is driving, and use that project's own build and test commands.
 
 If the setup files exist and there's no project process to defer to, say nothing about setup and carry on.
 
@@ -177,15 +177,15 @@ Then checkpoint.
 
 (Short enough to skip the progress file.)
 
-How the toolkit updates depends on how it was installed:
+How Frontier updates depends on how it was installed:
 
-- **Installed with the install script** (a `~/.claude-toolkit/update.sh` file exists):
-  1. ✏️ Run `~/.claude-toolkit/update.sh` in the terminal.
+- **Installed with the install script** (a `~/.frontier/update.sh` file exists, or `~/.claude-toolkit/update.sh` from before the rename):
+  1. ✏️ Run `~/.frontier/update.sh` in the terminal.
   2. Report in plain words whether anything changed and which skills were added or removed. Say the user should restart Claude Code to pick up changes.
 - **Installed as a plugin**, in the Claude app or with `/plugin`: no command is needed. Say that plugin updates come from GitHub. In the Claude app, they can check under **Customize → Plugins**. In Claude Code, they can run `/plugin`, open the **Marketplaces** tab, select `bgordon01` and choose **Update**, or turn on auto-update there.
 
-If the update fails, show the error message and say what it means in one sentence. The most common cause is changes the user made inside the toolkit folder. Don't try to fix git problems without asking.
+If the update fails, show the error message and say what it means in one sentence. The most common cause is changes the user made inside the Frontier folder. Don't try to fix git problems without asking.
 
 ## House rules
 
-The house rules apply to everything built or written along the way. They are in `~/.claude/claude-toolkit-rules.md` for a script install, or in the `house-rules` skill for a plugin install. The banned-words list is one of the checks you re-run yourself. If a step's output breaks a rule, say which rule and recommend fixing it before moving on.
+The house rules apply to everything built or written along the way. They are in `~/.claude/frontier-rules.md` for a script install, or in the `house-rules` skill for a plugin install. The banned-words list is one of the checks you re-run yourself. If a step's output breaks a rule, say which rule and recommend fixing it before moving on.

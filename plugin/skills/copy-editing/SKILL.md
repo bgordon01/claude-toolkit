@@ -490,9 +490,9 @@ Copy editing isn't just for new content. Existing pages decay over time — outd
 | Editing copy you just wrote | copy-editing (this skill) |
 | Structural or strategic page changes | cro |
 
-## Global rules override (claude-toolkit)
+## Global rules override (Frontier)
 
-The copy rules in the house rules (the `house-rules` skill, or `~/.claude/claude-toolkit-rules.md` for a script install) take precedence over this skill. Where they conflict, follow the rules.
+The copy rules in the house rules (the `house-rules` skill, or `~/.claude/frontier-rules.md` for a script install) take precedence over this skill. Where they conflict, follow the rules.
 
 - **Banned words:** revolutionize, seamless, empower, elevate, unleash, robust, supercharge, next-gen, game-changer, "unlock your potential", and their variants.
 - **No throat-clearing:** the first sentence of every section carries information.

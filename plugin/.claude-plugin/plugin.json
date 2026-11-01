@@ -1,8 +1,8 @@
 {
-  "name": "toolkit",
+  "name": "frontier",
   "description": "Plan, build, design and write with Claude. Say 'start here' or type /start-here.",
   "author": { "name": "Brent Gordon" },
-  "homepage": "https://github.com/bgordon01/claude-toolkit",
-  "repository": "https://github.com/bgordon01/claude-toolkit",
+  "homepage": "https://github.com/bgordon01/frontier",
+  "repository": "https://github.com/bgordon01/frontier",
   "license": "MIT"
 }
