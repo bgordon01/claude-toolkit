@@ -19,6 +19,22 @@ You need a Mac with Claude Code already installed.
 
 If Terminal says you need git, it will tell you the one command to run first. Run it, then paste the line above again.
 
+### On your phone and in cloud sessions
+
+Coding sessions you start from the Claude app or [claude.ai/code](https://claude.ai/code) run on a fresh cloud computer each time, so they don't see what's installed on your Mac. Set this up once:
+
+1. In a browser, open [claude.ai/code](https://claude.ai/code) and open your cloud environment's settings. Usually it's called **Default**.
+2. Paste this into the **Setup script** box and save:
+
+   ```bash
+   #!/bin/bash
+   curl -fsSL https://raw.githubusercontent.com/bgordon01/claude-toolkit/main/install.sh | bash || true
+   ```
+
+3. Start a new session and type `/start-here`.
+
+The cloud keeps a ready-made copy of the setup for about a week, then rebuilds it with the latest toolkit. To get an update sooner, say "update my skills" inside a cloud session.
+
 ## Use it
 
 Open Claude Code in any project and type `/start-here`, or just say what you want, like "help me redesign this project". It asks what you'd like to do:
