@@ -11,9 +11,12 @@
 
 Once it's installed, you only need to remember one thing: say **"start here"**, or type `/start-here`. It tells you the next step and hands you the command to run.
 
-Landing page: [bgordon01.github.io/claude-toolkit](https://bgordon01.github.io/claude-toolkit)
+Landing page: [bgordon01.github.io/frontier](https://bgordon01.github.io/frontier)
 
-> **About the name.** Frontier is the new name for claude-toolkit. The repo (`claude-toolkit`), the plugin (`toolkit@bgordon01`) and the commands (`/toolkit:start-here`) keep their old names until a separate rename, so every install step below is correct as written.
+> **Renamed from claude-toolkit.** The repo is now `bgordon01/frontier` and the plugin is `frontier`. Old GitHub links redirect.
+> - **Plugin users:** remove **toolkit** under **Customize → Plugins** (or with `/plugin` in Claude Code), then add **frontier** from the same marketplace. Commands now start with `/frontier:`.
+> - **Install-script users:** run `~/.claude-toolkit/update.sh` once. It moves everything to `~/.frontier` and swaps the house-rules line in your CLAUDE.md. Nothing else to do.
+> - **Cloud setup scripts:** the old URL keeps working through GitHub's redirect. Swap in the new one below when convenient.
 
 ## Why
 
@@ -39,10 +42,10 @@ Pick where you use Claude. Each path takes under a minute.
 Add it once to your Claude account:
 
 1. Open **Customize → Plugins**.
-2. Tap **Add**, then **Add marketplace**, and enter `bgordon01/claude-toolkit`.
-3. Find **toolkit** under **Discover** and tap **Add**.
+2. Tap **Add**, then **Add marketplace**, and enter `bgordon01/frontier`.
+3. Find **frontier** under **Discover** and tap **Add**.
 
-The plugin is now part of your Claude account and works in app chats. If you sign in to Claude Code on your Mac with the same account, it appears there too at the next start, with a `toolkit:` prefix on each command, for example `/toolkit:start-here`.
+The plugin is now part of your Claude account and works in app chats. If you sign in to Claude Code on your Mac with the same account, it appears there too at the next start, with a `frontier:` prefix on each command, for example `/frontier:start-here`.
 
 It does **not** reach coding sessions in the app's **Code** tab. Those need the one-time setup in [Cloud coding sessions](#cloud-coding-sessions-the-code-tab) below.
 
@@ -51,12 +54,12 @@ It does **not** reach coding sessions in the app's **Code** tab. Those need the 
 Inside Claude Code, run:
 
 ```
-/plugin install toolkit --marketplace bgordon01/claude-toolkit
+/plugin install frontier --marketplace bgordon01/frontier
 ```
 
 ### With the install script (Mac)
 
-Use this instead of the plugin if you want shorter commands (`/start-here` rather than `/toolkit:start-here`) and the house rules always on. Pick one method per Mac. Using both gives you every skill twice.
+Use this instead of the plugin if you want shorter commands (`/start-here` rather than `/frontier:start-here`) and the house rules always on. Pick one method per Mac. Using both gives you every skill twice.
 
 You need a Mac with Claude Code already installed.
 
@@ -64,7 +67,7 @@ You need a Mac with Claude Code already installed.
 2. Paste this line and press Return:
 
    ```bash
-   curl -fsSL https://raw.githubusercontent.com/bgordon01/claude-toolkit/main/install.sh | bash
+   curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash
    ```
 
 3. Restart Claude Code.
@@ -80,12 +83,12 @@ Coding sessions you start from the app's **Code** tab or [claude.ai/code](https:
 
    ```bash
    #!/bin/bash
-   curl -fsSL https://raw.githubusercontent.com/bgordon01/claude-toolkit/main/install.sh | bash || true
+   curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash || true
    ```
 
-3. Start a **new** session and type `/start-here`, with no `toolkit:` prefix here.
+3. Start a **new** session and type `/start-here`, with no `frontier:` prefix here.
 
-The cloud keeps a ready-made copy of the setup for about a week, then rebuilds it with the latest toolkit. To get an update sooner, say "update my skills" inside a cloud session.
+The cloud keeps a ready-made copy of the setup for about a week, then rebuilds it with the latest Frontier. To get an update sooner, say "update my skills" inside a cloud session.
 
 ## Use it
 
@@ -97,7 +100,7 @@ Open Claude Code in any project and type `/start-here`, or just say what you wan
 | **Improve an existing project** | It reads the code, the screens or both and lists what's worth fixing, changing nothing. You pick the fixes, then they become tickets and follow the build route. |
 | **Fix a bug** | `/diagnosing-bugs` finds the real cause, `/tdd` adds a failing test and fixes it, `/code-review` checks the fix. |
 | **Write or improve copy** | `/copywriting` for new copy, `/copy-editing` for what's there, `/stop-slop` last. |
-| **Update my skills** | Gets the latest version of the toolkit. |
+| **Update my skills** | Gets the latest version of Frontier. |
 
 ### The build route, step by step
 
@@ -124,7 +127,7 @@ Each recommendation carries a mark:
 
 **Nothing changes your files until you say go.** You make the decisions. Claude does the typing.
 
-**It keeps its place in a file.** For build, improve and bug-fix routes, `/start-here` writes a checklist to `tasks/plan.md` in your project: one box per step per ticket, plus your build and test commands, which command form to hand you (`/tdd` or `/toolkit:tdd`), and any corner you chose to cut. Every time you run it, it reads that file and reads the checklist back to you, so a long build never loses its thread. The file is committed by default; gitignore it if you'd rather not track it.
+**It keeps its place in a file.** For build, improve and bug-fix routes, `/start-here` writes a checklist to `tasks/plan.md` in your project: one box per step per ticket, plus your build and test commands, which command form to hand you (`/tdd` or `/frontier:tdd`), and any corner you chose to cut. Every time you run it, it reads that file and reads the checklist back to you, so a long build never loses its thread. The file is committed by default; gitignore it if you'd rather not track it.
 
 **It checks before it ticks.** After a build it re-runs your tests itself. After a wording step it re-runs the banned-words search. For judgement steps like the grill, a design critique or a code review, it ticks the box only once you confirm what you did with the findings. If a check fails, it says so plainly and waits for you to decide. It never re-runs to get green and never switches a test off.
 
@@ -134,7 +137,7 @@ The first time you use it in a project, it may suggest a setup step: `setup-matt
 
 ### Prefer typing commands yourself?
 
-Every step is also a command. Use `/start-here` and let it choose, or call any of these directly. With the plugin, add the `toolkit:` prefix, for example `/toolkit:tdd`.
+Every step is also a command. Use `/start-here` and let it choose, or call any of these directly. With the plugin, add the `frontier:` prefix, for example `/frontier:tdd`.
 
 | Command | What it does | Set |
 |---|---|---|
@@ -176,12 +179,12 @@ These sit on top of every skill, in every project. Your project's own `CLAUDE.md
 
 - **Plugin, in the Claude app:** new versions come from GitHub. Check under **Customize → Plugins**.
 - **Plugin, in Claude Code:** run `/plugin`, open **Marketplaces**, select `bgordon01` and choose **Update**, or turn on **auto-update** there so it updates by itself.
-- **Install script:** say **"update my skills"** in Claude Code, or paste `~/.claude-toolkit/update.sh` in Terminal, then restart Claude Code.
+- **Install script:** say **"update my skills"** in Claude Code, or paste `~/.frontier/update.sh` in Terminal, then restart Claude Code.
 
 ## Remove it
 
-- **Plugin:** remove **toolkit** under **Customize → Plugins** in the app, or with `/plugin` in Claude Code.
-- **Install script:** paste `~/.claude-toolkit/uninstall.sh` in Terminal. It removes everything the toolkit added and leaves your own files alone. To delete the downloaded toolkit too, also run `rm -rf ~/.claude-toolkit`.
+- **Plugin:** remove **frontier** under **Customize → Plugins** in the app, or with `/plugin` in Claude Code.
+- **Install script:** paste `~/.frontier/uninstall.sh` in Terminal. It removes everything Frontier added and leaves your own files alone. To delete the downloaded copy too, also run `rm -rf ~/.frontier`.
 
 ## Brand
 
@@ -208,7 +211,7 @@ Files in [`site/assets/`](site/assets):
 
 ## Landing page
 
-The page lives in [`site/index.html`](site/index.html): one static file, no build step, JavaScript only for the copy buttons, no analytics. On every push to `main` that touches `site/`, the [Pages workflow](.github/workflows/pages.yml) publishes it to [bgordon01.github.io/claude-toolkit](https://bgordon01.github.io/claude-toolkit). Pages has to be switched on once in the repo settings (**Settings → Pages → Source: GitHub Actions**).
+The page lives in [`site/index.html`](site/index.html): one static file, no build step, JavaScript only for the copy buttons, no analytics. On every push to `main` that touches `site/`, the [Pages workflow](.github/workflows/pages.yml) publishes it to [bgordon01.github.io/frontier](https://bgordon01.github.io/frontier). Pages has to be switched on once in the repo settings (**Settings → Pages → Source: GitHub Actions**).
 
 The decisions behind the page, name and logo are in [`docs/frontier/SPEC.md`](docs/frontier/SPEC.md).
 

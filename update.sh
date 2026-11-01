@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Gets the latest claude-toolkit and re-links everything into ~/.claude.
-#   ~/.claude-toolkit/update.sh
+# Gets the latest Frontier and re-links everything into ~/.claude.
+#   ~/.frontier/update.sh
 set -euo pipefail
 # Wrapped in a function so bash reads it all before git pull replaces this file.
 main() {

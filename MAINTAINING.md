@@ -1,18 +1,18 @@
-# Maintaining claude-toolkit
+# Maintaining Frontier
 
-How the toolkit is built, how upstream changes come in, and how to change what's in it. Everything here runs only when you run it: there are no hooks, scheduled jobs or GitHub Actions.
+How Frontier is built, how upstream changes come in, and how to change what's in it. Everything here runs only when you run it: there are no hooks, scheduled jobs or GitHub Actions.
 
 ## Layout
 
 ```
-claude-toolkit/
-├── install.sh          one-line installer; bootstraps ~/.claude-toolkit when piped from curl
+frontier/
+├── install.sh          one-line installer; bootstraps ~/.frontier when piped from curl
 ├── update.sh           git pull + re-run install.sh, with a summary of changed skills
 ├── uninstall.sh        removes everything listed in the install manifest
 ├── sync.sh             pulls upstream skills into vendor/, re-applies overrides/, rebuilds plugin/
 ├── build-plugin.sh     assembles plugin/ from skills/, vendor/ and rules/
 ├── .claude-plugin/     marketplace.json: this repo is the "bgordon01" marketplace
-├── plugin/             the built "toolkit" plugin (generated; don't edit by hand)
+├── plugin/             the built "frontier" plugin (generated; don't edit by hand)
 ├── sources.conf        which upstream repos and skill folders to vendor
 ├── rules/RULES.md      the house rules, in precise form, for Claude
 ├── skills/             this repo's own skills (start-here)
@@ -36,29 +36,30 @@ Impeccable's automatic design-check hook is deliberately left out. Its detector 
 ## What install.sh changes
 
 ```
-~/.claude-toolkit/                      the downloaded repo (curl install)
+~/.frontier/                the downloaded repo (curl install)
 ~/.claude/
-├── CLAUDE.md                           one @import line between claude-toolkit markers
-├── claude-toolkit-rules.md             → rules/RULES.md
-├── skills/<17 skills>                  → skills/ and vendor/*/
-├── agents/<4 agents>                   → vendor/impeccable/_agents/
-└── .claude-toolkit-installed           manifest of everything above, for clean updates
+├── CLAUDE.md               one @import line between frontier markers
+├── frontier-rules.md       → rules/RULES.md
+├── skills/<17 skills>      → skills/ and vendor/*/
+├── agents/<4 agents>       → vendor/impeccable/_agents/
+└── .frontier-installed     manifest of everything above, for clean updates
 ```
 
 - Everything is symlinked, so `git pull` takes effect immediately. Use `install.sh --copy` for standalone copies, and re-run after every update.
 - An existing skill or agent with the same name is renamed `*.bak-<timestamp>`, never overwritten.
 - `settings.json` is never touched.
 - On the first run after the rename from `design-discipline`, the old manifest, rules link and CLAUDE.md block are cleaned up automatically.
-- Set `CLAUDE_TOOLKIT_DIR` to install the repo somewhere other than `~/.claude-toolkit`.
+- Set `FRONTIER_DIR` to install the repo somewhere other than `~/.frontier`.
 
 ## The plugin
 
-The repo is also a plugin marketplace named `bgordon01`, with one plugin, `toolkit`. The plugin is built from the same files as the script install.
+The repo is also a plugin marketplace named `bgordon01`, with one plugin, `frontier`. The plugin is built from the same files as the script install.
 
 - **Build:** `./build-plugin.sh` writes `plugin/`. It copies every skill, drops `disable-model-invocation` (in Claude app chats, Claude picks skills itself, so invoke-only skills would be unreachable), adds `rules/RULES.md` as a `house-rules` skill (plugins can't add `CLAUDE.md` instructions), copies the agents, and collects the licences into `plugin/licenses/`. `sync.sh` runs it automatically. Run it by hand after editing `skills/` or `rules/`, then commit `plugin/`.
 - **Validate:** `claude plugin validate ./plugin` and `claude plugin validate .`
-- **Test locally:** `claude plugin marketplace add ./` then `claude plugin install toolkit@bgordon01`
-- **Naming:** plugin names can't start with `claude-`, which is why the plugin is `toolkit` while the repo is `claude-toolkit`. Plugin skills are namespaced (`/toolkit:grill-me`).
+- **Test locally:** `claude plugin marketplace add ./` then `claude plugin install frontier@bgordon01`
+- **Naming:** the repo, the plugin and the command prefix are all `frontier` (`/frontier:grill-me`). Plugin names can't start with `claude-`.
+- **Old names:** before the rename this was `claude-toolkit`, installed to `~/.claude-toolkit`. `install.sh` moves an old install to `~/.frontier`, re-points its git remote, and swaps the old rules file and CLAUDE.md block for the new ones. `uninstall.sh` cleans up either.
 - **Versioning:** `plugin.json` has no `version`, so each commit counts as a new version and every push reaches users on their next update.
 - **Script install vs plugin:** don't use both on one machine, or every skill appears twice. Differences: the script gives bare command names and always-on house rules through `CLAUDE.md`, and keeps the invoke-only flags. The plugin works in the Claude app and syncs to Claude Code through the claude.ai account.
 
@@ -67,7 +68,7 @@ The repo is also a plugin marketplace named `bgordon01`, with one plugin, `toolk
 Run this whenever you choose. Nothing pulls automatically.
 
 ```bash
-cd ~/.claude-toolkit
+cd ~/.frontier
 ./sync.sh
 ```
 
@@ -105,7 +106,7 @@ If you add a skill that calls another skill (look for "Call the Skill tool with 
 
 Vendored files are replaced on every sync, so local changes live in `overrides/`:
 
-- **`overrides/<skill>.md`** is appended to that skill's `SKILL.md` under a "Global rules override (claude-toolkit)" heading. Used for `impeccable`, `copywriting`, `copy-editing` and `stop-slop`.
+- **`overrides/<skill>.md`** is appended to that skill's `SKILL.md` under a "Global rules override (Frontier)" heading. Used for `impeccable`, `copywriting`, `copy-editing` and `stop-slop`.
 - **`overrides/frontmatter.conf`** sets frontmatter keys. It makes skills invoke-only (`disable-model-invocation: true`), so they run only when typed and their descriptions stay out of Claude's context.
 
 Auto-triggering stays on for `start-here`, `impeccable`, `stop-slop` and the four support skills. The support skills have to stay on because other skills call them through the Skill tool.
