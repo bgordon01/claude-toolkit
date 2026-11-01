@@ -298,7 +298,7 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
     <nav aria-label="Sections">
       <a class="opt" href="#line"><i></i>The line</a>
       <a class="opt" href="#commands"><i></i>Timetable</a>
-      <a class="opt" href="https://github.com/bgordon01/frontier">GitHub</a>
+      <a class="opt" href="https://github.com/bgordon01/frontier"><i></i>GitHub</a>
       <a class="btn primary" href="#install">Install</a>
     </nav>
   </div>
@@ -322,7 +322,7 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
       <p class="map-title"><span class="bullet"><b>F</b>Frontier Line</span><span class="hint">The train waits at every gate until you press Go.</span></p>
       <div class="line" id="track">
         <ol class="stops" id="stops">
-          <li class="stop" data-kind="term"><button class="stn" type="button"><span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true"><rect class="term" x="16" y="16" width="32" height="32" rx="8"/></svg></span><span class="nm">Start</span><span class="cmd">/start-here</span></button></li>
+          <li class="stop" data-kind="term"><button class="stn" type="button"><span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true"><rect class="term" x="16" y="16" width="32" height="32" rx="8"/></svg></span><span class="nm">Start</span><span class="cmd">/start</span></button></li>
           <li class="stop" data-kind="open"><button class="stn" type="button"><span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="14"/></svg></span><span class="nm">Grill</span><span class="cmd">/grill-me</span></button></li>
           <li class="stop" data-kind="gate"><button class="stn" type="button"><span class="mk"></span><span class="nm">Spec</span><span class="cmd">/to-spec</span></button></li>
           <li class="stop" data-kind="gate"><button class="stn" type="button"><span class="mk"></span><span class="nm">Tickets</span><span class="cmd">/to-tickets</span></button></li>
@@ -403,9 +403,9 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
         <li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M0 32H24V12M40 12V32H64" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 32H44" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/></svg><div><strong>Gate</strong><span>Writes code, edits files or creates tickets. Waits for your go.</span></div></li>
       </ul>
     </div>
-    <div class="terminal" role="img" aria-label="Example session: /start-here asks what you want, runs the grilling step straight away, then asks before writing the spec.">
+    <div class="terminal" role="img" aria-label="Example session: /start asks what you want, runs the grilling step straight away, then asks before writing the spec.">
       <div class="terminal-bar" aria-hidden="true"><span>claude</span><span>~/my-app</span></div>
-<pre><span class="you">› /start-here</span>
+<pre><span class="you">› /start</span>
 <span class="dim">What do you want to do?</span>
 <span class="you">› Build something new</span>
 
@@ -462,12 +462,12 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
 <section id="commands" aria-labelledby="cmd-h">
   <div class="wrap">
     <h2 id="cmd-h">The timetable. Every stop is a command.</h2>
-    <p class="lede">Or type <code>/start-here</code> and let it choose.</p>
+    <p class="lede">Or type <code>/start</code> and let it choose.</p>
     <div class="table-wrap">
       <table>
         <thead><tr><th scope="col">Command</th><th scope="col">What it does</th><th scope="col">Stop</th></tr></thead>
         <tbody>
-          <tr><td><code>/start-here</code></td><td>Asks what you want to do and walks you through the right route.</td><td class="set"><i class="s-m"></i>Start</td></tr>
+          <tr><td><code>/start</code></td><td>Asks what you want to do and walks you through the right route.</td><td class="set"><i class="s-m"></i>Start</td></tr>
           <tr><td><code>/grill-me</code></td><td>Questions your idea until it holds up.</td><td class="set"><i class="s-m"></i>Grill</td></tr>
           <tr><td><code>/to-spec</code></td><td>Turns the conversation into a spec in your issue tracker.</td><td class="set"><i class="s-m"></i>Spec</td></tr>
           <tr><td><code>/to-tickets</code></td><td>Splits a spec into small tickets with blocking order.</td><td class="set"><i class="s-m"></i>Tickets</td></tr>
@@ -491,7 +491,7 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
 
 <section class="board-sec" id="install" aria-labelledby="inst-h">
   <div class="wrap">
-    <h2 id="inst-h">Board once. Then type <code>/start-here</code>.</h2>
+    <h2 id="inst-h">Board once. Then type <code>/start</code>.</h2>
     <p class="lede">Under a minute, wherever you use Claude.</p>
     <div class="install-grid">
       <div class="path main">
@@ -518,7 +518,7 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
           <div class="copy"><pre id="c-cloud">#!/bin/bash
 curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash || true</pre><button type="button" data-copy="c-cloud">Copy</button></div>
         </div>
-        <p class="note">Upgrading from claude-toolkit? Remove <strong>toolkit</strong> and add <strong>frontier</strong>. For a Mac install script with shorter commands, see the <a href="https://github.com/bgordon01/frontier#with-the-install-script-mac">README</a>.</p>
+        <p class="note">Upgrading from claude-toolkit? Remove <strong>toolkit</strong> and add <strong>frontier</strong>. For a Mac install script, see the <a href="https://github.com/bgordon01/frontier#with-the-install-script-mac">README</a>.</p>
       </div>
     </div>
   </div>
@@ -548,7 +548,7 @@ curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh 
 <script>
 (function () {
   var STATIONS = [
-    { name: 'Start', what: 'Type one command. It asks what you want to do and picks the route.', cmds: ['/start-here'], by: 'Frontier' },
+    { name: 'Start', what: 'Type one command. It asks what you want to do and picks the route.', cmds: ['/start'], by: 'Frontier' },
     { name: 'Grill', what: 'Questions your idea, one round at a time, until every decision is made.', cmds: ['/grill-me'], by: 'Matt Pocock' },
     { name: 'Spec', what: 'Writes what you agreed into one spec in your issue tracker.', cmds: ['/to-spec'], by: 'Matt Pocock' },
     { name: 'Tickets', what: 'Splits the spec into small tickets, each with what blocks it.', cmds: ['/to-tickets'], by: 'Matt Pocock' },
@@ -605,7 +605,7 @@ curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh 
         st.innerHTML = ICON_OPEN + '<span><strong>Arrived.</strong>Nothing shipped that you didn’t approve.</span>';
         goBtn.hidden = false; goBtn.textContent = 'Ride again';
       } else if (i === 0) {
-        st.innerHTML = ICON_OPEN + '<span><strong>Boarding.</strong>Type /start-here and the train leaves.</span>';
+        st.innerHTML = ICON_OPEN + '<span><strong>Boarding.</strong>Type /start and the train leaves.</span>';
         goBtn.hidden = false; goBtn.innerHTML = 'Depart <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       } else {
         st.innerHTML = ICON_OPEN + '<span><strong>Open station.</strong>It only reads and reports, so it runs straight away.</span>';

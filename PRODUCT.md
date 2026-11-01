@@ -10,10 +10,10 @@ web
 Vibe coders: people who go straight from a prompt to code in Claude Code or the Claude app, and then spend their time re-prompting when things break. They arrive at the landing page curious but impatient, usually from a link or the GitHub repo.
 
 ## Product Purpose
-Frontier (repo `claude-toolkit`, plugin `toolkit`) is a set of 18 Claude skills plus one workflow that makes Claude question, plan, test and review before anything ships. Success for the landing page is an install: "Add to Claude" via the Claude app marketplace, with Claude Code and cloud-session paths as secondary routes.
+Frontier (repo `bgordon01/frontier`, plugin `frontier`) is a set of 18 Claude skills plus one workflow that makes Claude question, plan, test and review before anything ships. Success for the landing page is an install: "Add to Claude" via the Claude app marketplace, with Claude Code and cloud-session paths as secondary routes.
 
 ## Positioning
-It moves the work to the parts only the user can do — deciding what to build and checking what got built — through one command (`/start-here`) that picks the next step, and review gates: nothing changes the user's files until they say go.
+It moves the work to the parts only the user can do — deciding what to build and checking what got built — through one command (`/start`) that picks the next step, and review gates: nothing changes the user's files until they say go.
 
 ## Operating Context
 - Workflow: Grill (`/grill-me`) → Spec (`/to-spec`) → Tickets (`/to-tickets`) → Build (`/implement`, `/tdd`) → Polish (`/impeccable polish`, `/copywriting`, `/stop-slop`) → Review (`/code-review`, `/impeccable critique`).
@@ -23,8 +23,8 @@ It moves the work to the parts only the user can do — deciding what to build a
 ## Capabilities and Constraints
 - Static `site/index.html`, no build step, deployed to GitHub Pages from `site/` on push to `main`.
 - No analytics.
-- Plugin, commands and repo keep the `toolkit` / `claude-toolkit` names for now; install steps must stay correct.
-- House rules (`rules/` and `~/.claude/claude-toolkit-rules.md`) apply: no AI-default palette, no three-equal-cards rows, 4px grid, one bold element per view, banned-words list.
+- Formerly claude-toolkit (plugin `toolkit`); the install section tells upgraders to remove `toolkit` and add `frontier`.
+- House rules (`rules/` and `frontier-rules.md`) apply: no AI-default palette, no three-equal-cards rows, 4px grid, one bold element per view, banned-words list.
 
 ## Brand Commitments
 - Name: Frontier.
@@ -42,5 +42,5 @@ It moves the work to the parts only the user can do — deciding what to build a
 ## Product Principles
 - Decisions before code.
 - The user says go; Claude does the typing.
-- One front door (`/start-here`), many routes behind it.
+- One front door (`/start`), many routes behind it.
 - Show the mechanism, not the hype.
