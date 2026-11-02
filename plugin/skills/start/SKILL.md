@@ -86,6 +86,10 @@ On a step that can be handed off, give both doors in one line: "copy-paste `/sto
 
 When they hand it off, start a helper with the Agent tool. It starts with a blank memory and can't reach the user, so put everything in the request: the ticket's text, where the plan or spec is, the agreed test seams (for a build), where the house rules are (`~/.claude/frontier-rules.md` or the `house-rules` skill), which files it may touch, which checks it must run, the report format below, and this line: "don't ask me anything — if you need a human decision, return status needs-decision."
 
+Spawn the helper on a cheaper model: pass `model: "sonnet"` to the Agent tool. A helper re-pays its whole context on every internal step it takes, so the model it runs on is where most of a run's tokens go — and a build, `stop-slop`, a polish or a clarify doesn't need the main model. Only fall back to the default model if a helper returns `blocked` for want of reasoning; don't start there.
+
+Prefer running the command inline over a handoff when the step is short and the user is watching anyway. The handoff's only benefit is keeping the helper's tool output out of this conversation, and it pays a cold-start tax (a fresh context, no shared cache) that a quick `stop-slop` or clarify never earns back. Reserve handoff for long builds, where that context hygiene pays off.
+
 The helper sends back only this:
 
 ```
