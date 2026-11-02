@@ -1,279 +1,206 @@
 ---
 name: Frontier
-description: Transit-map landing for a Claude workflow that plans first and holds the doors until you say go.
+description: An editorial review desk for a Claude workflow that plans first and holds every write until you say go.
 colors:
-  ground: "#FFFFFF"
-  ground-2: "#F2F2F0"
-  ink: "#121212"
-  muted: "#555551"
-  rule: "#DEDEDA"
-  line: "#C2410C"
-  line-text: "#B13A09"
-  sign: "#121212"
-  sign-2: "#242422"
-  sign-muted: "#B4B4AE"
-  sign-line: "#F28C4B"
-  blue: "#1F5FAD"
-  green: "#1E7F4F"
-  yellow: "#A87A00"
+  crimson: "#AF144B"
+  crimson-hover: "#870A3C"
+  crimson-tint: "#FBF3F6"
+  crimson-border: "#F5C0C6"
+  ink: "#1A1A1A"
+  ink-secondary: "#444444"
+  ink-muted: "#6E6E6E"
+  page: "#FFFFFF"
+  surface: "#F8F9FA"
+  surface-2: "#F2F3F5"
+  line: "#DEE2E6"
+  channel-improve: "#1A56A8"
+  channel-bug: "#1B7F3A"
+  channel-copy: "#D87000"
+  channel-design: "#7B3FA0"
 typography:
   display:
-    fontFamily: "Overpass, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(44px, 6vw, 72px)"
-    fontWeight: 800
-    lineHeight: 1
-    letterSpacing: "-0.02em"
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    fontSize: "clamp(44px, 6.4vw, 72px)"
+    fontWeight: 700
+    lineHeight: 1.02
+    letterSpacing: "-0.025em"
   headline:
-    fontFamily: "Overpass, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(32px, 3.6vw, 44px)"
-    fontWeight: 800
-    lineHeight: 1.1
-    letterSpacing: "-0.02em"
-  station:
-    fontFamily: "Overpass, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "22px"
-    fontWeight: 900
-    lineHeight: 1
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    fontSize: "clamp(32px, 4vw, 48px)"
+    fontWeight: 700
+    lineHeight: 1.08
     letterSpacing: "-0.02em"
   title:
-    fontFamily: "Overpass, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "20px"
-    fontWeight: 800
-    lineHeight: 1.2
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    fontSize: "22px"
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: "-0.01em"
   body:
-    fontFamily: "Overpass, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "17px"
-    fontWeight: 400
-    lineHeight: 1.55
-  lede:
-    fontFamily: "Overpass, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "19px"
-    fontWeight: 400
-    lineHeight: 1.55
-  label:
-    fontFamily: "Overpass, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "15px"
-    fontWeight: 800
-    lineHeight: 1.4
-  mono:
-    fontFamily: "Overpass Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
-    fontSize: "14px"
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.6
+  label:
+    fontFamily: "Fira Code, 'SF Mono', SFMono-Regular, Consolas, Menlo, monospace"
+    fontSize: "12px"
+    fontWeight: 500
+    lineHeight: 1.4
+    letterSpacing: "0.14em"
 rounded:
+  sm: "6px"
+  md: "8px"
+  lg: "10px"
+  xl: "12px"
+  pill: "9999px"
+spacing:
   xs: "4px"
   sm: "8px"
   md: "12px"
   lg: "16px"
-  pill: "999px"
-spacing:
-  "1": "4px"
-  "2": "8px"
-  "3": "12px"
-  "4": "16px"
-  "6": "24px"
-  "8": "32px"
-  "10": "40px"
-  "16": "64px"
-  "20": "80px"
-  "24": "96px"
-  "32": "128px"
-  "48": "192px"
+  xl: "24px"
+  "2xl": "32px"
+  "3xl": "40px"
+  gutter: "64px"
+  section-y: "120px"
 components:
   button-primary:
-    backgroundColor: "{colors.line}"
-    textColor: "{colors.ground}"
-    typography: "{typography.label}"
-    rounded: "{rounded.pill}"
-    padding: "12px 24px"
-    height: "52px"
-  button-quiet:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-    padding: "12px 24px"
-    height: "52px"
-  button-quiet-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.ground}"
-  button-header:
-    backgroundColor: "{colors.line}"
-    textColor: "{colors.ground}"
-    rounded: "{rounded.pill}"
-    padding: "8px 20px"
-    height: "40px"
-  button-go:
-    backgroundColor: "{colors.sign-line}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-    padding: "12px 24px"
-    height: "52px"
-  signage-band:
-    backgroundColor: "{colors.sign}"
-    textColor: "{colors.ground}"
-    height: "64px"
-  departure-board:
-    backgroundColor: "{colors.sign}"
-    textColor: "{colors.ground}"
-    rounded: "{rounded.lg}"
-    padding: "28px 40px"
-  notice:
-    backgroundColor: "{colors.ground}"
+    backgroundColor: "{colors.crimson}"
+    textColor: "{colors.page}"
+    rounded: "{rounded.md}"
+    padding: "14px 24px"
+  button-primary-hover:
+    backgroundColor: "{colors.crimson-hover}"
+    textColor: "{colors.page}"
+  button-secondary:
+    backgroundColor: "{colors.page}"
     textColor: "{colors.ink}"
     rounded: "{rounded.md}"
-    padding: "24px"
-  boarding-path:
-    backgroundColor: "{colors.ground}"
-    rounded: "{rounded.lg}"
-    padding: "32px"
-  copy-field:
-    backgroundColor: "{colors.ground-2}"
-    typography: "{typography.mono}"
-    rounded: "{rounded.sm}"
-    padding: "12px 16px"
-  command-chip:
-    backgroundColor: "{colors.sign-2}"
-    textColor: "{colors.ground}"
-    rounded: "{rounded.xs}"
-    padding: "4px 8px"
+    padding: "14px 24px"
+  gate-tag-write:
+    backgroundColor: "{colors.crimson-tint}"
+    textColor: "{colors.crimson}"
+    rounded: "{rounded.pill}"
+    padding: "5px 10px"
+  card:
+    backgroundColor: "{colors.page}"
+    rounded: "{rounded.xl}"
+    padding: "28px"
+  codebox:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.md}"
+    padding: "48px 18px 18px"
 ---
 
 # Design System: Frontier
 
 ## Overview
 
-**Creative North Star: "The Line Map"**
+**Creative North Star: "The Review Desk"**
 
-Frontier is drawn as transit-authority signage: a crisp white map ground, black signage bands with white type, and one orange through line that carries the workflow. Beck and Vignelli diagrams are the source. Lines are thick and round-capped, routes bend at 45 degrees, and stations are a small fixed vocabulary of marks. Each one tells you whether the train runs on or waits for you.
+Frontier is drawn as a reviewer's desk: work is staged, labelled, and held for approval before anything runs. The page reads like a precise editorial surface — a centred sheet bounded by visible hairline rules, sections ruled off from one another, and every command and status set in monospace so it reads as a record, not decoration. The whole system exists to make one promise legible: nothing changes your files until you say go. The hero panel freezes that moment — a step queued, tagged "Changes files · waits", and a single crimson **Go** — and the rest of the page restates it in quieter registers.
 
-The page is light only (user-pinned): no dark mode and no theme switch. Density is low. Sections breathe on 128px to 192px of vertical padding, copy runs one line per idea, and everything except the Frontier Line stays neutral. Depth comes from black-on-white contrast and tonal panels, never from shadows.
+The mood is calm, confident, and editorial, closer to a well-set documentation site or a financial ledger than a typical dev-tool landing page. Density is high but never loud: hairline tables and tight mono labels carry a lot of information without shouting. Colour is rationed hard — crimson is the one saturated voice and it is spent on the single most important action in view.
+
+This world explicitly rejects the "AI SaaS" defaults: no purple-to-blue gradients, no glows, no floating drop-shadowed cards, no three-up card rows. Depth comes from hairlines and tonal surfaces, not elevation.
 
 **Key Characteristics:**
-- White map ground, black signage bands, orange Frontier Line.
-- Overpass for every word, Overpass Mono for every command.
-- Station vocabulary: open ring, gate mark, rounded-square terminus.
-- Thick round-capped strokes (8px to 12px), 45-degree kinks.
-- Flat: no shadows, no gradients, no glows.
+- A centred 1280px "shell" with visible left/right rules; sections divided by top hairlines.
+- Crimson (`#AF144B`) as the only saturated hue, used sparingly.
+- Inter for everything readable; Fira Code for every label, command, tag, and number.
+- Flat by doctrine — hairlines and off-white surfaces instead of shadows.
+- Exactly one bold element per view (the hero headline).
 
 ## Colors
 
-A neutral transit palette with one brand line colour and three branch colours that appear only as route strokes and timetable dots.
+A near-monochrome ink-on-white palette with a single crimson accent and a muted five-colour channel reserved for categorising commands.
 
 ### Primary
-- **Frontier Orange** (`line`): the Frontier Line itself, primary buttons, focus rings, link underlines, the highlighted word in the hero headline, selection.
-- **Frontier Orange, Text Weight** (`line-text`): a slightly deeper orange for small orange text on white (active station names, hover states, copy buttons), where the line orange is too light for body sizes.
-- **Signal Orange** (`sign-line`): the orange on black grounds. Used for the gate mark in the header, the Go button, board sequence numbers, and terminal prompts.
-
-### Secondary
-- **Branch Blue** (`blue`), **Branch Green** (`green`), **Branch Yellow** (`yellow`): branch routes only (improve, fix a bug, copy). They appear as route strokes and timetable stop dots, never as text or fills.
+- **Crimson** (`#AF144B`): the one saturated voice. Used for the single most important mark in a view — the primary button, the active command (`/to-spec`), the "Go" action, mono eyebrows, and links. **Crimson-hover** (`#870A3C`) is its pressed/hover state. **Crimson-tint** (`#FBF3F6`) with **Crimson-border** (`#F5C0C6`) forms the soft pill behind a "Changes files · waits" tag.
 
 ### Neutral
-- **Map White** (`ground`): page ground and card fill.
-- **Platform Grey** (`ground-2`): alternating section bands, copy fields, table row hover.
-- **Signage Black** (`ink` / `sign`): body text, station rings, rule tops, and the signage surfaces (header, departure board, terminal).
-- **Board Black, Raised** (`sign-2`): command chips and dividers inside black surfaces.
-- **Timetable Grey** (`muted`): ledes, secondary text, command captions on white.
-- **Board Grey** (`sign-muted`): secondary text on black surfaces.
-- **Hairline** (`rule`): 1px row dividers in lists and tables.
+- **Ink** (`#1A1A1A`): headlines, primary body text, table-key cells, the mark's outline.
+- **Ink Secondary** (`#444444`): secondary body, table cells, mono labels.
+- **Ink Muted** (`#6E6E6E`): captions, footnotes, window-chrome labels. Floor tone — passes AA on white (~4.7:1); keep it off tinted surfaces where it drops.
+- **Page** (`#FFFFFF`): the sheet. **Surface** (`#F8F9FA`) and **Surface-2** (`#F2F3F5`): recessed fills for codeboxes, the active step, hover rows. **Line** (`#DEE2E6`): every hairline — borders, the shell rules, table and grid dividers.
+
+### Tertiary — Command channel
+A muted five-colour set that only ever appears as a small dot beside a text label, never as a fill: **Core** = crimson, **Improve** (`#1A56A8`), **Fix a bug** (`#1B7F3A`), **Copy** (`#D87000`), **Design** (`#7B3FA0`, drawn as an outline ring).
 
 ### Named Rules
-**The One Line Rule.** Orange belongs to the Frontier Line and the actions that move along it. Branch colours never fill a surface or set text.
-
-**The Two Oranges Rule.** Use `sign-line` on black and `line` on white. Small orange text on white uses `line-text`.
+**The One Red Column Rule.** Crimson is the single saturated hue, and at most one fully-saturated crimson mark appears per view (on the landing page, the "Go" button). Tints and the channel dots are muted on purpose so the one red mark keeps its weight.
 
 ## Typography
 
-**Display Font:** Overpass (with ui-sans-serif, system-ui)
-**Label/Mono Font:** Overpass Mono (with ui-monospace, Menlo)
+**Display / Body Font:** Inter (with `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`)
+**Label / Mono Font:** Fira Code (with `'SF Mono', SFMono-Regular, Consolas, Menlo, monospace`)
 
-**Character:** Overpass descends from Highway Gothic, so headings read as posted signage. Weights 800 and 900 carry every heading, 400 carries reading text, and Mono is reserved for anything you type.
+**Character:** Inter carries everything meant to be read — a tight, modern grotesque with hard negative tracking on display sizes. Fira Code carries everything meant to be scanned as a record: eyebrows, step numbers, command names, status tags, and stats. The split is the system's signature.
 
 ### Hierarchy
-- **Display** (800, clamp(44px, 6vw, 72px), 1, -0.02em): the hero headline only.
-- **Headline** (800, clamp(32px, 3.6vw, 44px), 1.1, -0.02em, max 22ch, balanced): section headings. Kept below the hero display size so the step map stays the one bold element.
-- **Station** (900, 22px, 1, -0.02em): station names on the line and notice headings.
-- **Title** (800, 20px, 1.2): list, route and panel headings. Boarding-path headings step up to 900 at 28px; the departure-board station name uses 800 at clamp(28px, 3vw, 36px).
-- **Body** (400, 17px, 1.55): reading text.
-- **Lede** (400, 19px to 20px, muted, max 54ch): one-line section intros and the hero sub.
-- **Label** (800, 13px to 15px, 1.4): table headers, the line bullet, nav (600, 15px).
-- **Mono** (400, 12px to 14px): commands, terminal, copy fields. Station captions use 12px; inline code is 0.85em.
+- **Display** (700, `clamp(44px, 6.4vw, 72px)`, lh 1.02, tracking -0.025em): the hero headline only — the one bold element.
+- **Headline** (700, `clamp(32px, 4vw, 48px)`, lh 1.08, tracking -0.02em): section titles.
+- **Title** (600, 22px, lh 1.25): step names, card and block headings.
+- **Body** (400, 16px, lh 1.6; ledes 18–20px): paragraphs and table text; measure ~60–65ch.
+- **Label** (500, 12px Fira Code, tracking 0.14em, UPPERCASE): eyebrows (crimson) and mono section labels (ink-secondary). Stats and step numbers are Fira Code 500 at 32px / 28px.
 
 ### Named Rules
-**The Typed-Thing Rule.** If a reader would type it, set it in Overpass Mono. Everything else is Overpass.
-
-**The Sign Case Rule.** Signage is sentence case at heavy weight with tight negative tracking. Nothing is uppercase and nothing is letter-spaced open.
+**The Mono Label Rule.** If it is a command, a status, a number, a step index, or a category, it is set in Fira Code. If it is a sentence, it is set in Inter. Nothing in between.
 
 ## Layout
 
-The container is 1280px max with 16px side padding (respecting safe-area insets), stepping to 48px from 720px. Sections use 128px vertical padding, rising to 192px from 960px. Every padding, margin and gap sits on the 4px grid.
-
-Splits are asymmetric: the hero runs 6fr/5fr from 1000px, with both buttons on one row, comparison and gate sections 5fr/7fr, install 7fr/5fr, and the departure board 2fr/5fr/4fr. The posted-rules notices sit on a 6-column grid with spans of 4+2, 2+4 and 3+3. Lists (gates, routes, authors, timetable) are ruled rows; below 640px the timetable stacks each row as command and step over its description under a 2px black top rule with 1px hairlines between, not card grids.
-
-The Frontier Line is an 8-column horizontal track from 900px. Below 900px it turns vertical: the track runs down the left edge, markers rotate 90 degrees, and names sit to the right. Breakpoints in use: 640, 680, 720, 900, 960, 1000px.
-
-### Named Rules
-**The Spine Rule.** The line map is the page's one bold element. Section headings are large but neutral black; nothing else gets orange mass.
+A single centred **shell**, `max-width: 1280px`, bounded by 1px left/right rules so the sheet reads as a bounded surface. Content sits in a 64px inner gutter (`--gut`, 20px on mobile). Sections are stacked and separated by a 1px top rule, each with 120px of vertical breathing room (`--sec`, 72px on mobile). Composition favours asymmetry over equal columns: a 60/40 hero (text + gate panel), 40/60 and side-aligned splits, and dense full-width tables. All spacing is on a strict 4px grid.
 
 ## Elevation & Depth
 
-Fully flat. There are no box-shadows anywhere. Depth comes from three tones: white map ground, Platform Grey bands and fields, and Signage Black surfaces (header, departure board, terminal). The header is a sticky black band; the safe-area strip above it is painted black to match.
+**Flat by doctrine.** The system uses no shadows at all. Depth and separation come from three devices only: 1px hairlines (`#DEE2E6`), tonal recession (off-white `#F8F9FA` / `#F2F3F5` surfaces for codeboxes, the active step, hover rows), and the shell's structural side-rules. Shared-hairline grids (1px gaps over a line-coloured background) make groups of cells read as one ruled table rather than floating cards.
 
 ### Named Rules
-**The Printed Sign Rule.** Surfaces are printed, not lifted. Separate with tone or a 2px black stroke, never a shadow or a glow.
+**The Flat Rule.** No `box-shadow`, no glow, no gradient — ever. This is a house rule, not a preference. A surface that needs to stand out gets a hairline or a tonal fill, not elevation.
 
 ## Shapes
 
-Lines are drawn, not boxed: 8px route strokes, a 12px main track, round caps and joins, and 45-degree bends. The station vocabulary is fixed:
-- **Open station:** a white ring with a 4px black stroke. The step runs straight away.
-- **Gate:** the brand gate mark (`M2 20H12V13M20 13V20H30` in a 32-unit box, scaled to 64 on the line) in orange, with a black 6px bar across the gap that lifts on Go. The step waits for your go.
-- **Terminus:** a black rounded square (8px radius inside a 64-unit box).
-
-Corners: 4px chips and focus rings, 8px fields, 12px notices, 16px board, terminal and path panels, and full pills for buttons and the line bullet. Borders are 2px black for emphasis (the recommended install path, list tops) and 1px hairline for row division and notices.
+Gentle, consistent rounding: 6px (small inline marks), 8px (buttons, codeboxes, nav items), 10px (the active gate step), 12px (cards, tables, the hero panel, splits), and full pills (9999px) for status tags only. Borders are always 1px `#DEE2E6` — never a thick or coloured left-border accent. The brand mark is a chevron-and-cursor (`›`) inside a 7px-radius square.
 
 ## Components
 
 ### Buttons
-- **Shape:** full pill (999px), 2px border slot, minimum 52px tall (40px in the header).
-- **Primary:** Frontier Orange with white text, 800 weight, 12px 24px. Hover brightens 8% and the arrow slides 4px right; active nudges down 1px.
-- **Quiet:** transparent with a 2px black border; hover fills black with white text.
-- **Go (departure board):** Signal Orange with black text. It is the only button on black.
-- **Focus:** 3px orange outline, 4px offset.
+- **Shape:** 8px radius (`{rounded.md}`), Inter 600 at 16px, 14px 24px padding.
+- **Primary:** solid crimson (`#AF144B`) on white text; hover deepens to `#870A3C`. The arrow nudges right on hover.
+- **Secondary:** white with a 1px `#DEE2E6` border and ink text; hover darkens the border to ink. One primary per action cluster, never two.
 
-### Signage Band (header)
-A sticky 64px black band: the gate mark in Signal Orange at 36px beside "Frontier" (800, 24px), then plain nav links in Board Grey. The links hide under 680px and leave only Install.
+### Status tags (gate-tags)
+- **Reads-only:** mono 11px uppercase in a pill with a 1px `#DEE2E6` border, ink-secondary text — quiet.
+- **Changes files · waits:** the same pill in crimson-tint (`#FBF3F6`) with a crimson border (`#F5C0C6`) and crimson text — the visual cue for a write step.
 
-### The Frontier Line (signature)
-Eight stations: Start, six steps, Shipped. A black pill train with an orange nose eases into each station (`cubic-bezier(.16, 1, .3, 1)`, 400ms plus 260ms per stop, capped at 1400ms). It rolls through open stations and stops at gates until Go. On Go, the gate bar lifts 24px and fades over 0.6s. The active station name turns `line-text` and its ring turns orange. With reduced motion there is no travel, and stations stay selectable.
+### Cards / Containers
+- **Corner:** 12px. **Background:** white. **Border:** 1px `#DEE2E6`. **No shadow.** Internal padding 28–32px. Grids of cells share hairlines (1px gaps on a line-coloured ground) so they read as a ruled table.
 
-### Departure Board
-A black panel (16px radius) under the line. Its three columns hold the station name, what the station does with command chips and credits, and the status with the Go button. Content fades and rises 8px over 0.35s on change.
+### Tables
+- Dense, full-width, hairline-ruled. Header row: Fira Code 12px uppercase, ink-secondary, under a 1px ink bottom border. Rows separated by `#DEE2E6`; hover fills the row with `#F8F9FA`. On mobile they reflow to a two-column stacked grid.
 
-### Notices (posted rules)
-A white panel with a 1px hairline border, 12px radius and 24px padding. A 48px line pictogram (3px strokes, black with one orange accent) sits beside a Station-weight heading and a muted line.
+### Codeboxes
+- Off-white (`#F8F9FA`) surface, 8px radius, 1px border, Fira Code 14px. A mono "Copy" button sits top-right and confirms with "Copied" (crimson) or a `Press ⌘C` fallback.
 
-### Timetable
-A full-width table with tabular numerals. Headers are 800 13px over a 2px black rule, rows are divided by hairlines, and the row turns Platform Grey on hover. The stop column carries a 12px colour dot for the line or branch.
+### Navigation
+- Sticky, white, 72px tall, 1px bottom rule. Brand mark + wordmark left; text links (Inter 500, 15px, ink-secondary → crimson on hover) and a primary Install button right. Below 768px the links collapse to a hamburger panel.
 
-### Copy Field
-A Platform Grey strip (8px radius) holding a mono command, with a text "Copy" button in `line-text` at its right edge. The button reads "Copied" on success.
-
-### Terminal
-A black panel (16px radius). The top bar is 12px mono in Board Grey. The body is 14px/1.9 mono, with your input in Signal Orange and Claude's output in Board Grey.
+### The Gate Panel (signature)
+A quiet window-chrome card that freezes the review moment: a title bar with three dots, two checked "done" steps, then an active step in a recessed `#F8F9FA` block — the queued `/to-spec` in crimson mono, a "Changes files · waits" tag, a "Go ahead?" prompt, and the lone saturated crimson **Go** button. It is `role="img"` (decorative), stays flat, and is the one place the whole promise is shown rather than told.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** draw workflow as a line with stations: round caps, 8px to 12px strokes, 45-degree bends.
-- **Do** use the open ring for steps that only read, and the gate mark for steps that change files.
-- **Do** put commands in Overpass Mono, and on black surfaces put them in `sign-2` chips.
-- **Do** separate list rows with a 2px black top rule and 1px hairlines.
-- **Do** keep every padding, margin and gap on the 4px grid.
-- **Do** keep the light theme; set `color-scheme: light`.
+- **Do** keep crimson rare — one saturated crimson mark per view, on the single most important action.
+- **Do** set every command, status, number, and category in Fira Code; everything readable in Inter.
+- **Do** build structure from 1px hairlines and off-white surfaces, and keep the shell's side-rules visible.
+- **Do** put every padding, margin, gap and size on the 4px grid.
+- **Do** pair any channel colour with a text label; the dot alone never carries meaning.
+- **Do** keep exactly one bold element per view (the hero headline on the landing page).
 
 ### Don't:
-- **Don't** add shadows, gradients, glows, or purple-to-blue colour of any kind.
-- **Don't** lay out three equal cards in a row; use variable spans or ruled rows.
-- **Don't** give a view a second bold element alongside the Frontier Line.
-- **Don't** use branch blue, green or yellow for text, fills or buttons.
-- **Don't** use `line` orange for small text on white; use `line-text`.
-- **Don't** add a dark mode or a theme switch.
+- **Don't** use shadows, glows, or gradients of any kind.
+- **Don't** place three equal cards in a row; vary spans or use a dense ruled table.
+- **Don't** reach for a purple-to-blue "AI" palette; the channel purple is a muted outline swatch, not a decorative gradient.
+- **Don't** add a second saturated element that competes with the hero headline or the one crimson action.
+- **Don't** use arbitrary off-grid values (`13px`, `p-[7px]`).

@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="#C2410C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Frontier">
-  <style>@media (prefers-color-scheme: dark){*{stroke:#F28C4B}circle{fill:#F28C4B}}</style>
-  <path d="M2 20H12V13M20 13V20H30"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" role="img" aria-label="Frontier">
+  <style>.sq{stroke:#1A1A1A}.ac{stroke:#AF144B}@media (prefers-color-scheme: dark){.sq{stroke:#FFFFFF}.ac{stroke:#E0334F}}</style>
+  <rect class="sq" x="3" y="3" width="26" height="26" rx="7.5" fill="none" stroke-width="2.2"/>
+  <path class="ac" d="M12 11L18 16L12 21" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="ac" d="M20 21H22.5" stroke-width="2.6" stroke-linecap="round"/>
 </svg>
