@@ -137,4 +137,4 @@ done < "$MANIFEST"
 sort -u "$MANIFEST.new" > "$MANIFEST"; rm -f "$MANIFEST.new"
 
 echo
-echo "Done. Restart Claude Code, then type /start-here"
+echo "Done. Restart Claude Code, then type /start"
