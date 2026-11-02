@@ -50,7 +50,7 @@ cp "$REPO_DIR/LICENSE" "$OUT/licenses/frontier-LICENSE"
 cat > "$OUT/.claude-plugin/plugin.json" <<EOF
 {
   "name": "frontier",
-  "description": "Plan, build, design and write with Claude. Say 'start here' or type /start-here.",
+  "description": "Plan, build, design and write with Claude. Say 'start here' or type /start.",
   "author": { "name": "Brent Gordon" },
   "homepage": "https://github.com/bgordon01/frontier",
   "repository": "https://github.com/bgordon01/frontier",

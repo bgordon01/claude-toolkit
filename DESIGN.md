@@ -25,10 +25,10 @@ typography:
     letterSpacing: "-0.02em"
   headline:
     fontFamily: "Overpass, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(36px, 5vw, 64px)"
-    fontWeight: 900
-    lineHeight: 1
-    letterSpacing: "-0.03em"
+    fontSize: "clamp(32px, 3.6vw, 44px)"
+    fontWeight: 800
+    lineHeight: 1.1
+    letterSpacing: "-0.02em"
   station:
     fontFamily: "Overpass, ui-sans-serif, system-ui, sans-serif"
     fontSize: "22px"
@@ -190,7 +190,7 @@ A neutral transit palette with one brand line colour and three branch colours th
 
 ### Hierarchy
 - **Display** (800, clamp(44px, 6vw, 72px), 1, -0.02em): the hero headline only.
-- **Headline** (900, clamp(36px, 5vw, 64px), 1, -0.03em, max 18ch, balanced): section headings.
+- **Headline** (800, clamp(32px, 3.6vw, 44px), 1.1, -0.02em, max 22ch, balanced): section headings. Kept below the hero display size so the step map stays the one bold element.
 - **Station** (900, 22px, 1, -0.02em): station names on the line and notice headings.
 - **Title** (800, 20px, 1.2): list, route and panel headings. Boarding-path headings step up to 900 at 28px; the departure-board station name uses 800 at clamp(28px, 3vw, 36px).
 - **Body** (400, 17px, 1.55): reading text.
@@ -207,7 +207,7 @@ A neutral transit palette with one brand line colour and three branch colours th
 
 The container is 1280px max with 16px side padding (respecting safe-area insets), stepping to 48px from 720px. Sections use 128px vertical padding, rising to 192px from 960px. Every padding, margin and gap sits on the 4px grid.
 
-Splits are asymmetric: the hero runs 7fr/4fr from 1000px, comparison and gate sections 5fr/7fr, install 7fr/5fr, and the departure board 3fr/5fr/4fr. The posted-rules notices sit on a 6-column grid with spans of 4+2, 2+4 and 3+3. Lists (gates, routes, authors, timetable) are ruled rows under a 2px black top rule with 1px hairlines between, not card grids.
+Splits are asymmetric: the hero runs 6fr/5fr from 1000px, with both buttons on one row, comparison and gate sections 5fr/7fr, install 7fr/5fr, and the departure board 2fr/5fr/4fr. The posted-rules notices sit on a 6-column grid with spans of 4+2, 2+4 and 3+3. Lists (gates, routes, authors, timetable) are ruled rows; below 640px the timetable stacks each row as command and step over its description under a 2px black top rule with 1px hairlines between, not card grids.
 
 The Frontier Line is an 8-column horizontal track from 900px. Below 900px it turns vertical: the track runs down the left edge, markers rotate 90 degrees, and names sit to the right. Breakpoints in use: 640, 680, 720, 900, 960, 1000px.
 
@@ -228,7 +228,7 @@ Lines are drawn, not boxed: 8px route strokes, a 12px main track, round caps and
 - **Gate:** the brand gate mark (`M2 20H12V13M20 13V20H30` in a 32-unit box, scaled to 64 on the line) in orange, with a black 6px bar across the gap that lifts on Go. The step waits for your go.
 - **Terminus:** a black rounded square (8px radius inside a 64-unit box).
 
-Corners: 4px chips and focus rings, 8px fields, 12px notices, 16px board, terminal and path panels, and full pills for buttons and the line bullet. Borders are 2px black for emphasis and 1px hairline for row division.
+Corners: 4px chips and focus rings, 8px fields, 12px notices, 16px board, terminal and path panels, and full pills for buttons and the line bullet. Borders are 2px black for emphasis (the recommended install path, list tops) and 1px hairline for row division and notices.
 
 ## Components
 
@@ -240,7 +240,7 @@ Corners: 4px chips and focus rings, 8px fields, 12px notices, 16px board, termin
 - **Focus:** 3px orange outline, 4px offset.
 
 ### Signage Band (header)
-A sticky 64px black band: the gate mark in Signal Orange at 36px beside "Frontier" (800, 24px), then nav links in Board Grey, each led by a small orange ring. The links hide under 680px and leave only Install.
+A sticky 64px black band: the gate mark in Signal Orange at 36px beside "Frontier" (800, 24px), then plain nav links in Board Grey. The links hide under 680px and leave only Install.
 
 ### The Frontier Line (signature)
 Eight stations: Start, six steps, Shipped. A black pill train with an orange nose eases into each station (`cubic-bezier(.16, 1, .3, 1)`, 400ms plus 260ms per stop, capped at 1400ms). It rolls through open stations and stops at gates until Go. On Go, the gate bar lifts 24px and fades over 0.6s. The active station name turns `line-text` and its ring turns orange. With reduced motion there is no travel, and stations stay selectable.
@@ -249,7 +249,7 @@ Eight stations: Start, six steps, Shipped. A black pill train with an orange nos
 A black panel (16px radius) under the line. Its three columns hold the station name, what the station does with command chips and credits, and the status with the Go button. Content fades and rises 8px over 0.35s on change.
 
 ### Notices (posted rules)
-A white panel with a 2px black border, 12px radius and 24px padding. A 48px line pictogram (3px strokes, black with one orange accent) sits beside a Station-weight heading and a muted line.
+A white panel with a 1px hairline border, 12px radius and 24px padding. A 48px line pictogram (3px strokes, black with one orange accent) sits beside a Station-weight heading and a muted line.
 
 ### Timetable
 A full-width table with tabular numerals. Headers are 800 13px over a 2px black rule, rows are divided by hairlines, and the row turns Platform Grey on hover. The stop column carries a 12px colour dot for the line or branch.

@@ -15,7 +15,7 @@ frontier/
 ├── plugin/             the built "frontier" plugin (generated; don't edit by hand)
 ├── sources.conf        which upstream repos and skill folders to vendor
 ├── rules/RULES.md      the house rules, in precise form, for Claude
-├── skills/             this repo's own skills (start-here)
+├── skills/             this repo's own skills (start)
 ├── overrides/          local changes re-applied to vendored skills on every sync
 └── vendor/<source>/    vendored skills, one folder per upstream, with LICENSE and SOURCE
 ```
@@ -109,15 +109,15 @@ Vendored files are replaced on every sync, so local changes live in `overrides/`
 - **`overrides/<skill>.md`** is appended to that skill's `SKILL.md` under a "Global rules override (Frontier)" heading. Used for `impeccable`, `copywriting`, `copy-editing` and `stop-slop`.
 - **`overrides/frontmatter.conf`** sets frontmatter keys. It makes skills invoke-only (`disable-model-invocation: true`), so they run only when typed and their descriptions stay out of Claude's context.
 
-Auto-triggering stays on for `start-here`, `impeccable`, `stop-slop` and the four support skills. The support skills have to stay on because other skills call them through the Skill tool.
+Auto-triggering stays on for `start`, `impeccable`, `stop-slop` and the four support skills. The support skills have to stay on because other skills call them through the Skill tool.
 
-`start-here` runs invoke-only skills by reading their `SKILL.md` directly, so the flag doesn't block it.
+`start` runs invoke-only skills by reading their `SKILL.md` directly, so the flag doesn't block it.
 
 Known issue: in some sessions, Claude Code won't load an invoke-only skill even when you type its command, and follows the file by hand instead ([anthropics/claude-code#26251](https://github.com/anthropics/claude-code/issues/26251)). The result is the same. To drop the flag for a skill, delete its line from `frontmatter.conf` and re-sync.
 
-## The /start-here skill
+## The /start skill
 
-`skills/start-here/SKILL.md` is this repo's own skill and isn't synced from anywhere. It routes five intents (build new, improve existing, fix a bug, write copy, update) to the right sequence of skills. It checks for first-time project setup (`docs/agents/issue-tracker.md` and `PRODUCT.md`), runs read-only steps straight away, and asks before any step that changes files. Edit it directly.
+`skills/start/SKILL.md` is this repo's own skill and isn't synced from anywhere. It routes five intents (build new, improve existing, fix a bug, write copy, update) to the right sequence of skills. It checks for first-time project setup (`docs/agents/issue-tracker.md` and `PRODUCT.md`), runs read-only steps straight away, and asks before any step that changes files. Edit it directly.
 
 ## Credits and licences
 

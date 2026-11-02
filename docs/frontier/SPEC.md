@@ -3,7 +3,7 @@
 Decisions from the grilling session on 2026-11-01. Each line is settled unless marked open.
 
 ## Name and scope
-- The toolkit is called **Frontier** everywhere: repo `bgordon01/frontier`, plugin `frontier@bgordon01`, commands `/frontier:start-here`, install folder `~/.frontier`, rules file `frontier-rules.md`.
+- The toolkit is called **Frontier** everywhere: repo `bgordon01/frontier`, plugin `frontier@bgordon01`, commands `/frontier:start`, install folder `~/.frontier`, rules file `frontier-rules.md`.
 - Existing installs: `install.sh` moves `~/.claude-toolkit` to `~/.frontier`, re-points the git remote, and swaps the old rules file and CLAUDE.md block. Plugin users remove `toolkit` and add `frontier`; the README and landing page say so. No `toolkit` alias is kept in the marketplace, so nobody gets every skill twice.
 - The GitHub repo itself is renamed by hand in Settings → General. GitHub redirects old clone, web and raw links; the old Pages address does not redirect.
 
