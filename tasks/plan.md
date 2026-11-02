@@ -10,7 +10,7 @@ note: keep the Workbench/AVAF design language from the recent restyle
 - [x] build the visual into site/index.html — gate panel replaces the terminal; detector clean except stale-DESIGN.md drift; also fixed muted-text contrast (--ink3 #888→#6E6E6E, AA)
 - [x] critique the result (impeccable critique) — 36/40 Excellent; P1 install-layout + a few P2/P3 (see critique snapshot)
 - [ ] one steer if needed (bolder / quieter / typeset / colorize / layout)
-- [ ] record the look (impeccable document → DESIGN.md) — DESIGN.md still describes the old transit world; refresh here
+- [x] record the look (impeccable document → DESIGN.md) — "The Review Desk"; rewrote DESIGN.md + .impeccable/design.json from shipped tokens; detector drift 21→5
 
 ## Docs & brand (user request)
 - [x] setup-matt-pocock-skills: GitHub tracker (docs/agents/issue-tracker.md, domain.md, CLAUDE.md block); triage not installed, skipped
