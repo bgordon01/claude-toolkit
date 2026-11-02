@@ -15,10 +15,10 @@ Decisions from the grilling session on 2026-11-01. Each line is settled unless m
   - After: grill → spec → tickets → build test-first → review.
 
 ## Structure (in order)
-1. Hero: "Plan first. Then let Claude code." / "18 skills and one workflow that make Claude question, plan, test and review before anything ships." / Add to Claude.
-2. Before/after contrast.
-3. Workflow diagram (the page's one bold element). Main path is "Build something new". Each step shows its skills and their author. Side routes: Improve an existing project, Fix a bug, Write copy.
-4. Review gates: "Nothing changes your files until you say go." Steps that change files carry a gate mark in the diagram.
+1. Hero: "Plan first. Then let Claude code." / sub / Add to Claude, with a review-gate product panel (a paused `/to-spec` step waiting on Go) and a mono stats row. The headline is the page's one bold element.
+2. "Nothing changes your files until you say go": reads-only steps run straight away, write steps wait.
+3. Six-step workflow (Grill → Spec → Tickets → Build → Review → Done), each step tagged reads-only or changes-files and credited to its author.
+4. Other ways in: improve a project, fix a bug, write or edit copy, design a screen.
 5. House rules, shown as the opinions Frontier enforces.
 6. Command table.
 7. Install block: Claude app, Claude Code, cloud sessions. Copy buttons.
@@ -38,17 +38,17 @@ The sets are mapped onto the single workflow, not shown as three equal sections.
 - House copy rules apply; `/stop-slop` runs over final copy.
 
 ## Visual
-- Warm paper and ink. Accent: deep orange `#C2410C` (dark mode `#F28C4B`).
-- Type: Source Serif 4 (headline), Inter (body), JetBrains Mono (commands).
-- Automatic dark mode.
-- 4px spacing grid, no three-equal-cards layouts, one bold element (the workflow diagram).
+- White and ink on a hairline-ruled "shell". Accent: crimson `#AF144B` (hover `#870A3C`).
+- Type: Inter (UI and headlines), Fira Code (commands, labels, code).
+- Light theme only.
+- 4px spacing grid, no three-equal-cards layouts, one bold element (the hero headline).
 
 ## Logo
-- Wordmark "Frontier" in Source Serif 4, plus a symbol that stands alone as favicon and plugin icon.
-- Symbol concept: a horizon line broken by a gate — the review point where you say go. Single stroke, deep orange.
-- Chosen: **B, gate**. Two horizon arms with raised posts either side of a gap. Mark path in a 32×32 box: `M2 20H12V13M20 13V20H30`. Arms are longer than posts so it reads as a line first, not as brackets.
-- The same gate glyph marks "waits for your go" steps in the workflow diagram.
-- Files in `site/assets/`: `logo.svg` (follows light/dark), `logo-on-light.svg`, `logo-on-dark.svg`, `mark.svg`, `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` (180), `icon-512.png`, `logo.png` (4×), `og.png` (1200×630 social card). Wordmark is outlined Source Serif 4 600, so it renders without the font installed.
+- Wordmark "Frontier" in Inter 600, plus a mark (command-prompt chevron) that stands alone as favicon and plugin icon.
+- Symbol concept: a command prompt — a chevron (`›`) and cursor in a rounded square, for the one command Frontier asks of you (`/start`).
+- Mark path in a 28×28 box: `M10 9L15 14L10 19` (chevron) plus a short cursor underline. Outline on light grounds; filled crimson for app icons and the favicon.
+- The review gate shows in the UI as the "Changes files · waits" tag on steps that write.
+- Files in `site/assets/`: `logo.svg` (follows light/dark), `logo-on-light.svg`, `logo-on-dark.svg`, `mark.svg`, `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` (180), `icon-512.png`, `logo.png`, `og.png` (1200×630 social card). Wordmark is "Frontier" in Inter 600.
 
 ## Tech and delivery
 - Static `site/index.html`, no build step. JavaScript only for copy buttons.

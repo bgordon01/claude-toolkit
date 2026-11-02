@@ -28,8 +28,8 @@ It moves the work to the parts only the user can do — deciding what to build a
 
 ## Brand Commitments
 - Name: Frontier.
-- Gate mark: a horizon line broken by a gate, path `M2 20H12V13M20 13V20H30` in a 32×32 box. The same glyph marks "waits for your go" steps.
-- Orange accent: `#C2410C` (lighter `#F28C4B` on dark grounds).
+- Mark: a command-prompt chevron (`›`) and cursor in a rounded square (`site/assets/mark.svg`). The review gate shows in the UI as the "Changes files · waits" tag on steps that write.
+- Crimson accent: `#AF144B` (hover `#870A3C`). Inter for UI, Fira Code for commands and labels.
 - Voice: blunt, second person, opinionated; mechanisms and numbers over adjectives. Concise: one-line ledes, nothing that doesn't earn its place.
 - Light theme only. No dark mode, no automatic or manual theme switch.
 - Clean, with generous white space.

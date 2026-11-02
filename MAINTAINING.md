@@ -121,14 +121,14 @@ Known issue: in some sessions, Claude Code won't load an invoke-only skill even 
 
 ## Brand
 
-The mark is a **gate**: a horizon line broken by a gap with a post on each side. It stands for the review point where you say go, and the same glyph marks the "waits for your go" steps in the workflow diagram on the landing page.
+The mark is a **command prompt**: a chevron (`›`) and cursor inside a rounded square. It stands for running the one command Frontier asks of you — `/start` — and nods to the terminal where it lives. The review gate it used to draw now lives in the UI as the "Changes files · waits" tag on steps that write.
 
 | | |
 |---|---|
-| Mark | Single stroke, `M2 20H12V13M20 13V20H30` in a 32×32 box. The arms are longer than the posts so it reads as a line first, not as brackets. |
-| Wordmark | "Frontier" in Source Serif 4 600, outlined to paths so it renders without the font installed. |
-| Accent | Deep orange `#C2410C` on light, `#F28C4B` on dark. Ink `#1B1A17`, paper text on dark `#EDEAE3`. |
-| Type | The wordmark is Source Serif 4. The landing page uses Overpass and Overpass Mono; see [`DESIGN.md`](DESIGN.md). |
+| Mark | A chevron and cursor in a rounded square (`M10 9L15 14L10 19` plus a short underline, 28×28 and 32×32 boxes). Outline on light grounds; filled crimson for app icons and the favicon. |
+| Wordmark | "Frontier" in Inter 600. |
+| Accent | Crimson `#AF144B` (hover `#870A3C`). Ink `#1A1A1A`, secondary `#444444`. Light theme only. |
+| Type | Inter for the UI and the wordmark, Fira Code for commands, labels and code; see [`DESIGN.md`](DESIGN.md). |
 
 Files in [`site/assets/`](site/assets):
 
@@ -136,8 +136,8 @@ Files in [`site/assets/`](site/assets):
 |---|---|
 | `logo.svg` | Mark and wordmark; switches colours with light/dark mode |
 | `logo-on-light.svg`, `logo-on-dark.svg` | Fixed-colour versions of the logo |
-| `logo.png` | Logo at 4× for places that don't take SVG |
-| `mark.svg` | The gate on its own, for avatars and the plugin icon |
+| `logo.png` | Logo raster (high-res) for places that don't take SVG |
+| `mark.svg` | The mark on its own, for avatars and the plugin icon |
 | `favicon.svg`, `favicon-32.png` | Browser tab icons |
 | `apple-touch-icon.png` (180×180), `icon-512.png` | Home-screen and app icons |
 | `og.png` (1200×630) | Social preview card |
