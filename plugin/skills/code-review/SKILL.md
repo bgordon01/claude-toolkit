@@ -87,3 +87,7 @@ A change can pass one axis and fail the other:
 - Code that does exactly what the issue asked but breaks the project's conventions → **Spec pass, Standards fail.**
 
 Reporting them separately stops one axis from masking the other.
+
+## Which model and agent the sub-agents run on (Frontier)
+
+Spawn both review sub-agents (Standards and Spec, from "Spawn both sub-agents in parallel" above) on Frontier's review helper: pass `subagent_type: "frontier-reviewer"` to each Agent call. It runs on a cheaper model with read-only tools — that's where this skill's tokens go, because the review fans out to two agents every time and each re-pays its whole context on every internal step. Reading a diff against a standards list or a spec doesn't need the main model. If `frontier-reviewer` isn't installed yet (an install that predates it), fall back to `model: "sonnet"` on a general-purpose agent. Keep the aggregation (step 5) on your own model; only the two spawned reviewers change.

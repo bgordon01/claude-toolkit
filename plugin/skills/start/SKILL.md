@@ -86,6 +86,10 @@ On a step that can be handed off, give both doors in one line: "copy-paste `/sto
 
 When they hand it off, start a helper with the Agent tool. It starts with a blank memory and can't reach the user, so put everything in the request: the ticket's text, where the plan or spec is, the agreed test seams (for a build), where the house rules are (`~/.claude/frontier-rules.md` or the `house-rules` skill), which files it may touch, which checks it must run, the report format below, and this line: "don't ask me anything — if you need a human decision, return status needs-decision."
 
+Spawn the helper on Frontier's own helper agent, not a general-purpose one. For a build (`tdd` or `implement`) or `stop-slop`, pass `subagent_type: "frontier-builder"` to the Agent tool: it runs on a cheaper model with only file and shell tools. That's where most of a run's tokens are saved — a helper re-pays its whole context on every internal step, so a lighter model and a smaller toolset both count. For `impeccable polish` or `impeccable clarify`, which may need to take screenshots, pass `model: "sonnet"` to a general-purpose helper instead (cheaper model, but the full toolset). If `frontier-builder` isn't installed yet (an install that predates it), fall back to a general-purpose helper with `model: "sonnet"`. Only use the default model if a helper comes back `blocked` for want of reasoning; don't start there.
+
+Prefer running the command inline over a handoff when the step is short and the user is watching anyway. The handoff's only benefit is keeping the helper's tool output out of this conversation, and it pays a cold-start tax (a fresh context, no shared cache) that a quick `stop-slop` or clarify never earns back. Reserve handoff for long builds, where that context hygiene pays off.
+
 The helper sends back only this:
 
 ```
