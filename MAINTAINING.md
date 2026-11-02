@@ -117,7 +117,7 @@ Known issue: in some sessions, Claude Code won't load an invoke-only skill even 
 
 ## The /start skill
 
-`skills/start/SKILL.md` is this repo's own skill and isn't synced from anywhere. It routes five intents (build new, improve existing, fix a bug, write copy, update) to the right sequence of skills. It checks for first-time project setup (`docs/agents/issue-tracker.md` and `PRODUCT.md`), runs read-only steps straight away, and asks before any step that changes files. Edit it directly.
+`skills/start/SKILL.md` is this repo's own skill and isn't synced from anywhere. It routes six intents (build new, improve existing, fix a bug, write copy, design something, update) to the right sequence of skills. It checks for first-time project setup (`docs/agents/issue-tracker.md` and `PRODUCT.md`), runs read-only steps straight away, and asks before any step that changes files. Edit it directly.
 
 ## Credits and licences
 
