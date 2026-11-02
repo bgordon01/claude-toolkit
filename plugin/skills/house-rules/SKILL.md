@@ -28,8 +28,15 @@ These rules apply in every repo. A project's own CLAUDE.md overrides them where 
 - Capture the result with `/to-spec`, break it down with `/to-tickets`, build one ticket at a time with `/implement` (test-first via `/tdd`).
 - Review with `/code-review`; use `/diagnosing-bugs` for hard bugs.
 
-## Design workflow (Impeccable)
-- Use `/impeccable critique`, `/impeccable polish` and `/impeccable clarify` for design and UX-copy passes.
+## Design workflow (Impeccable, optional)
+- Fixing a screen: `/impeccable critique`, then `/impeccable polish`. Labels, buttons and errors: `/impeccable clarify`.
+- Deciding a look (optional, every step skippable):
+  1. `/impeccable shape` interviews the user and writes a design brief before anything is drawn. Ask for screenshots of 3–5 products they admire, with what they like about each.
+  2. Build from the brief with the engineering workflow, starting at `/to-spec`.
+  3. `/impeccable critique`, then at most one steer at a time: `bolder`, `quieter`, `typeset`, `colorize` or `layout`.
+  4. `/impeccable document` writes `DESIGN.md` once real screens exist, and again after a big visual change. `/impeccable extract` turns repeated UI into shared components.
+- Optional Claude Design branch: explore the look as a design in Claude, save it as a Design System artifact in Claude itself, and where Claude Code's design sync is available, use it to push code components back so the two don't drift.
+- Don't use Anthropic's `frontend-design` skill alongside Impeccable. They cover the same ground and give conflicting advice.
 - The four design laws above take precedence over Impeccable's defaults where they differ.
 
 ## Copy workflow

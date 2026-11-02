@@ -100,6 +100,7 @@ Open Claude Code in any project and type `/start`, or just say what you want, li
 | **Improve an existing project** | It reads the code, the screens or both and lists what's worth fixing, changing nothing. You pick the fixes, then they become tickets and follow the build route. |
 | **Fix a bug** | `/diagnosing-bugs` finds the real cause, `/tdd` adds a failing test and fixes it, `/code-review` checks the fix. |
 | **Write or improve copy** | `/copywriting` for new copy, `/copy-editing` for what's there, `/stop-slop` last. |
+| **Design something** (optional) | Settles the look before or while you build: a design brief, then critique and steer, then a `DESIGN.md` that keeps new screens on brand. See [the design flow](#the-design-flow-optional). |
 | **Update my skills** | Gets the latest version of Frontier. |
 
 ### The build route, step by step
@@ -115,6 +116,27 @@ Open Claude Code in any project and type `/start`, or just say what you want, li
 
 Improving a project rejoins this route at 03 Tickets. Fixing a bug rejoins it at 06 Review.
 
+### The design flow (optional)
+
+Use this when you want to decide how something looks, not just fix a screen. Every step is optional. `/start` offers it once when you start building UI in a project without a `DESIGN.md`; say no and it won't ask again.
+
+**Code only (the default):**
+
+| # | Step | Command | What it does |
+|---|---|---|---|
+| 1 | Brief | `/impeccable shape` | Interviews you about what you're making and writes a design brief before anything is drawn. Most of the gain in taste comes from here, because it stops Claude defaulting to generic choices. |
+| 2 | References | (during shape) | Share screenshots of 3–5 products whose look you admire and say what you like about each. Impeccable records those choices and later screens inherit them. Recommended, not required. |
+| 3 | Build | `/to-spec` onward | The brief feeds the spec, then the build route above runs as usual. |
+| 4 | Steer | `/impeccable critique`, then one of `bolder`, `quieter`, `typeset`, `colorize`, `layout` | Pushes the design in a direction instead of only fixing bugs. One steer at a time. |
+| 5 | Record | `/impeccable document`, `/impeccable extract` | `document` writes `DESIGN.md` from the built screens. Run it once real screens exist and again after a big visual change. `extract` turns repeated UI into shared components. |
+
+**With Claude Design (optional branch):**
+
+- After the brief, explore the look as a design in Claude, then save the one you like as a **Design System** artifact (colours, type, spacing, components). Every design, deck or mockup you make in Claude can use it. Make it in Claude itself.
+- After `/impeccable document`, if your Claude Code has design sync, use it to push your code's components into that Design System so the reference and the real app don't drift apart. If it doesn't, skip this.
+
+The house rules still win over any steer: one bold element, the 4px grid, no AI-default palette. Don't install Anthropic's `frontend-design` skill alongside Impeccable; it covers the same ground and the two give conflicting advice.
+
 ### How `/start` guides you
 
 `/start` is a mentor, not an autopilot. It recommends the next step, gives you one sentence on why it matters, and hands you the command to copy and paste. You run it. It never runs a work skill or edits your code itself.
@@ -127,7 +149,7 @@ Each recommendation carries a mark:
 
 **Nothing changes your files until you say go.** You make the decisions. Claude does the typing.
 
-**It keeps its place in a file.** For build, improve and bug-fix routes, `/start` writes a checklist to `tasks/plan.md` in your project: one box per step per ticket, plus your build and test commands, which command form to hand you (`/tdd` or `/frontier:tdd`), and any corner you chose to cut. Every time you run it, it reads that file and reads the checklist back to you, so a long build never loses its thread. The file is committed by default; gitignore it if you'd rather not track it.
+**It keeps its place in a file.** For build, improve, bug-fix and design routes, `/start` writes a checklist to `tasks/plan.md` in your project: one box per step per ticket, plus your build and test commands, which command form to hand you (`/tdd` or `/frontier:tdd`), and any corner you chose to cut. Every time you run it, it reads that file and reads the checklist back to you, so a long build never loses its thread. The file is committed by default; gitignore it if you'd rather not track it.
 
 **It checks before it ticks.** After a build it re-runs your tests itself. After a wording step it re-runs the banned-words search. For judgement steps like the grill, a design critique or a code review, it ticks the box only once you confirm what you did with the findings. If a check fails, it says so plainly and waits for you to decide. It never re-runs to get green and never switches a test off.
 
@@ -153,6 +175,14 @@ Every step is also a command. Use `/start` and let it choose, or call any of the
 | `/impeccable critique` | Reviews a screen's design without changing it. | Design |
 | `/impeccable polish` | Fixes a screen's layout, type, colour and spacing. | Design |
 | `/impeccable clarify` | Rewrites labels, buttons and errors so they read clearly. | Design |
+| `/impeccable shape` | Interviews you and writes a design brief before anything is drawn. | Design |
+| `/impeccable bolder` | Makes a safe or bland design more distinctive. | Design |
+| `/impeccable quieter` | Tones down a loud or busy design. | Design |
+| `/impeccable typeset` | Improves fonts, type sizes and hierarchy. | Design |
+| `/impeccable colorize` | Adds purposeful colour to a flat design. | Design |
+| `/impeccable layout` | Fixes spacing, alignment and visual rhythm. | Design |
+| `/impeccable document` | Writes `DESIGN.md` from your built screens so new ones stay on brand. | Design |
+| `/impeccable extract` | Turns repeated UI into shared components and tokens. | Design |
 | `/copywriting` | Writes marketing and landing-page copy. | Copy |
 | `/copy-editing` | Tightens copy you already have. | Copy |
 | `/stop-slop` | Removes phrasing that sounds machine-written. | Copy |

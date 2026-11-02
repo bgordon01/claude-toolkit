@@ -1,6 +1,6 @@
 ---
 name: start
-description: The plain-English front door to Frontier. Use when the user types /start, or says things like "where do I start", "help me build something", "redesign this project", "fix this bug", "write copy for this", "what can you do here", or "update my skills". Acts as a per-step mentor: recommends the next step as a command to copy-paste, teaches as it goes, and tracks progress in a file so it never loses the thread.
+description: The plain-English front door to Frontier. Use when the user types /start, or says things like "where do I start", "help me build something", "redesign this project", "fix this bug", "write copy for this", "design this", "make it look better", "set up a design system", "what can you do here", or "update my skills". Acts as a per-step mentor: recommends the next step as a command to copy-paste, teaches as it goes, and tracks progress in a file so it never loses the thread.
 ---
 
 # Start
@@ -120,13 +120,15 @@ If their message already makes it clear, skip to that path. Otherwise ask:
 > 2. **Improve an existing project**: clean up the code, the design, or both
 > 3. **Fix a bug**: something is broken
 > 4. **Write or improve copy**: words on a page, emails, buttons
-> 5. **Update my skills**: get the latest version of Frontier
+> 5. **Design something**: decide how it should look before or while it gets built (optional)
+> 6. **Update my skills**: get the latest version of Frontier
 
 ## 2. First-time project setup
 
-For paths 1, 2 and 3, check the project first (this is just looking, so no go-ahead needed):
+For paths 1, 2, 3 and 5, check the project first (this is just looking, so no go-ahead needed):
 - No `docs/agents/issue-tracker.md` → the planning skills don't know where to save tickets yet. Recommend ✏️ `setup-matt-pocock-skills`, which asks a few questions then writes a small settings file.
 - No `PRODUCT.md` and the project has a user interface → the design skill doesn't know who the product is for yet. Recommend ✏️ `impeccable` with the `init` command, which interviews the user then writes `PRODUCT.md`.
+- Path 1, the work includes a user interface, and there's no `DESIGN.md` → offer Path 5 once, in one sentence: "Want to settle the look first? It's optional." Save `design flow: offered` in `plan.md` so you never offer it again in this project. If they say no, carry on with Path 1.
 - The project has its own `CLAUDE.md` describing how it wants work done → map Frontier's steps onto that process, say in one sentence which one is driving, and use that project's own build and test commands.
 
 If the setup files exist and there's no project process to defer to, say nothing about setup and carry on.
@@ -138,7 +140,7 @@ If the setup files exist and there's no project process to defer to, say nothing
 3. ✏️ `to-tickets`: break the spec into small pieces of work. Once they exist, write them into `tasks/plan.md` with a box per step.
 4. For each ticket in `plan.md`, in order (re-read the file first each time):
    - Agree the test seams with the user — the places tests will check — then recommend 🤖 `tdd` (test-first) or 🤖 `implement` (tests where they fit). Both need the seams agreed first, so settle them here, not in the handoff.
-   - If the ticket touched anything a user will see: 👀 `impeccable critique`, then 🤖 `impeccable polish`.
+   - If the ticket touched anything a user will see: 👀 `impeccable critique`, then 🤖 `impeccable polish`. If they want to change the look rather than fix it, point them to Path 5.
    - If it touched words a user will read: 🤖 `impeccable clarify`, then 🤖 `stop-slop`.
    - 👀 `code-review`: check the change before moving on.
    - Checkpoint, then start the next ticket.
@@ -149,7 +151,7 @@ Ask: the code, the design, or both? Then:
 
 1. Look first, change nothing:
    - Code → 👀 `improve-codebase-architecture`: a visual report of what's hard to work with.
-   - Design → 👀 `impeccable audit`, then 👀 `impeccable critique`.
+   - Design → 👀 `impeccable audit`, then 👀 `impeccable critique`. If they want a new look rather than fixes, switch to Path 5.
 2. 👀 `grill-me` on the findings: agree what's worth fixing and in what order.
 3. ✏️ `to-tickets`: turn the agreed fixes into small pieces of work, then write them into `tasks/plan.md`.
 4. Build each ticket exactly as in Path 1, step 4.
@@ -173,7 +175,28 @@ Then checkpoint.
 - Button labels, form fields and error messages in an app → ✏️ `impeccable clarify`
 - Always finish with ✏️ `stop-slop` to remove anything that sounds machine-written.
 
-## Path 5: Update my skills
+## Path 5: Design something (optional)
+
+The whole path is optional, and so is every step in it. Say so once at the start. If the user skips a step, record it in `plan.md` and move on.
+
+There are two ways through. The **code-only** way is the default. The **Claude Design** steps (marked *optional, in Claude*) are for people who use Claude Design in the Claude app; you can't do them for the user, so hand over plain instructions instead of a command.
+
+1. ✏️ `impeccable shape`: an interview about what they're making, ending in a design brief. Most of the gain in taste comes from this step, because it stops Claude defaulting to generic choices. Before they run it, recommend sharing screenshots of 3–5 products whose look they admire, with a line on what they like about each. Impeccable records those choices and later screens inherit them.
+2. *Optional, in Claude:* explore the look as a design in Claude, then save the one they like as a **Design System** artifact (colours, type, spacing, components). Every design, deck or mockup they make in Claude can then use it. Tell them to make it in Claude itself.
+3. Build it: carry on from Path 1, step 2 (`to-spec`), using the brief as the starting point for the spec. Write the tickets into `plan.md` as usual.
+4. Once the first real screens exist: 👀 `impeccable critique`. If they want to push the look in one direction, recommend one ✏️ steer at a time:
+   - `impeccable bolder`: the design is too safe or bland.
+   - `impeccable quieter`: it's too loud or busy.
+   - `impeccable typeset`: the type and hierarchy need work.
+   - `impeccable colorize`: it needs purposeful colour.
+   - `impeccable layout`: spacing, alignment or rhythm is off.
+   The house rules still win: one bold element, the 4px grid, no AI-default palette.
+5. ✏️ `impeccable document`: writes `DESIGN.md` from the built screens, so new screens stay on brand. Run it once the first screens exist, not before, and again after a big visual change. If the same UI is repeated across screens, follow with ✏️ `impeccable extract` to turn it into shared components.
+6. *Optional, in Claude Code where available:* use Claude Code's design sync to push the code's components into their Claude Design system, so the reference and the real app don't drift apart. If it isn't available to them, skip this step.
+
+Don't recommend Anthropic's `frontend-design` skill alongside this path. It covers the same ground as Impeccable and the two give conflicting advice.
+
+## Path 6: Update my skills
 
 (Short enough to skip the progress file.)
 
