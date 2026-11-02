@@ -214,6 +214,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .route p { margin: 0; color: var(--muted); font-size: 16px; }
 .route p code { color: var(--ink); }
 .route .join { font: 800 16px/1.3 var(--sans); }
+.opt-tag { display: inline-block; vertical-align: 2px; margin-left: 8px; padding: 2px 8px; border: 1px solid var(--rule); border-radius: 999px; font: 600 12px/1.4 var(--sans); color: var(--muted); }
 .route .join span { display: block; font: 400 14px/1.4 var(--sans); color: var(--muted); }
 
 /* Posted rules */
@@ -251,7 +252,7 @@ td.set { white-space: nowrap; color: var(--muted); font-size: 14px; }
   tbody tr:hover td { background: none; }
 }
 td.set i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: -1px; }
-.s-m { background: var(--line); } .s-b { background: var(--blue); } .s-g { background: var(--green); } .s-y { background: var(--yellow); }
+.s-k { background: var(--ground); border: 2px solid var(--ink); } .s-m { background: var(--line); } .s-b { background: var(--blue); } .s-g { background: var(--green); } .s-y { background: var(--yellow); }
 .support { margin-top: 20px; font-size: 15px; color: var(--muted); max-width: 72ch; }
 
 /* Boarding */
@@ -434,8 +435,8 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
 
 <section aria-labelledby="routes-h" style="padding-top:0">
   <div class="wrap">
-    <h2 id="routes-h">Already have a project? Skip ahead.</h2>
-    <p class="lede">Three shortcuts start with a check, then join the main steps where they fit.</p>
+    <h2 id="routes-h">Other ways in.</h2>
+    <p class="lede">Four shortcuts start somewhere other than Grill, then join the main steps where they fit.</p>
     <div class="routes">
       <div class="route">
         <svg viewBox="0 0 240 64" aria-hidden="true"><path class="b" style="stroke:var(--blue)" d="M4 12H100L140 52"/><path class="o" d="M140 52H236"/><circle class="ring" cx="24" cy="12" r="10"/><circle class="ring" cx="196" cy="52" r="10"/></svg>
@@ -451,6 +452,11 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
         <svg viewBox="0 0 240 64" aria-hidden="true"><path class="b" style="stroke:var(--yellow)" d="M4 32H236"/><circle class="ring" cx="24" cy="32" r="10"/><circle class="ring" cx="120" cy="32" r="10"/><rect x="204" y="16" width="32" height="32" rx="8" fill="var(--ink)"/></svg>
         <div><h3>Write or improve copy</h3><p><code>/copywriting</code>, <code>/copy-editing</code>, then <code>/stop-slop</code>.</p></div>
         <div class="join">Works on its own</div>
+      </div>
+      <div class="route">
+        <svg viewBox="0 0 240 64" aria-hidden="true"><path class="b" style="stroke:var(--ink);stroke-dasharray:12 12" d="M4 12H100L140 52"/><path class="o" d="M140 52H236"/><circle class="ring" cx="24" cy="12" r="10"/><circle class="ring" cx="196" cy="52" r="10"/></svg>
+        <div><h3>Design something <span class="opt-tag">optional</span></h3><p><code>/impeccable shape</code> writes a design brief before anything is drawn. Once screens exist, <code>/impeccable critique</code> and one steer set the look, and <code>/impeccable document</code> records it in DESIGN.md.</p></div>
+        <div class="join">Then continues at Spec</div>
       </div>
     </div>
   </div>
@@ -491,6 +497,14 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
           <tr><td><code>/impeccable critique</code></td><td>Reviews a screen's design without changing it.</td><td class="set"><i class="s-m"></i>Review</td></tr>
           <tr><td><code>/impeccable polish</code></td><td>Fixes a screen's layout, type, colour and spacing.</td><td class="set"><i class="s-m"></i>Polish</td></tr>
           <tr><td><code>/impeccable clarify</code></td><td>Rewrites labels, buttons and errors so they read clearly.</td><td class="set"><i class="s-m"></i>Polish</td></tr>
+          <tr><td><code>/impeccable shape</code></td><td>Interviews you and writes a design brief before anything is drawn.</td><td class="set"><i class="s-k"></i>Design</td></tr>
+          <tr><td><code>/impeccable bolder</code></td><td>Makes a safe or bland design more distinctive.</td><td class="set"><i class="s-k"></i>Design</td></tr>
+          <tr><td><code>/impeccable quieter</code></td><td>Tones down a loud or busy design.</td><td class="set"><i class="s-k"></i>Design</td></tr>
+          <tr><td><code>/impeccable typeset</code></td><td>Improves fonts, type sizes and hierarchy.</td><td class="set"><i class="s-k"></i>Design</td></tr>
+          <tr><td><code>/impeccable colorize</code></td><td>Adds purposeful colour to a flat design.</td><td class="set"><i class="s-k"></i>Design</td></tr>
+          <tr><td><code>/impeccable layout</code></td><td>Fixes spacing, alignment and visual rhythm.</td><td class="set"><i class="s-k"></i>Design</td></tr>
+          <tr><td><code>/impeccable document</code></td><td>Writes DESIGN.md from your built screens so new ones stay on brand.</td><td class="set"><i class="s-k"></i>Design</td></tr>
+          <tr><td><code>/impeccable extract</code></td><td>Turns repeated UI into shared components.</td><td class="set"><i class="s-k"></i>Design</td></tr>
           <tr><td><code>/copywriting</code></td><td>Writes marketing and landing-page copy.</td><td class="set"><i class="s-y"></i>Copy</td></tr>
           <tr><td><code>/copy-editing</code></td><td>Tightens copy you already have.</td><td class="set"><i class="s-y"></i>Copy</td></tr>
           <tr><td><code>/stop-slop</code></td><td>Removes phrasing that sounds machine-written.</td><td class="set"><i class="s-m"></i>Polish</td></tr>
