@@ -296,8 +296,8 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
       Frontier
     </a>
     <nav aria-label="Sections">
-      <a class="opt" href="#line"><i></i>The line</a>
-      <a class="opt" href="#commands"><i></i>Timetable</a>
+      <a class="opt" href="#line"><i></i>How it works</a>
+      <a class="opt" href="#commands"><i></i>Commands</a>
       <a class="opt" href="https://github.com/bgordon01/frontier"><i></i>GitHub</a>
       <a class="btn primary" href="#install">Install</a>
     </nav>
@@ -310,16 +310,16 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
     <div class="hero-head">
       <h1 id="hero-h">Plan first. Then let Claude <span class="hl">code.</span></h1>
       <div>
-        <p class="sub">18 skills and one workflow that make Claude question, plan, test and review before anything ships.</p>
+        <p class="sub">18 skills that make Claude ask questions, write a plan, test and review before it changes your code. Type <code>/start</code> and it takes you through each step.</p>
         <div class="actions">
           <a class="btn primary" href="#install">Add to Claude <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="btn quiet" href="#vs">Why a line?</a>
+          <a class="btn quiet" href="#commands">See the commands</a>
         </div>
       </div>
     </div>
 
     <div class="map">
-      <p class="map-title"><span class="bullet"><b>F</b>Frontier Line</span><span class="hint">The train waits at every gate until you press Go.</span></p>
+      <p class="map-title"><span class="hint">The six steps, in order. Steps that change files stop and wait for you to press Go. Tap any step to read it.</span></p>
       <div class="line" id="track">
         <ol class="stops" id="stops">
           <li class="stop" data-kind="term"><button class="stn" type="button"><span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true"><rect class="term" x="16" y="16" width="32" height="32" rx="8"/></svg></span><span class="nm">Start</span><span class="cmd">/start</span></button></li>
@@ -329,7 +329,7 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
           <li class="stop" data-kind="gate"><button class="stn" type="button"><span class="mk"></span><span class="nm">Build</span><span class="cmd">/implement</span></button></li>
           <li class="stop" data-kind="gate"><button class="stn" type="button"><span class="mk"></span><span class="nm">Polish</span><span class="cmd">/impeccable polish</span></button></li>
           <li class="stop" data-kind="open"><button class="stn" type="button"><span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="14"/></svg></span><span class="nm">Review</span><span class="cmd">/code-review</span></button></li>
-          <li class="stop" data-kind="term"><button class="stn" type="button"><span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true"><rect class="term" x="16" y="16" width="32" height="32" rx="8"/></svg></span><span class="nm">Shipped</span><span class="cmd" style="font-family:var(--sans)">reviewed change</span></button></li>
+          <li class="stop" data-kind="term"><button class="stn" type="button"><span class="mk"><svg viewBox="0 0 64 64" aria-hidden="true"><rect class="term" x="16" y="16" width="32" height="32" rx="8"/></svg></span><span class="nm">Done</span><span class="cmd" style="font-family:var(--sans)">reviewed change</span></button></li>
         </ol>
         <div class="train" id="train" aria-hidden="true"><svg viewBox="0 0 48 24"><rect class="body" x="0" y="0" width="48" height="24" rx="12"/><rect class="win" x="10" y="7" width="8" height="10" rx="2"/><rect class="win" x="22" y="7" width="8" height="10" rx="2"/><rect class="nose" x="36" y="4" width="8" height="16" rx="4"/></svg></div>
       </div>
@@ -348,13 +348,13 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
 
 <section class="versus" id="vs" aria-labelledby="vs-h">
   <div class="wrap">
-    <h2 id="vs-h">Vibe coding is a circle line.</h2>
-    <p class="lede">Prompt, break, prompt again. Frontier runs a through line that ends at a reviewed change.</p>
+    <h2 id="vs-h">Prompting and hoping goes in circles.</h2>
+    <p class="lede">You prompt, Claude writes 400 lines, something breaks, you prompt again. Frontier puts a plan, a test and a review in front of every change.</p>
     <div class="vs-grid">
       <div class="vs">
-        <h3>Without a method</h3>
-        <p class="verdict">Every fix starts from a guess.</p>
-        <svg viewBox="-40 0 480 300" role="img" id="loop-svg" aria-label="A loop with four stops: Prompt, 400 lines of code, Something breaks, Prompt again. A train goes round it without stopping.">
+        <h3>Without a plan</h3>
+        <p class="verdict">Every fix is a guess.</p>
+        <svg viewBox="-40 0 480 300" role="img" id="loop-svg" aria-label="A loop with four stops: Prompt, 400 lines of code, Something breaks, Prompt again. It loops forever.">
           <rect id="loop-path" class="loop" x="60" y="40" width="280" height="200" rx="100"/>
           <circle class="ring" cx="200" cy="40" r="12"/><circle class="ring" cx="340" cy="140" r="12"/><circle class="ring" cx="200" cy="240" r="12"/><circle class="ring" cx="60" cy="140" r="12"/>
           <text class="t-lbl" x="200" y="16" text-anchor="middle">Prompt</text>
@@ -367,8 +367,8 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
       </div>
       <div class="vs">
         <h3>With Frontier</h3>
-        <p class="verdict">Every change starts from a decision you made.</p>
-        <svg class="thru-h" viewBox="20 90 620 140" role="img" aria-label="A straight line with five stops: Get questioned, Write the spec, Split into tickets, Build one test first, Review, ending at a reviewed change.">
+        <p class="verdict">Every change traces back to a decision you made.</p>
+        <svg class="thru-h" viewBox="20 90 620 140" role="img" aria-label="Five steps in a straight line: Get questioned, Write the spec, Split into tickets, Build one test first, Review, ending at a reviewed change.">
           <path class="thru" d="M40 160H600"/>
           <circle class="ring" cx="56" cy="160" r="12"/><rect x="152" y="150" width="16" height="20" fill="var(--ground-2)"/><path d="M148 160V140M172 140V160" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round"/><rect x="256" y="150" width="16" height="20" fill="var(--ground-2)"/><path d="M252 160V140M276 140V160" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round"/><rect x="360" y="150" width="16" height="20" fill="var(--ground-2)"/><path d="M356 160V140M380 140V160" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round"/><circle class="ring" cx="472" cy="160" r="12"/>
           <rect class="term" x="580" y="140" width="40" height="40" rx="8"/>
@@ -379,7 +379,7 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
           <text class="t-lbl" x="472" y="124" text-anchor="middle">Review</text><text class="t-sub" x="472" y="208" text-anchor="middle">checked</text>
           <text class="t-lbl" x="600" y="124" text-anchor="middle">Done</text><text class="t-sub" x="600" y="208" text-anchor="middle">reviewed</text>
         </svg>
-        <svg class="thru-v" viewBox="0 0 320 384" role="img" aria-label="A straight line with five stops ending at a reviewed change.">
+        <svg class="thru-v" viewBox="0 0 320 384" role="img" aria-label="Five steps in a straight line, ending at a reviewed change.">
           <path class="thru" d="M32 24V360"/>
           <circle class="ring" cx="32" cy="40" r="12"/><text class="t-lbl" x="64" y="45">Get questioned</text>
           <rect x="22" y="96" width="20" height="16" fill="var(--ground-2)"/><path d="M32 92H52M52 116H32" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round"/><text class="t-lbl" x="64" y="109">Spec written</text>
@@ -396,11 +396,11 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
 <section aria-labelledby="gates-h">
   <div class="wrap gates-grid">
     <div>
-      <h2 id="gates-h">You hold the doors.</h2>
-      <p class="lede">Nothing changes your files until you say go. You decide. Claude types.</p>
+      <h2 id="gates-h">Nothing changes your files until you say go.</h2>
+      <p class="lede">Before each step, Claude tells you in one sentence what it will do. Steps that only read run straight away. Steps that write ask first.</p>
       <ul class="kinds">
-        <li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M0 32H64" stroke="var(--line)" stroke-width="8" stroke-linecap="round"/><circle cx="32" cy="32" r="14" fill="var(--ground)" stroke="var(--ink)" stroke-width="4"/></svg><div><strong>Open station</strong><span>Reads and reports. Runs straight away.</span></div></li>
-        <li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M0 32H24V12M40 12V32H64" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 32H44" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/></svg><div><strong>Gate</strong><span>Writes code, edits files or creates tickets. Waits for your go.</span></div></li>
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M0 32H64" stroke="var(--line)" stroke-width="8" stroke-linecap="round"/><circle cx="32" cy="32" r="14" fill="var(--ground)" stroke="var(--ink)" stroke-width="4"/></svg><div><strong>Reads only</strong><span>Looks at your code or idea and reports back. Runs straight away.</span></div></li>
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M0 32H24V12M40 12V32H64" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 32H44" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/></svg><div><strong>Changes files</strong><span>Writes code, edits files or creates tickets. Waits for your go.</span></div></li>
       </ul>
     </div>
     <div class="terminal" role="img" aria-label="Example session: /start asks what you want, runs the grilling step straight away, then asks before writing the spec.">
@@ -422,23 +422,23 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
 
 <section aria-labelledby="routes-h" style="padding-top:0">
   <div class="wrap">
-    <h2 id="routes-h">Not starting from scratch? Change here.</h2>
-    <p class="lede">Three branch lines join the main line where they fit.</p>
+    <h2 id="routes-h">Already have a project? Skip ahead.</h2>
+    <p class="lede">Three shortcuts start with a check, then join the main steps where they fit.</p>
     <div class="routes">
       <div class="route">
         <svg viewBox="0 0 240 64" aria-hidden="true"><path class="b" style="stroke:var(--blue)" d="M4 12H100L140 52"/><path class="o" d="M140 52H236"/><circle class="ring" cx="24" cy="12" r="10"/><circle class="ring" cx="196" cy="52" r="10"/></svg>
         <div><h3>Improve an existing project</h3><p><code>/improve-codebase-architecture</code> or <code>/impeccable critique</code> lists what's worth fixing. Changes nothing.</p></div>
-        <div class="join">Change at Tickets</div>
+        <div class="join">Then continues at Tickets</div>
       </div>
       <div class="route">
         <svg viewBox="0 0 240 64" aria-hidden="true"><path class="b" style="stroke:var(--green)" d="M4 12H100L140 52"/><path class="o" d="M140 52H236"/><circle class="ring" cx="24" cy="12" r="10"/><circle class="ring" cx="196" cy="52" r="10"/></svg>
         <div><h3>Fix a bug</h3><p><code>/diagnosing-bugs</code> finds the cause first, then fixes it test-first.</p></div>
-        <div class="join">Change at Review</div>
+        <div class="join">Then continues at Review</div>
       </div>
       <div class="route">
         <svg viewBox="0 0 240 64" aria-hidden="true"><path class="b" style="stroke:var(--yellow)" d="M4 32H236"/><circle class="ring" cx="24" cy="32" r="10"/><circle class="ring" cx="120" cy="32" r="10"/><rect x="204" y="16" width="32" height="32" rx="8" fill="var(--ink)"/></svg>
         <div><h3>Write or improve copy</h3><p><code>/copywriting</code>, <code>/copy-editing</code>, then <code>/stop-slop</code>.</p></div>
-        <div class="join">Its own shuttle</div>
+        <div class="join">Works on its own</div>
       </div>
     </div>
   </div>
@@ -446,13 +446,13 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
 
 <section class="rules-sec" aria-labelledby="rules-h">
   <div class="wrap">
-    <h2 id="rules-h">House rules, posted at every station.</h2>
-    <p class="lede">Applied to every skill. Your project's CLAUDE.md wins on conflict.</p>
+    <h2 id="rules-h">Rules it follows in every project.</h2>
+    <p class="lede">Every skill follows these. If your project's CLAUDE.md says otherwise, yours wins.</p>
     <div class="notices">
       <div class="notice n-a"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="ps" cx="24" cy="24" r="20"/><path class="pa" d="M10 38L38 10"/><path class="ps" d="M16 30c4-8 12-8 16-12"/></svg><div><strong>No AI look</strong><span>No purple gradients, glows or floating shadows.</span><br><span class="set">Design</span></div></div>
       <div class="notice n-b"><svg viewBox="0 0 48 48" aria-hidden="true"><rect class="ps" x="4" y="8" width="24" height="14" rx="2"/><rect class="ps" x="32" y="8" width="12" height="14" rx="2"/><rect class="ps" x="4" y="26" width="12" height="14" rx="2"/><rect class="pa" x="20" y="26" width="24" height="14" rx="2"/></svg><div><strong>Not everything in threes</strong><span>Variable spans and dense tables.</span><br><span class="set">Design</span></div></div>
       <div class="notice n-c"><svg viewBox="0 0 48 48" aria-hidden="true"><path class="ps" d="M8 4V44M20 4V44M32 4V44M44 4V44M4 8H44M4 20H44M4 32H44"/><circle class="pf" cx="20" cy="20" r="4"/></svg><div><strong>A 4px grid</strong><span>Every padding, margin and gap.</span><br><span class="set">Design</span></div></div>
-      <div class="notice n-d"><svg viewBox="0 0 48 48" aria-hidden="true"><rect class="pa" x="4" y="6" width="40" height="18" rx="2"/><path class="ps" d="M4 32H28M4 40H20"/></svg><div><strong>One bold thing per screen</strong><span>Everything else stays quiet. Here, it's the line.</span><br><span class="set">Design</span></div></div>
+      <div class="notice n-d"><svg viewBox="0 0 48 48" aria-hidden="true"><rect class="pa" x="4" y="6" width="40" height="18" rx="2"/><path class="ps" d="M4 32H28M4 40H20"/></svg><div><strong>One bold thing per screen</strong><span>Everything else stays quiet. On this page, it's the step map.</span><br><span class="set">Design</span></div></div>
       <div class="notice n-e"><svg viewBox="0 0 48 48" aria-hidden="true"><rect class="ps" x="4" y="12" width="40" height="24" rx="4"/><path class="pa" d="M8 40L40 8"/></svg><div><strong>Banned words</strong><span>"Seamless", "supercharge" and friends never ship.</span><br><span class="set">Copy</span></div></div>
       <div class="notice n-f"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="ps" cx="24" cy="24" r="20"/><path class="pa" d="M24 12V24L32 30"/></svg><div><strong>Specifics over hype</strong><span>"Exports in 2 seconds", not "Blazing fast".</span><br><span class="set">Copy</span></div></div>
     </div>
@@ -461,11 +461,11 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
 
 <section id="commands" aria-labelledby="cmd-h">
   <div class="wrap">
-    <h2 id="cmd-h">The timetable. Every stop is a command.</h2>
-    <p class="lede">Or type <code>/start</code> and let it choose.</p>
+    <h2 id="cmd-h">Every step is a command you can run.</h2>
+    <p class="lede">Or type <code>/start</code> and it picks the right one.</p>
     <div class="table-wrap">
       <table>
-        <thead><tr><th scope="col">Command</th><th scope="col">What it does</th><th scope="col">Stop</th></tr></thead>
+        <thead><tr><th scope="col">Command</th><th scope="col">What it does</th><th scope="col">Step</th></tr></thead>
         <tbody>
           <tr><td><code>/start</code></td><td>Asks what you want to do and walks you through the right route.</td><td class="set"><i class="s-m"></i>Start</td></tr>
           <tr><td><code>/grill-me</code></td><td>Questions your idea until it holds up.</td><td class="set"><i class="s-m"></i>Grill</td></tr>
@@ -491,8 +491,8 @@ footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--
 
 <section class="board-sec" id="install" aria-labelledby="inst-h">
   <div class="wrap">
-    <h2 id="inst-h">Board once. Then type <code>/start</code>.</h2>
-    <p class="lede">Under a minute, wherever you use Claude.</p>
+    <h2 id="inst-h">Install once. Then type <code>/start</code>.</h2>
+    <p class="lede">Pick where you use Claude. Each takes under a minute.</p>
     <div class="install-grid">
       <div class="path main">
         <h3><i></i>Claude app</h3>
@@ -526,8 +526,8 @@ curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh 
 
 <section aria-labelledby="built-h">
   <div class="wrap">
-    <h2 id="built-h">Four authors' skills, one line.</h2>
-    <p class="lede">Frontier wires their skills into one workflow. Each keeps its licence.</p>
+    <h2 id="built-h">Built on skills by four authors.</h2>
+    <p class="lede">Frontier connects their skills into one workflow. Each keeps its own licence.</p>
     <div class="authors">
       <div class="author"><a class="name" href="https://github.com/mattpocock/skills">Matt Pocock</a><span>Planning, tickets, test-first building, code review, bug diagnosis.</span><span class="lic">MIT</span></div>
       <div class="author"><a class="name" href="https://github.com/pbakaus/impeccable">Paul Bakaus</a><span>Impeccable: design critique, polish and UX copy, with 4 helper agents.</span><span class="lic">Apache 2.0</span></div>
@@ -540,7 +540,7 @@ curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh 
 
 <footer>
   <div class="wrap">
-    <span class="eol"><i></i>End of the line. Frontier · MIT licence · by Brent Gordon</span>
+    <span class="eol"><i></i>Frontier · MIT licence · by Brent Gordon</span>
     <a href="https://github.com/bgordon01/frontier">github.com/bgordon01/frontier</a>
   </div>
 </footer>
@@ -555,7 +555,7 @@ curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh 
     { name: 'Build', what: 'Builds one ticket at a time. A failing test comes first, then the code.', cmds: ['/implement', '/tdd'], by: 'Matt Pocock' },
     { name: 'Polish', what: "Fixes the screen's design, writes the words, removes machine-sounding text.", cmds: ['/impeccable polish', '/copywriting', '/stop-slop'], by: 'Paul Bakaus, Corey Haines, Hardik Pandya' },
     { name: 'Review', what: 'Checks the change against the spec and the house rules before you move on.', cmds: ['/code-review', '/impeccable critique'], by: 'Matt Pocock, Paul Bakaus' },
-    { name: 'Shipped', what: 'A reviewed change, built from decisions you made. Pick the next ticket, or ride again.', cmds: [], by: '' }
+    { name: 'Done', what: 'A reviewed change, built from decisions you made. Pick the next ticket and go again.', cmds: [], by: '' }
   ];
   var GATE_SVG = '<svg viewBox="0 0 64 64" aria-hidden="true"><rect class="gap" x="26" y="26" width="12" height="12"/><path class="arms" d="M0 32H24V12M40 12V32H64"/><line class="bar" x1="20" y1="32" x2="44" y2="32"/></svg>';
   var ICON_GATE = '<svg viewBox="0 0 32 32" aria-hidden="true"><use href="#gate"/></svg>';
@@ -573,7 +573,7 @@ curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh 
   stops.forEach(function (li, i) {
     if (li.dataset.kind === 'gate') li.querySelector('.mk').innerHTML = GATE_SVG;
     var btn = li.querySelector('.stn');
-    btn.setAttribute('aria-label', STATIONS[i].name + (li.dataset.kind === 'gate' ? ', gate: waits for your go' : li.dataset.kind === 'open' ? ', runs straight away' : ''));
+    btn.setAttribute('aria-label', STATIONS[i].name + (li.dataset.kind === 'gate' ? ', changes files: waits for your go' : li.dataset.kind === 'open' ? ', runs straight away' : ''));
     btn.addEventListener('click', function () { clearTimeout(timer); moveTo(i, true); });
   });
 
@@ -599,16 +599,16 @@ curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh 
       el('b-by').textContent = s.by ? 'Skills by ' + s.by : '';
       var st = el('b-status');
       if (kind === 'gate') {
-        st.innerHTML = ICON_GATE + '<span><strong>Doors held.</strong>This step changes files, so the train waits for you.</span>';
+        st.innerHTML = ICON_GATE + '<span><strong>Waiting for your go.</strong>This step changes files, so it asks first.</span>';
         goBtn.hidden = false; goBtn.innerHTML = 'Go <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       } else if (i === 7) {
-        st.innerHTML = ICON_OPEN + '<span><strong>Arrived.</strong>Nothing shipped that you didn’t approve.</span>';
-        goBtn.hidden = false; goBtn.textContent = 'Ride again';
+        st.innerHTML = ICON_OPEN + '<span><strong>Finished.</strong>Every change was one you approved.</span>';
+        goBtn.hidden = false; goBtn.textContent = 'Start over';
       } else if (i === 0) {
-        st.innerHTML = ICON_OPEN + '<span><strong>Boarding.</strong>Type /start and the train leaves.</span>';
-        goBtn.hidden = false; goBtn.innerHTML = 'Depart <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        st.innerHTML = ICON_OPEN + '<span><strong>Starts here.</strong>Type /start. It asks what you want and picks the steps.</span>';
+        goBtn.hidden = false; goBtn.innerHTML = 'Start <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       } else {
-        st.innerHTML = ICON_OPEN + '<span><strong>Open station.</strong>It only reads and reports, so it runs straight away.</span>';
+        st.innerHTML = ICON_OPEN + '<span><strong>Runs straight away.</strong>This step only reads and reports. It changes nothing.</span>';
         goBtn.hidden = true;
       }
       board.classList.remove('swap');
