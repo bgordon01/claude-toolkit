@@ -119,6 +119,35 @@ Known issue: in some sessions, Claude Code won't load an invoke-only skill even 
 
 `skills/start/SKILL.md` is this repo's own skill and isn't synced from anywhere. It routes six intents (build new, improve existing, fix a bug, write copy, design something, update) to the right sequence of skills. It checks for first-time project setup (`docs/agents/issue-tracker.md` and `PRODUCT.md`), runs read-only steps straight away, and asks before any step that changes files. Edit it directly.
 
+## Brand
+
+The mark is a **gate**: a horizon line broken by a gap with a post on each side. It stands for the review point where you say go, and the same glyph marks the "waits for your go" steps in the workflow diagram on the landing page.
+
+| | |
+|---|---|
+| Mark | Single stroke, `M2 20H12V13M20 13V20H30` in a 32×32 box. The arms are longer than the posts so it reads as a line first, not as brackets. |
+| Wordmark | "Frontier" in Source Serif 4 600, outlined to paths so it renders without the font installed. |
+| Accent | Deep orange `#C2410C` on light, `#F28C4B` on dark. Ink `#1B1A17`, paper text on dark `#EDEAE3`. |
+| Type | The wordmark is Source Serif 4. The landing page uses Overpass and Overpass Mono; see [`DESIGN.md`](DESIGN.md). |
+
+Files in [`site/assets/`](site/assets):
+
+| File | Use |
+|---|---|
+| `logo.svg` | Mark and wordmark; switches colours with light/dark mode |
+| `logo-on-light.svg`, `logo-on-dark.svg` | Fixed-colour versions of the logo |
+| `logo.png` | Logo at 4× for places that don't take SVG |
+| `mark.svg` | The gate on its own, for avatars and the plugin icon |
+| `favicon.svg`, `favicon-32.png` | Browser tab icons |
+| `apple-touch-icon.png` (180×180), `icon-512.png` | Home-screen and app icons |
+| `og.png` (1200×630) | Social preview card |
+
+## Landing page
+
+The page lives in [`site/index.html`](site/index.html): one static file, no build step, JavaScript only for the copy buttons, no analytics. On every push to `main` that touches `site/`, the [Pages workflow](.github/workflows/pages.yml) publishes it to [bgordon01.github.io/frontier](https://bgordon01.github.io/frontier). Pages has to be switched on once in the repo settings (**Settings → Pages → Source: GitHub Actions**).
+
+The decisions behind the page, name and logo are in [`docs/frontier/SPEC.md`](docs/frontier/SPEC.md).
+
 ## Credits and licences
 
 Vendored skills are the work of Matt Pocock, Paul Bakaus, Hardik Pandya and Corey Haines, redistributed under their original licences, which are kept in each `vendor/<source>/` folder. Local changes are applied by `overrides/` and marked in each modified `SKILL.md`. This repo isn't affiliated with any of them.
