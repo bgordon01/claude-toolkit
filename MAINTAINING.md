@@ -106,7 +106,7 @@ If you add a skill that calls another skill (look for "Call the Skill tool with 
 
 Vendored files are replaced on every sync, so local changes live in `overrides/`:
 
-- **`overrides/<skill>.md`** is appended to that skill's `SKILL.md` under a "Global rules override (Frontier)" heading. Used for `impeccable`, `copywriting`, `copy-editing` and `stop-slop`.
+- **`overrides/<skill>.md`** is appended to that skill's `SKILL.md` under a `(Frontier)` heading. `impeccable`, `copywriting`, `copy-editing` and `stop-slop` carry a "Global rules override" that enforces the house copy rules; `implement` carries a "Branch and PR lifecycle" section — one ticket per branch cut from the latest `main` (only once its blockers' PRs are merged), ending in a draft PR for review.
 - **`overrides/frontmatter.conf`** sets frontmatter keys. It makes skills invoke-only (`disable-model-invocation: true`), so they run only when typed and their descriptions stay out of Claude's context.
 
 Auto-triggering stays on for `start`, `impeccable`, `stop-slop` and the four support skills. The support skills have to stay on because other skills call them through the Skill tool.

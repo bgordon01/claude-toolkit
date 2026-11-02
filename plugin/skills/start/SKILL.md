@@ -140,10 +140,11 @@ If the setup files exist and there's no project process to defer to, say nothing
 3. ✏️ `to-tickets`: break the spec into small pieces of work. Once they exist, write them into `tasks/plan.md` with a box per step.
 4. For each ticket in `plan.md`, in order (re-read the file first each time):
    - Agree the test seams with the user — the places tests will check — then recommend 🤖 `tdd` (test-first) or 🤖 `implement` (tests where they fit). Both need the seams agreed first, so settle them here, not in the handoff.
+   - The build works one ticket per branch: it waits until the tickets this one is blocked by have their PRs merged, cuts a fresh branch off the latest `main`, and when the ticket is done opens a **draft PR** for you to review. So finish and merge a ticket's PR before the ones that depend on it.
    - If the ticket touched anything a user will see: 👀 `impeccable critique`, then 🤖 `impeccable polish`. If they want to change the look rather than fix it, point them to Path 5.
    - If it touched words a user will read: 🤖 `impeccable clarify`, then 🤖 `stop-slop`.
    - 👀 `code-review`: check the change before moving on.
-   - Checkpoint, then start the next ticket.
+   - Review the draft PR the build opened and merge it when you're happy. Record its link in `plan.md`, then start the next ticket.
 
 ## Path 2: Improve an existing project
 
@@ -161,8 +162,8 @@ Ask: the code, the design, or both? Then:
 Write the three steps into `tasks/plan.md` as one ticket, then work them in order:
 
 1. 👀 `diagnosing-bugs`: find the real cause before touching anything.
-2. Agree the test seam, then recommend 🤖 `tdd`: add a test that shows the bug, then fix it.
-3. 👀 `code-review`: check the fix.
+2. Agree the test seam, then recommend 🤖 `tdd`: add a test that shows the bug, then fix it. The build cuts a fresh branch off the latest `main` and opens a **draft PR** for the fix when it's done.
+3. 👀 `code-review`: check the fix, then review and merge the draft PR.
 
 Then checkpoint.
 

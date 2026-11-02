@@ -16,7 +16,7 @@ Frontier (repo `bgordon01/frontier`, plugin `frontier`) is a set of 18 Claude sk
 It moves the work to the parts only the user can do — deciding what to build and checking what got built — through one command (`/start`) that picks the next step, and review gates: nothing changes the user's files until they say go.
 
 ## Operating Context
-- Workflow: Grill (`/grill-me`) → Spec (`/to-spec`) → Tickets (`/to-tickets`) → Build (`/implement`, `/tdd`) → Polish (`/impeccable polish`, `/copywriting`, `/stop-slop`) → Review (`/code-review`, `/impeccable critique`).
+- Workflow: Grill (`/grill-me`) → Spec (`/to-spec`) → Tickets (`/to-tickets`) → Build (`/implement`, `/tdd`) → Polish (`/impeccable polish`, `/copywriting`, `/stop-slop`) → Review (`/code-review`, `/impeccable critique`). Build runs one ticket per branch cut from the latest `main` (once its blockers' PRs are merged) and ends in a draft PR for the user to review and merge.
 - Side routes: improve an existing project, fix a bug (`/diagnosing-bugs`), write copy.
 - Read-only steps run straight away; steps that change files wait for "go".
 

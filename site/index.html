@@ -408,7 +408,7 @@ code { font-family: var(--mono); font-size: .92em; color: var(--acc); }
       <div class="step-main">
         <h3>Build</h3>
         <div class="cmds"><code>/implement</code><code>/tdd</code></div>
-        <p>Builds one ticket at a time. A failing test comes first, then the code.</p>
+        <p>Builds one ticket at a time on its own branch — a failing test first, then the code — then opens a draft PR.</p>
         <p class="step-by">Skills by Matt Pocock</p>
       </div>
       <span class="gate-tag write">Changes files · waits</span>
@@ -424,7 +424,7 @@ code { font-family: var(--mono); font-size: .92em; color: var(--acc); }
       <span class="gate-tag">Reads only</span>
     </li>
   </ol>
-  <p class="done-line"><span class="sq" aria-hidden="true"></span>Done. <span>A reviewed change, built from decisions you made.</span></p>
+  <p class="done-line"><span class="sq" aria-hidden="true"></span>Done. <span>A draft PR for the ticket, reviewed and traceable to your decisions — yours to merge.</span></p>
 </section>
 
 <section class="sec wrap" aria-labelledby="routes-h">
@@ -492,7 +492,7 @@ code { font-family: var(--mono); font-size: .92em; color: var(--acc); }
         <tr><td><code>/grill-me</code></td><td class="col-mid">Questions your idea until it holds up.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
         <tr><td><code>/to-spec</code></td><td class="col-mid">Turns the conversation into a spec in your issue tracker.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
         <tr><td><code>/to-tickets</code></td><td class="col-mid">Splits a spec into small tickets with a blocking order.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/implement</code></td><td class="col-mid">Builds a piece of work from a spec or ticket.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
+        <tr><td><code>/implement</code></td><td class="col-mid">Builds a ticket on its own branch, then opens a draft PR for review.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
         <tr><td><code>/tdd</code></td><td class="col-mid">Builds test-first: red, green, refactor.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
         <tr><td><code>/code-review</code></td><td class="col-mid">Reviews changes since a commit or branch against your standards.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
         <tr><td><code>/diagnosing-bugs</code></td><td class="col-mid">Finds the real cause of a hard bug before fixing it.</td><td class="col-last"><span class="tag"><i class="i-bug"></i>Fix a bug</span></td></tr>
