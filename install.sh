@@ -116,7 +116,7 @@ done
 echo "  ✓ $total skills"
 
 agents=0
-for f in "$REPO_DIR"/vendor/*/_agents/*.md; do
+for f in "$REPO_DIR"/agents/*.md "$REPO_DIR"/vendor/*/_agents/*.md; do
   place "$f" "$CLAUDE_DIR/agents/$(basename "$f")"
   agents=$((agents + 1))
 done

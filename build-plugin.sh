@@ -37,7 +37,7 @@ mkdir -p "$OUT/skills/house-rules"
 count=$((count + 1))
 
 agents=0
-for f in "$REPO_DIR"/vendor/*/_agents/*.md; do cp "$f" "$OUT/agents/"; agents=$((agents + 1)); done
+for f in "$REPO_DIR"/agents/*.md "$REPO_DIR"/vendor/*/_agents/*.md; do cp "$f" "$OUT/agents/"; agents=$((agents + 1)); done
 
 # Licences travel with the skills they cover
 mkdir -p "$OUT/licenses"
