@@ -7,255 +7,116 @@
 
 # Plan first. Then let Claude code.
 
-**Frontier** is 18 skills and one workflow that make Claude question, plan, test and review before anything ships. It works in the Claude app (phone, web, desktop) and in [Claude Code](https://claude.com/claude-code).
+**Frontier** is 18 skills that make Claude ask questions, write a plan, test and review before it changes your code. It works in the Claude app and in [Claude Code](https://claude.com/claude-code).
 
-Once it's installed, you only need to remember one thing: say **"start here"**, or type `/start`. It tells you the next step and hands you the command to run.
+You only need one command: type `/start` (or say "start here"). It asks what you want and hands you each next step.
 
-Landing page: [bgordon01.github.io/frontier](https://bgordon01.github.io/frontier)
-
-> **Renamed from claude-toolkit.** The repo is now `bgordon01/frontier` and the plugin is `frontier`. Old GitHub links redirect.
-> - **Plugin users:** remove **toolkit** under **Customize → Plugins** (or with `/plugin` in Claude Code), then add **frontier** from the same marketplace. Commands now start with `/frontier:`.
-> - **Install-script users:** run `~/.claude-toolkit/update.sh` once. It moves everything to `~/.frontier` and swaps the house-rules line in your CLAUDE.md. Nothing else to do.
-> - **Cloud setup scripts:** the old URL keeps working through GitHub's redirect. Swap in the new one below when convenient.
-
-## Why
-
-Vibe coding goes straight from prompt to code, then guesses at fixes:
-
-| Without a method | With Frontier |
-|---|---|
-| 1. Prompt | 1. Get questioned (`/grill-me`) |
-| 2. 400 lines of code | 2. Write the spec (`/to-spec`) |
-| 3. Something breaks | 3. Split into tickets (`/to-tickets`) |
-| 4. Prompt again | 4. Build one, test first (`/tdd`) |
-| | 5. Review (`/code-review`) |
-| *Every fix starts from a guess.* | *Every change starts from a decision you made.* |
-
-Frontier moves your time to the two parts only you can do: deciding what to build, and checking what got built.
+[Landing page](https://bgordon01.github.io/frontier) · Renamed from claude-toolkit: [how to switch](#switching-from-claude-toolkit)
 
 ## Install
 
-Pick where you use Claude. Each path takes under a minute.
+**Claude app** (most people): **Customize → Plugins → Add → Add marketplace**, enter `bgordon01/frontier`, then add **frontier** from **Discover**. It also reaches Claude Code on the same account.
 
-### In the Claude app (phone, web or desktop) — most people start here
-
-Add it once to your Claude account:
-
-1. Open **Customize → Plugins**.
-2. Tap **Add**, then **Add marketplace**, and enter `bgordon01/frontier`.
-3. Find **frontier** under **Discover** and tap **Add**.
-
-The plugin is now part of your Claude account and works in app chats. If you sign in to Claude Code on your Mac with the same account, it appears there too at the next start, with a `frontier:` prefix on each command, for example `/frontier:start`.
-
-It does **not** reach coding sessions in the app's **Code** tab. Those need the one-time setup in [Cloud coding sessions](#cloud-coding-sessions-the-code-tab) below.
-
-### In Claude Code only
-
-Inside Claude Code, run:
+**Claude Code:**
 
 ```
 /plugin install frontier --marketplace bgordon01/frontier
 ```
 
-### With the install script (Mac)
+**Mac install script** (shorter commands, `/start` instead of `/frontier:start`; use this or the plugin, not both), then restart Claude Code:
 
-Use this instead of the plugin if you want shorter commands (`/start` rather than `/frontier:start`) and the house rules always on. Pick one method per Mac. Using both gives you every skill twice.
+```bash
+curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash
+```
 
-You need a Mac with Claude Code already installed.
+**Cloud sessions** (Code tab, claude.ai/code): paste into your environment's **Setup script** once:
 
-1. Open the **Terminal** app.
-2. Paste this line and press Return:
-
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash
-   ```
-
-3. Restart Claude Code.
-
-If Terminal says you need git, it will tell you the one command to run first. Run it, then paste the line above again.
-
-### Cloud coding sessions (the Code tab)
-
-Coding sessions you start from the app's **Code** tab or [claude.ai/code](https://claude.ai/code) run on a fresh cloud computer each time, and they don't load plugins from your Claude account. Set this up once:
-
-1. In a browser, open [claude.ai/code](https://claude.ai/code) and open your cloud environment's settings. Usually it's called **Default**.
-2. Paste this into the **Setup script** box and save:
-
-   ```bash
-   #!/bin/bash
-   curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash || true
-   ```
-
-3. Start a **new** session and type `/start`, with no `frontier:` prefix here.
-
-The cloud keeps a ready-made copy of the setup for about a week, then rebuilds it with the latest Frontier. To get an update sooner, say "update my skills" inside a cloud session.
+```bash
+#!/bin/bash
+curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash || true
+```
 
 ## Use it
 
-Open Claude Code in any project and type `/start`, or just say what you want, like "help me redesign this project". It asks what you'd like to do:
+Type `/start`. It offers six routes:
 
-| You want to… | The route |
+| Route | What happens |
 |---|---|
-| **Build something new** | Grill → spec → tickets, then for each ticket: build test-first, polish the design and words, review. |
-| **Improve an existing project** | It reads the code, the screens or both and lists what's worth fixing, changing nothing. You pick the fixes, then they become tickets and follow the build route. |
-| **Fix a bug** | `/diagnosing-bugs` finds the real cause, `/tdd` adds a failing test and fixes it, `/code-review` checks the fix. |
-| **Write or improve copy** | `/copywriting` for new copy, `/copy-editing` for what's there, `/stop-slop` last. |
-| **Design something** (optional) | Settles the look before or while you build: a design brief, then critique and steer, then a `DESIGN.md` that keeps new screens on brand. See [the design flow](#the-design-flow-optional). |
-| **Update my skills** | Gets the latest version of Frontier. |
+| **Build something new** | Grill → spec → tickets, then per ticket: build test-first, polish, review. |
+| **Improve a project** | Reads the code or screens and lists fixes, changing nothing. Your picks become tickets. |
+| **Fix a bug** | Finds the cause, adds a failing test, fixes it, reviews it. |
+| **Write copy** | Writes or tightens copy, then strips machine-sounding phrasing. |
+| **Design something** (optional) | A design brief first, then critique and steer, then a `DESIGN.md` that keeps screens on brand. |
+| **Update my skills** | Gets the latest Frontier. |
 
-### The build route, step by step
+How it behaves:
 
-| # | Step | Commands | What it does | Skills by |
-|---|---|---|---|---|
-| 01 | Grill | `/grill-me` | Questions your idea, one round at a time, until every decision is made. | Matt Pocock |
-| 02 | Spec | `/to-spec` | Writes what you agreed into one spec in your issue tracker. | Matt Pocock |
-| 03 | Tickets | `/to-tickets` | Splits the spec into small tickets, each with what blocks it. | Matt Pocock |
-| 04 | Build | `/implement`, `/tdd` | Builds one ticket at a time. A failing test comes first, then the code. | Matt Pocock |
-| 05 | Polish | `/impeccable polish`, `/copywriting`, `/stop-slop` | Fixes the screen's design, writes the words, removes machine-sounding text. | Paul Bakaus, Corey Haines, Hardik Pandya |
-| 06 | Review | `/code-review`, `/impeccable critique` | Checks the change against the spec and the house rules before you move on. | Matt Pocock, Paul Bakaus |
+- **You run each step.** It recommends one step, says why in a sentence and gives you the command.
+- **Nothing changes your files until you say go.** 👀 steps only look. ✏️ steps change files and say what first.
+- **It keeps its place** in `tasks/plan.md`, so long jobs don't lose the thread.
+- **It checks before it ticks.** It re-runs your tests after a build and never switches a test off to pass.
 
-Improving a project rejoins this route at 03 Tickets. Fixing a bug rejoins it at 06 Review.
+## Commands
 
-### The design flow (optional)
+Call any of these directly instead of going through `/start`. With the plugin, add the `frontier:` prefix, for example `/frontier:tdd`.
 
-Use this when you want to decide how something looks, not just fix a screen. Every step is optional. `/start` offers it once when you start building UI in a project without a `DESIGN.md`; say no and it won't ask again.
+| Command | What it does |
+|---|---|
+| `/start` | Asks what you want and walks you through the route. |
+| `/grill-me` | Questions your idea until every decision is made. |
+| `/to-spec` | Writes the agreed plan as a spec in your issue tracker. |
+| `/to-tickets` | Splits the spec into small tickets. |
+| `/implement`, `/tdd` | Builds one ticket at a time; `/tdd` writes the failing test first. |
+| `/code-review` | Reviews a change against the spec and your standards. |
+| `/diagnosing-bugs` | Finds the real cause of a bug before fixing it. |
+| `/improve-codebase-architecture` | Reports what's worth restructuring. |
+| `/impeccable critique` / `polish` / `clarify` | Reviews a screen, fixes it, or rewrites its labels and errors. |
+| `/impeccable shape` | Interviews you and writes a design brief before anything is drawn. |
+| `/impeccable bolder` / `quieter` / `typeset` / `colorize` / `layout` | Pushes a design in one direction. One at a time. |
+| `/impeccable document` / `extract` | Writes `DESIGN.md` from built screens; turns repeated UI into components. |
+| `/copywriting`, `/copy-editing` | Writes new copy or tightens existing copy. |
+| `/stop-slop` | Removes phrasing that sounds machine-written. |
 
-**Code only (the default):**
+### Design flow (optional)
 
-| # | Step | Command | What it does |
-|---|---|---|---|
-| 1 | Brief | `/impeccable shape` | Interviews you about what you're making and writes a design brief before anything is drawn. Most of the gain in taste comes from here, because it stops Claude defaulting to generic choices. |
-| 2 | References | (during shape) | Share screenshots of 3–5 products whose look you admire and say what you like about each. Impeccable records those choices and later screens inherit them. Recommended, not required. |
-| 3 | Build | `/to-spec` onward | The brief feeds the spec, then the build route above runs as usual. |
-| 4 | Steer | `/impeccable critique`, then one of `bolder`, `quieter`, `typeset`, `colorize`, `layout` | Pushes the design in a direction instead of only fixing bugs. One steer at a time. |
-| 5 | Record | `/impeccable document`, `/impeccable extract` | `document` writes `DESIGN.md` from the built screens. Run it once real screens exist and again after a big visual change. `extract` turns repeated UI into shared components. |
+1. `/impeccable shape`, with screenshots of 3–5 products whose look you like.
+2. Build from the brief, starting at `/to-spec`.
+3. `/impeccable critique`, then one steer (`bolder`, `quieter`, `typeset`, `colorize` or `layout`).
+4. `/impeccable document` once real screens exist.
 
-**With Claude Design (optional branch):**
-
-- After the brief, explore the look as a design in Claude, then save the one you like as a **Design System** artifact (colours, type, spacing, components). Every design, deck or mockup you make in Claude can use it. Make it in Claude itself.
-- After `/impeccable document`, if your Claude Code has design sync, use it to push your code's components into that Design System so the reference and the real app don't drift apart. If it doesn't, skip this.
-
-The house rules still win over any steer: one bold element, the 4px grid, no AI-default palette. Don't install Anthropic's `frontend-design` skill alongside Impeccable; it covers the same ground and the two give conflicting advice.
-
-### How `/start` guides you
-
-`/start` is a mentor, not an autopilot. It recommends the next step, gives you one sentence on why it matters, and hands you the command to copy and paste. You run it. It never runs a work skill or edits your code itself.
-
-Each recommendation carries a mark:
-
-- 👀 **Looks and reports.** Safe to run.
-- ✏️ **Changes files.** It tells you exactly what will change before you run it.
-- 🤖 **Can be handed off.** Say "hand it off" and a helper runs it and reports back. Only four steps qualify: a build (`/tdd` or `/implement`), `/stop-slop`, `/impeccable polish` and `/impeccable clarify`. Everything else needs you.
-
-**Nothing changes your files until you say go.** You make the decisions. Claude does the typing.
-
-**It keeps its place in a file.** For build, improve, bug-fix and design routes, `/start` writes a checklist to `tasks/plan.md` in your project: one box per step per ticket, plus your build and test commands, which command form to hand you (`/tdd` or `/frontier:tdd`), and any corner you chose to cut. Every time you run it, it reads that file and reads the checklist back to you, so a long build never loses its thread. The file is committed by default; gitignore it if you'd rather not track it.
-
-**It checks before it ticks.** After a build it re-runs your tests itself. After a wording step it re-runs the banned-words search. For judgement steps like the grill, a design critique or a code review, it ticks the box only once you confirm what you did with the findings. If a check fails, it says so plainly and waits for you to decide. It never re-runs to get green and never switches a test off.
-
-**It teaches, then gets out of the way.** Say "I know the basics, keep it terse" and it drops the why line and just hands over commands. If you want to skip a step, like shipping without tests, it names the cost once, respects your choice, and records it in `tasks/plan.md`.
-
-The first time you use it in a project, it may suggest a setup step: `setup-matt-pocock-skills` (where you keep your tickets) and `impeccable init` (who the product is for). That happens once per project. If your project has its own `CLAUDE.md` describing how work gets done, it follows that process and your project's own build and test commands.
-
-### Prefer typing commands yourself?
-
-Every step is also a command. Use `/start` and let it choose, or call any of these directly. With the plugin, add the `frontier:` prefix, for example `/frontier:tdd`.
-
-| Command | What it does | Set |
-|---|---|---|
-| `/start` | Asks what you want to do and walks you through the right route. | Frontier |
-| `/grill-me` | Questions your idea until it holds up. | Engineering |
-| `/to-spec` | Turns the conversation into a spec in your issue tracker. | Engineering |
-| `/to-tickets` | Splits a spec into small tickets with blocking order. | Engineering |
-| `/implement` | Builds a piece of work from a spec or ticket. | Engineering |
-| `/tdd` | Builds test-first: red, green, refactor. | Engineering |
-| `/code-review` | Reviews changes since a commit or branch against your standards. | Engineering |
-| `/diagnosing-bugs` | Finds the real cause of a hard bug before fixing it. | Engineering |
-| `/improve-codebase-architecture` | Scans a codebase and reports what's worth restructuring. | Engineering |
-| `/impeccable critique` | Reviews a screen's design without changing it. | Design |
-| `/impeccable polish` | Fixes a screen's layout, type, colour and spacing. | Design |
-| `/impeccable clarify` | Rewrites labels, buttons and errors so they read clearly. | Design |
-| `/impeccable shape` | Interviews you and writes a design brief before anything is drawn. | Design |
-| `/impeccable bolder` | Makes a safe or bland design more distinctive. | Design |
-| `/impeccable quieter` | Tones down a loud or busy design. | Design |
-| `/impeccable typeset` | Improves fonts, type sizes and hierarchy. | Design |
-| `/impeccable colorize` | Adds purposeful colour to a flat design. | Design |
-| `/impeccable layout` | Fixes spacing, alignment and visual rhythm. | Design |
-| `/impeccable document` | Writes `DESIGN.md` from your built screens so new ones stay on brand. | Design |
-| `/impeccable extract` | Turns repeated UI into shared components and tokens. | Design |
-| `/copywriting` | Writes marketing and landing-page copy. | Copy |
-| `/copy-editing` | Tightens copy you already have. | Copy |
-| `/stop-slop` | Removes phrasing that sounds machine-written. | Copy |
-
-Plus 5 support skills the others call for you: `grilling`, `codebase-design`, `domain-modeling`, `setup-matt-pocock-skills` and `house-rules`. Impeccable also brings 4 helper agents.
+Using Claude Design? Save the look as a Design System artifact in Claude, and use Claude Code's design sync, where available, to keep it matched to your code. Don't add Anthropic's `frontend-design` skill alongside Impeccable; the two give conflicting advice.
 
 ## House rules
 
-These sit on top of every skill, in every project. Your project's own `CLAUDE.md` wins where they conflict.
+Applied to every skill. Your project's own `CLAUDE.md` wins on conflict.
 
-**Design**
+- **Design:** no purple gradients, glows or floating shadows · no rows of three equal cards · a 4px spacing grid · one bold element per screen.
+- **Copy:** no hype words ("seamless", "supercharge"…) · specifics over adjectives ("Exports in 2 seconds", not "Blazing fast").
 
-- **No AI look:** no purple-to-blue gradients, glowing borders or floating card shadows.
-- **Not everything in threes:** variable column spans and dense tables instead of three equal cards.
-- **A 4px grid:** every padding, margin and gap is a multiple of 4px.
-- **One bold thing per screen:** one statement element. Everything else stays quiet.
+Full text: [`rules/RULES.md`](rules/RULES.md).
 
-**Copy**
+## Update and remove
 
-- **Banned words:** never "seamless", "empower", "revolutionize", "supercharge" and the rest.
-- **Specifics over hype:** "Exports in 2 seconds", not "Blazing fast".
+| | Update | Remove |
+|---|---|---|
+| **Plugin** | Claude app: **Customize → Plugins**. Claude Code: `/plugin` → **Marketplaces** → `bgordon01` → **Update** (or turn on auto-update). | Remove **frontier** in the same place. |
+| **Install script** | Say "update my skills", or run `~/.frontier/update.sh`, then restart Claude Code. | Run `~/.frontier/uninstall.sh`. Delete `~/.frontier` too if you want the files gone. |
 
-## Update
+## Switching from claude-toolkit
 
-- **Plugin, in the Claude app:** new versions come from GitHub. Check under **Customize → Plugins**.
-- **Plugin, in Claude Code:** run `/plugin`, open **Marketplaces**, select `bgordon01` and choose **Update**, or turn on **auto-update** there so it updates by itself.
-- **Install script:** say **"update my skills"** in Claude Code, or paste `~/.frontier/update.sh` in Terminal, then restart Claude Code.
-
-## Remove it
-
-- **Plugin:** remove **frontier** under **Customize → Plugins** in the app, or with `/plugin` in Claude Code.
-- **Install script:** paste `~/.frontier/uninstall.sh` in Terminal. It removes everything Frontier added and leaves your own files alone. To delete the downloaded copy too, also run `rm -rf ~/.frontier`.
-
-## Brand
-
-The mark is a **gate**: a horizon line broken by a gap with a post on each side. It stands for the review point where you say go, and the same glyph marks the "waits for your go" steps in the workflow diagram on the landing page.
-
-| | |
-|---|---|
-| Mark | Single stroke, `M2 20H12V13M20 13V20H30` in a 32×32 box. The arms are longer than the posts so it reads as a line first, not as brackets. |
-| Wordmark | "Frontier" in Source Serif 4 600, outlined to paths so it renders without the font installed. |
-| Accent | Deep orange `#C2410C` on light, `#F28C4B` on dark. Ink `#1B1A17`, paper text on dark `#EDEAE3`. |
-| Type | Source Serif 4 (headlines), Inter (body), JetBrains Mono (commands). |
-
-Files in [`site/assets/`](site/assets):
-
-| File | Use |
-|---|---|
-| `logo.svg` | Mark and wordmark; switches colours with light/dark mode |
-| `logo-on-light.svg`, `logo-on-dark.svg` | Fixed-colour versions of the logo |
-| `logo.png` | Logo at 4× for places that don't take SVG |
-| `mark.svg` | The gate on its own, for avatars and the plugin icon |
-| `favicon.svg`, `favicon-32.png` | Browser tab icons |
-| `apple-touch-icon.png` (180×180), `icon-512.png` | Home-screen and app icons |
-| `og.png` (1200×630) | Social preview card |
-
-## Landing page
-
-The page lives in [`site/index.html`](site/index.html): one static file, no build step, JavaScript only for the copy buttons, no analytics. On every push to `main` that touches `site/`, the [Pages workflow](.github/workflows/pages.yml) publishes it to [bgordon01.github.io/frontier](https://bgordon01.github.io/frontier). Pages has to be switched on once in the repo settings (**Settings → Pages → Source: GitHub Actions**).
-
-The decisions behind the page, name and logo are in [`docs/frontier/SPEC.md`](docs/frontier/SPEC.md).
+- **Plugin:** remove **toolkit**, add **frontier** from the same marketplace. Commands now start with `/frontier:`.
+- **Install script:** run `~/.claude-toolkit/update.sh` once. It moves everything to `~/.frontier`.
+- **Cloud setup script:** the old URL still redirects; swap in the new one when convenient.
 
 ## Built on
 
-Frontier picks the skills, wires them into one workflow and adds the house rules. The skills come from four authors, each kept under its original licence:
-
 | Author | Skills | Licence |
 |---|---|---|
-| [Matt Pocock](https://github.com/mattpocock/skills) | Planning, tickets, test-first building, code review, bug diagnosis | MIT |
-| [Paul Bakaus](https://github.com/pbakaus/impeccable) | Impeccable: design critique, polish and UX copy, with 4 helper agents | Apache 2.0 |
-| [Hardik Pandya](https://github.com/hardikpandya/stop-slop) | Stop-slop: strips AI writing patterns from prose | MIT |
-| [Corey Haines](https://github.com/coreyhaines31/marketingskills) | Copywriting and copy editing for marketing pages | MIT |
+| [Matt Pocock](https://github.com/mattpocock/skills) | Planning, tickets, test-first building, review, bug diagnosis | MIT |
+| [Paul Bakaus](https://github.com/pbakaus/impeccable) | Impeccable: design critique, polish and UX copy | Apache 2.0 |
+| [Hardik Pandya](https://github.com/hardikpandya/stop-slop) | Stop-slop | MIT |
+| [Corey Haines](https://github.com/coreyhaines31/marketingskills) | Copywriting and copy editing | MIT |
 
-How it's put together, kept up to date and changed: [MAINTAINING.md](MAINTAINING.md).
+Maintainers: see [MAINTAINING.md](MAINTAINING.md) for how it's built, the brand assets and the landing page.
 
 Frontier · MIT licence · by Brent Gordon
