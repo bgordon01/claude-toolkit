@@ -42,9 +42,9 @@ Type `/start`. It offers six routes:
 
 | Route | What happens |
 |---|---|
-| **Build something new** | Grill → spec → tickets, then per ticket: build test-first, polish, review. |
+| **Build something new** | Grill → spec → tickets, then per ticket on its own branch: build test-first, polish, review, open a draft PR. |
 | **Improve a project** | Reads the code or screens and lists fixes, changing nothing. Your picks become tickets. |
-| **Fix a bug** | Finds the cause, adds a failing test, fixes it, reviews it. |
+| **Fix a bug** | Finds the cause, adds a failing test, fixes it, reviews it, opens a draft PR. |
 | **Write copy** | Writes or tightens copy, then strips machine-sounding phrasing. |
 | **Design something** (optional) | A design brief first, then critique and steer, then a `DESIGN.md` that keeps screens on brand. |
 | **Update my skills** | Gets the latest Frontier. |
@@ -66,7 +66,7 @@ Call any of these directly instead of going through `/start`. With the plugin, a
 | `/grill-me` | Questions your idea until every decision is made. |
 | `/to-spec` | Writes the agreed plan as a spec in your issue tracker. |
 | `/to-tickets` | Splits the spec into small tickets. |
-| `/implement`, `/tdd` | Builds one ticket at a time; `/tdd` writes the failing test first. |
+| `/implement`, `/tdd` | Builds one ticket at a time on its own branch, then opens a draft PR; `/tdd` writes the failing test first. |
 | `/code-review` | Reviews a change against the spec and your standards. |
 | `/diagnosing-bugs` | Finds the real cause of a bug before fixing it. |
 | `/improve-codebase-architecture` | Reports what's worth restructuring. |

@@ -12,7 +12,7 @@ Decisions from the grilling session on 2026-11-01. Each line is settled unless m
 - Job of the page: get them to install. Primary action is "Add to Claude" (the app marketplace path). Claude Code and cloud-session paths sit in a secondary install block.
 - Message: move the work to planning and review. Framed as a before/after contrast:
   - Before: prompt → code → hope.
-  - After: grill → spec → tickets → build test-first → review.
+  - After: grill → spec → tickets → build test-first → review → draft PR.
 
 ## Structure (in order)
 1. Hero: "Plan first. Then let Claude code." / sub / Add to Claude, with a review-gate product panel (a paused `/to-spec` step waiting on Go) and a mono stats row. The headline is the page's one bold element.
