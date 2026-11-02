@@ -222,7 +222,7 @@
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section headings, 900 at -0.03em, max 18ch, balanced."
+        "purpose": "Section headings, 800 at clamp(32px, 3.6vw, 44px), -0.02em, max 22ch, balanced; kept below the hero display size."
       },
       "station": {
         "displayName": "Station",

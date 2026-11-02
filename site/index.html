@@ -61,8 +61,8 @@ button { font: inherit; color: inherit; }
 @media (min-width: 720px) { .wrap { padding-inline: 48px; } }
 section { padding-block: 128px; }
 @media (min-width: 960px) { section { padding-block: 192px; } }
-h2 { font: 900 clamp(36px, 5vw, 64px)/1 var(--sans); letter-spacing: -0.03em; margin: 0 0 32px; max-width: 18ch; text-wrap: balance; }
-.lede { color: var(--muted); max-width: 54ch; margin: 0; font-size: 19px; }
+h2 { font: 800 clamp(32px, 3.6vw, 44px)/1.1 var(--sans); letter-spacing: -0.02em; margin: 0 0 20px; max-width: 22ch; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 54ch; margin: 0; font-size: 19px; text-wrap: pretty; }
 .lede code { color: var(--ink); }
 
 /* Signage band (header) */
@@ -74,7 +74,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .top nav { display: flex; align-items: center; gap: 24px; font: 600 15px/1 var(--sans); }
 .top nav a.opt { text-decoration: none; display: inline-flex; align-items: center; gap: 8px; color: var(--sign-muted); }
 .top nav a.opt:hover { color: var(--sign-fg); }
-.top nav a.opt i { width: 12px; height: 12px; border-radius: 50%; border: 3px solid var(--sign-line); }
+.top nav a.opt i { display: none; }
 @media (max-width: 680px) { .top nav a.opt { display: none; } }
 
 /* Buttons */
@@ -92,7 +92,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .hero { padding-block: 80px 128px; overflow: hidden; }
 @media (min-width: 960px) { .hero { padding-block: 96px 160px; } }
 .hero-head { display: grid; gap: 32px; }
-@media (min-width: 1000px) { .hero-head { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 64px; align-items: end; } }
+@media (min-width: 1000px) { .hero-head { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 80px; align-items: end; } }
 .hero h1 { font: 800 clamp(44px, 6vw, 72px)/1 var(--sans); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
 .hero h1 .hl { color: var(--line); }
 .hero .sub { font-size: 20px; line-height: 1.45; color: var(--muted); margin: 0 0 28px; max-width: 36ch; }
@@ -101,7 +101,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* The Frontier Line */
 .map { margin-top: 96px; position: relative; }
-.map-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin: 0 0 24px; font: 800 15px/1.4 var(--sans); }
+.map-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin: 0 0 16px; font: 800 15px/1.4 var(--sans); }
 .map-title .bullet { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border-radius: 999px; background: var(--line); color: var(--on-line); }
 .map-title .bullet b { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: var(--on-line); color: var(--line); font: 900 13px/1 var(--sans); }
 .map-title .hint { color: var(--muted); font-weight: 400; }
@@ -151,7 +151,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* Departure board */
 .board { margin-top: 40px; background: var(--sign); color: var(--sign-fg); border-radius: 16px; padding: 24px; display: grid; gap: 20px; min-height: 176px; }
-@media (min-width: 900px) { .board { grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 4fr); gap: 40px; padding: 28px 40px; align-items: center; } }
+@media (min-width: 900px) { .board { grid-template-columns: minmax(0, 2fr) minmax(0, 5fr) minmax(0, 4fr); gap: 40px; padding: 28px 40px; align-items: center; } }
 .board .where { display: grid; gap: 8px; }
 .board .seq { font: 600 13px/1 var(--mono); color: var(--sign-line); font-variant-numeric: tabular-nums; }
 .board .bname { font: 800 clamp(28px, 3vw, 36px)/1 var(--sans); letter-spacing: -0.01em; margin: 0; }
@@ -220,7 +220,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .rules-sec { background: var(--ground-2); }
 .notices { display: grid; gap: 16px; margin-top: 80px; }
 @media (min-width: 720px) { .notices { grid-template-columns: repeat(6, minmax(0, 1fr)); } .n-a { grid-column: span 4; } .n-b { grid-column: span 2; } .n-c { grid-column: span 2; } .n-d { grid-column: span 4; } .n-e { grid-column: span 3; } .n-f { grid-column: span 3; } }
-.notice { background: var(--ground); border: 2px solid var(--ink); border-radius: 12px; padding: 24px; display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start; }
+.notice { background: var(--ground); border: 1px solid var(--rule); border-radius: 12px; padding: 24px; display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start; }
 .notice svg { width: 48px; height: 48px; }
 .notice .ps { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .notice .pa { fill: none; stroke: var(--line); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
@@ -239,6 +239,17 @@ tbody tr:hover td { background: var(--ground-2); }
 td:first-child { white-space: nowrap; }
 td code { font-size: 14px; font-weight: 600; }
 td.set { white-space: nowrap; color: var(--muted); font-size: 14px; }
+@media (max-width: 639.98px) {
+  table { min-width: 0; }
+  thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  tr { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding-block: 16px; border-bottom: 1px solid var(--rule); }
+  tbody tr:first-child { border-top: 2px solid var(--ink); }
+  td { padding: 0; border: 0; }
+  td:first-child { grid-column: 1; }
+  td.set { grid-column: 2; grid-row: 1; }
+  td:nth-child(2) { grid-column: 1 / -1; color: var(--muted); font-size: 15px; }
+  tbody tr:hover td { background: none; }
+}
 td.set i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: -1px; }
 .s-m { background: var(--line); } .s-b { background: var(--blue); } .s-g { background: var(--green); } .s-y { background: var(--yellow); }
 .support { margin-top: 20px; font-size: 15px; color: var(--muted); max-width: 72ch; }
@@ -256,7 +267,7 @@ td.set i { display: inline-block; width: 12px; height: 12px; border-radius: 50%;
 .path .where { font-size: 15px; color: var(--muted); margin: 0 0 20px; }
 .path ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
 .copy { display: flex; align-items: stretch; border-radius: 8px; background: var(--ground-2); margin-top: 12px; min-width: 0; }
-.copy pre { margin: 0; padding: 12px 16px; overflow-x: auto; flex: 1; min-width: 0; font: 400 14px/1.6 var(--mono); }
+.copy pre { margin: 0; padding: 12px 16px; flex: 1; min-width: 0; font: 400 14px/1.6 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
 .copy button { flex: none; border: 0; background: transparent; font: 800 14px/1 var(--sans); padding: 0 16px; cursor: pointer; border-radius: 0 8px 8px 0; min-width: 84px; color: var(--line-text); }
 .copy button:hover { text-decoration: underline; text-underline-offset: 4px; }
 .note { font-size: 14px; color: var(--muted); margin: 0; }
@@ -271,6 +282,7 @@ td.set i { display: inline-block; width: 12px; height: 12px; border-radius: 50%;
 @media (min-width: 720px) { .author .lic { text-align: right; } }
 
 footer { border-top: 2px solid var(--ink); color: var(--muted); padding-block: 40px 48px; font-size: 15px; }
+footer .sep { font-weight: 400; color: var(--muted); padding-left: 12px; border-left: 1px solid var(--rule); }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: space-between; align-items: center; }
 footer .eol { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); font-weight: 800; }
 footer .eol i { width: 24px; height: 8px; border-radius: 4px; background: var(--line); }
@@ -540,7 +552,7 @@ curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh 
 
 <footer>
   <div class="wrap">
-    <span class="eol"><i></i>Frontier · MIT licence · by Brent Gordon</span>
+    <span class="eol"><i></i>Frontier<span class="sep">MIT licence</span><span class="sep">by Brent Gordon</span></span>
     <a href="https://github.com/bgordon01/frontier">github.com/bgordon01/frontier</a>
   </div>
 </footer>
