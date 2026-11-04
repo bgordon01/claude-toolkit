@@ -1,114 +1,170 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-02T00:00:00Z",
+  "generatedAt": "2026-11-04T23:30:00Z",
   "title": "Design System: Frontier",
   "extensions": {
     "colorMeta": {
-      "crimson": { "role": "primary", "displayName": "Signal Crimson", "canonical": "#AF144B", "tonalRamp": ["#1A0008", "#3D0117", "#640029", "#87093B", "#AF144B", "#C94A74", "#E39FB4", "#FBF3F6"] },
-      "ink": { "role": "neutral", "displayName": "Near-Black Ink", "canonical": "#1A1A1A", "tonalRamp": ["#000000", "#1A1A1A", "#333333", "#4D4D4D", "#6E6E6E", "#999999", "#C9C9C9", "#F2F3F5"] },
-      "line": { "role": "neutral", "displayName": "Hairline Grey", "canonical": "#DEE2E6", "tonalRamp": ["#9AA2AC", "#B4BBC3", "#C9CFD6", "#DEE2E6", "#E6E9ED", "#EEF0F3", "#F8F9FA", "#FFFFFF"] },
-      "channel-improve": { "role": "tertiary", "displayName": "Improve Blue", "canonical": "#1A56A8", "tonalRamp": ["#071C38", "#0C2E5C", "#134286", "#1A56A8", "#3E73BD", "#6F99D1", "#A9C3E4", "#E8F0FB"] },
-      "channel-bug": { "role": "tertiary", "displayName": "Fix Green", "canonical": "#1B7F3A", "tonalRamp": ["#06270F", "#0C4420", "#135E2C", "#1B7F3A", "#3C9E58", "#6BBB83", "#A6D7B5", "#E8F5E9"] },
-      "channel-copy": { "role": "tertiary", "displayName": "Copy Amber", "canonical": "#D87000", "tonalRamp": ["#3B1F00", "#5E3200", "#8A4A00", "#D87000", "#E89433", "#F0B36E", "#F7D6AA", "#FFF8E1"] },
-      "channel-design": { "role": "tertiary", "displayName": "Design Violet", "canonical": "#7B3FA0", "tonalRamp": ["#22103C", "#391A5C", "#562B80", "#7B3FA0", "#9A68B8", "#B992D1", "#D8C1E6", "#F3E5F5"] }
+      "crimson": { "role": "primary", "displayName": "Signal Crimson", "canonical": "#AF144B", "tonalRamp": ["#2B000B", "#51021E", "#7D0532", "#AB1149", "#CC4E6D", "#EB7E94", "#FCB4BF", "#FFE8EB"] },
+      "crimson-deep": { "role": "primary", "displayName": "Pressed Crimson", "canonical": "#870A3C", "tonalRamp": ["#2B000C", "#520020", "#7D0136", "#9C3151", "#BD5D75", "#DD889A", "#FDB3C2", "#FEE8EC"] },
+      "crimson-tint": { "role": "primary", "displayName": "Crimson Wash", "canonical": "#FBF1F4", "tonalRamp": ["#161012", "#2E2729", "#484042", "#635B5E", "#867D80", "#ABA2A5", "#D1C8CA", "#FBF1F4"] },
+      "field-blush": { "role": "secondary", "displayName": "Blush (field only)", "canonical": "#F4C6D3", "tonalRamp": ["#1C0C11", "#362228", "#533A42", "#71545D", "#97757F", "#C098A3", "#E9BDC9", "#FAEAEE"] },
+      "field-ember": { "role": "secondary", "displayName": "Ember (field only)", "canonical": "#E8693A", "tonalRamp": ["#280300", "#4C1200", "#722604", "#9C3910", "#CC572B", "#F77C50", "#FDB8A0", "#FEE9E2"] },
+      "field-scarlet": { "role": "secondary", "displayName": "Scarlet (field only)", "canonical": "#D42A3C", "tonalRamp": ["#2C0002", "#53020D", "#80041A", "#AE112A", "#DD3C48", "#FD7273", "#FFB4B1", "#FEE9E7"] },
+      "field-wine": { "role": "secondary", "displayName": "Wine (field only)", "canonical": "#8E0E3B", "tonalRamp": ["#2B000A", "#53001D", "#7E0031", "#9F2E4C", "#C05B70", "#DF8796", "#FFB2BE", "#FFE8EB"] },
+      "field-shadow": { "role": "secondary", "displayName": "Field Shadow (field only)", "canonical": "#4A061C", "tonalRamp": ["#2A000A", "#4A061C", "#692B38", "#844954", "#A66E77", "#C8959D", "#EABDC3", "#F8EBEC"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1A1A1A", "tonalRamp": ["#121212", "#1A1A1A", "#424242", "#5D5D5D", "#808080", "#A4A4A4", "#CACACA", "#EEEEEE"] },
+      "ink-soft": { "role": "neutral", "displayName": "Soft Ink", "canonical": "#474244", "tonalRamp": ["#141012", "#2C2729", "#474244", "#615C5E", "#847E81", "#A9A3A5", "#CFC9CB", "#F0EEEF"] },
+      "ink-muted": { "role": "neutral", "displayName": "Muted Ink", "canonical": "#6B6567", "tonalRamp": ["#151012", "#2C2729", "#464142", "#6B6567", "#847E80", "#A9A3A5", "#CFC8CB", "#F0EEEE"] },
+      "page": { "role": "neutral", "displayName": "Paper", "canonical": "#FFFFFF", "tonalRamp": ["#121212", "#292929", "#424242", "#5D5D5D", "#808080", "#A4A4A4", "#CACACA", "#FFFFFF"] },
+      "chip": { "role": "neutral", "displayName": "Chip Grey", "canonical": "#F4F2F3", "tonalRamp": ["#121112", "#2A2829", "#434243", "#5F5D5E", "#818080", "#A6A4A5", "#CCCACB", "#F4F2F3"] },
+      "rule": { "role": "neutral", "displayName": "Hairline", "canonical": "#E4E1E2", "tonalRamp": ["#131112", "#2A2829", "#444242", "#5F5D5E", "#827F80", "#A6A4A5", "#CCC9CA", "#E4E1E2"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "The hero headline only — the one bold element per view." },
-      "headline": { "displayName": "Section Headline", "purpose": "Section titles under a mono eyebrow." },
-      "title": { "displayName": "Step / Card Title", "purpose": "Step names and block headings." },
-      "body": { "displayName": "Body", "purpose": "Paragraphs, ledes, and table text." },
-      "label": { "displayName": "Mono Label", "purpose": "Fira Code eyebrows, tags, stats, step numbers, commands." }
+      "display": { "displayName": "Display", "purpose": "The hero headline on the colour field only, white, max 11ch." },
+      "hero-sub": { "displayName": "Hero Sub", "purpose": "The one-line sub under the display, white at 92%." },
+      "headline": { "displayName": "Section Headline", "purpose": "Section titles on white, max 20ch. No eyebrow above." },
+      "headline-sm": { "displayName": "Statement Headline", "purpose": "A secondary statement inside a section, max 16ch." },
+      "title": { "displayName": "Step Title", "purpose": "Step names in the steps list." },
+      "title-sm": { "displayName": "Column Title", "purpose": "Before/after column heads and the wordmark." },
+      "lede": { "displayName": "Lede", "purpose": "One line under each section headline; install steps." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs and table text, 46-64ch." },
+      "button": { "displayName": "Button", "purpose": "The white primary button label." },
+      "fine": { "displayName": "Fine", "purpose": "Footnotes and the footer." },
+      "nav": { "displayName": "Nav", "purpose": "Top-bar links." },
+      "label": { "displayName": "Label", "purpose": "Table column headers, sentence case." },
+      "tag": { "displayName": "Tag", "purpose": "Bordered honesty labels such as Example, beside a heading." },
+      "mono-command": { "displayName": "Command", "purpose": "Tap-to-copy command chips." },
+      "mono-line": { "displayName": "Mono Line", "purpose": "Quoted prompts and 'Then say start here'." },
+      "mono-number": { "displayName": "Mono Number", "purpose": "Step numbers, list counters, tabular star counts." },
+      "mono-bar": { "displayName": "Start-here Bar", "purpose": "The 'Copy: start here' bar label." }
     },
     "shadows": [],
     "motion": [
-      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for hover and state transitions (0.18s)." },
-      { "name": "panel-entrance", "value": "0.5s cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "The hero gate panel's single authored entrance (fade + 10px rise); disabled under prefers-reduced-motion." }
+      { "name": "ease-out-expo", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "Every state transition and the hero fade-up." },
+      { "name": "state", "value": "0.2s", "purpose": "Button, chip and start-here bar colour/border transitions; button arrow nudge (4px right)." },
+      { "name": "hero-fade-up", "value": "opacity 0 to 1, translateY 12px to 0, 0.9s, stagger 0.08s", "purpose": "The one load animation, on hero headline, sub and actions. Off under reduced motion." },
+      { "name": "grain-drift", "value": "24s steps(8) infinite, translate up to 16px", "purpose": "Slow film-grain drift on the colour field. Off under reduced motion." },
+      { "name": "copied-hold", "value": "1.6s", "purpose": "How long a chip or the start-here bar shows its Copied state." }
     ],
     "breakpoints": [
+      { "name": "sm", "value": "640px" },
       { "name": "md", "value": "768px" },
-      { "name": "lg", "value": "1024px" },
-      { "name": "shell-max", "value": "1280px" }
-    ]
+      { "name": "lg", "value": "900px" }
+    ],
+    "frame": {
+      "maxWidth": "1200px",
+      "sideRules": "1px solid #E4E1E2",
+      "sectionPadding": "96px (64px below 768px)",
+      "gutter": "24px, 48px from 768px"
+    },
+    "field": {
+      "background": "radial-gradient(120% 70% at 0% 100%, rgba(74,6,28,.85) 0%, rgba(74,6,28,0) 60%), linear-gradient(180deg, rgba(70,6,26,.08) 0%, rgba(70,6,26,.16) 30%, rgba(70,6,26,.8) 100%), radial-gradient(42% 52% at 88% 8%, #F4C6D3 0%, rgba(244,198,211,.6) 40%, rgba(244,198,211,0) 100%), radial-gradient(55% 65% at 60% 18%, #E8693A 0%, rgba(232,105,58,.55) 45%, rgba(232,105,58,0) 100%), radial-gradient(70% 80% at 22% 30%, #D42A3C 0%, rgba(212,42,60,0) 100%), radial-gradient(60% 70% at 100% 70%, #8E0E3B 0%, rgba(142,14,59,0) 100%), #AF144B",
+      "grain": "SVG feTurbulence fractalNoise baseFrequency .75, numOctaves 2, 240px tile, opacity .7, mix-blend-mode soft-light"
+    }
   },
   "components": [
     {
-      "name": "Primary Button",
+      "name": "Primary Button (white on field)",
       "kind": "button",
-      "refersTo": "button-primary",
-      "description": "The one solid crimson action per cluster — Add to Claude, Install, Go.",
-      "html": "<button class='ds-btn-primary'>Add to Claude <svg width='16' height='16' viewBox='0 0 16 16' fill='none'><path d='M2 8H13M9 4L13 8L9 12' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg></button>",
-      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:8px;font-family:Inter,sans-serif;font-weight:600;font-size:16px;color:#fff;background:#AF144B;border:1px solid transparent;border-radius:8px;padding:14px 24px;cursor:pointer;transition:background-color .18s cubic-bezier(.4,0,.2,1)}.ds-btn-primary:hover{background:#870A3C}.ds-btn-primary:focus-visible{outline:2px solid #AF144B;outline-offset:3px}"
+      "refersTo": "button-white",
+      "description": "The only filled button: a white slab with crimson text, used on the colour field.",
+      "html": "<div class=\"ds-field-mini\"><a class=\"ds-btn-white\" href=\"#\">Add to Claude <svg viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M2 8H13M9 4L13 8L9 12\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></div>",
+      "css": ".ds-field-mini { background: radial-gradient(120% 70% at 0% 100%, rgba(74,6,28,.85), rgba(74,6,28,0) 60%), radial-gradient(55% 65% at 60% 18%, #E8693A, rgba(232,105,58,0)), #AF144B; padding: 32px; } .ds-btn-white { display: inline-flex; align-items: center; gap: 8px; font: 600 16px/1 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; text-decoration: none; padding: 16px 24px; border-radius: 12px; border: 1px solid transparent; background: #FFFFFF; color: #AF144B; transition: background-color .2s cubic-bezier(.16,1,.3,1), color .2s cubic-bezier(.16,1,.3,1); } .ds-btn-white svg { width: 16px; height: 16px; transition: transform .2s cubic-bezier(.16,1,.3,1); } .ds-btn-white:hover { background: #FBF1F4; color: #870A3C; } .ds-btn-white:hover svg { transform: translateX(4px); }"
     },
     {
-      "name": "Secondary Button",
-      "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "White with a hairline border; the quiet alternative to the crimson action.",
-      "html": "<button class='ds-btn-secondary'>See the commands</button>",
-      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;gap:8px;font-family:Inter,sans-serif;font-weight:600;font-size:16px;color:#1A1A1A;background:#fff;border:1px solid #DEE2E6;border-radius:8px;padding:14px 24px;cursor:pointer;transition:border-color .18s cubic-bezier(.4,0,.2,1)}.ds-btn-secondary:hover{border-color:#1A1A1A}.ds-btn-secondary:focus-visible{outline:2px solid #AF144B;outline-offset:3px}"
-    },
-    {
-      "name": "Write Gate-Tag",
+      "name": "Command Chip",
       "kind": "chip",
-      "refersTo": "gate-tag-write",
-      "description": "Marks a step that changes files and waits — crimson-tint pill, the write cue.",
-      "html": "<span class='ds-gate-tag'>Changes files · waits</span>",
-      "css": ".ds-gate-tag{display:inline-block;font-family:'Fira Code',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#AF144B;background:#FBF3F6;border:1px solid #F5C0C6;border-radius:9999px;padding:5px 10px}"
+      "refersTo": "chip",
+      "description": "A literal command in Fira Code that copies on tap and shows Copied for 1.6s.",
+      "html": "<button class=\"ds-chip\" type=\"button\">/frontier:grill-me</button> <button class=\"ds-chip ds-chip-copied\" type=\"button\">Copied</button>",
+      "css": ".ds-chip { font: 400 14px/1.5 'Fira Code', ui-monospace, Menlo, monospace; color: #1A1A1A; background: #F4F2F3; border: 1px solid #E4E1E2; border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: border-color .2s cubic-bezier(.16,1,.3,1), background-color .2s cubic-bezier(.16,1,.3,1); } .ds-chip:hover { border-color: #CFCACC; background: #EFECED; } .ds-chip:focus-visible { outline: 2px solid #AF144B; outline-offset: 4px; } .ds-chip-copied, .ds-chip-copied:hover { border-color: #AF144B; color: #AF144B; background: #FBF1F4; }"
     },
     {
-      "name": "Codebox",
+      "name": "Start-here Bar",
       "kind": "custom",
-      "refersTo": "codebox",
-      "description": "Off-white mono block with a top-right copy button.",
-      "html": "<div class='ds-codebox'><button class='ds-copy'>Copy</button><pre>/plugin install frontier --marketplace bgordon01/frontier</pre></div>",
-      "css": ".ds-codebox{position:relative;background:#F8F9FA;border:1px solid #DEE2E6;border-radius:8px}.ds-codebox pre{margin:0;padding:48px 18px 18px;font-family:'Fira Code',monospace;font-size:14px;line-height:1.7;color:#1A1A1A;white-space:pre-wrap;overflow-wrap:anywhere}.ds-codebox .ds-copy{position:absolute;top:10px;right:10px;font-family:'Fira Code',monospace;font-size:13px;padding:7px 12px;background:#fff;border:1px solid #DEE2E6;border-radius:8px;color:#1A1A1A;cursor:pointer}.ds-codebox .ds-copy:hover{border-color:#1A1A1A}"
+      "refersTo": "startbar",
+      "description": "Full-width copy bar for the one phrase every visitor needs.",
+      "html": "<button class=\"ds-startbar\" type=\"button\"><span>Copy: start here</span><svg viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M2 8H13M9 4L13 8L9 12\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>",
+      "css": ".ds-startbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; max-width: 560px; font: 500 16px/1.2 'Fira Code', ui-monospace, Menlo, monospace; color: #AF144B; background: #FBF1F4; border: 1px solid #EBC6D2; border-radius: 12px; padding: 20px 24px; cursor: pointer; text-align: left; transition: border-color .2s cubic-bezier(.16,1,.3,1); } .ds-startbar svg { width: 16px; height: 16px; flex: none; } .ds-startbar:hover { border-color: #AF144B; } .ds-startbar:focus-visible { outline: 2px solid #AF144B; outline-offset: 4px; }"
     },
     {
-      "name": "Nav Link",
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Bordered honesty label placed beside a heading, never above it.",
+      "html": "<div class=\"ds-ba-head\"><h3>With Frontier</h3><span class=\"ds-tag\">Example</span></div>",
+      "css": ".ds-ba-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; } .ds-ba-head h3 { margin: 0; font: 600 20px/1.3 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; letter-spacing: -.01em; color: #1A1A1A; } .ds-tag { font: 500 12px/1 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; color: #6B6567; border: 1px solid #E4E1E2; padding: 4px 8px; border-radius: 6px; white-space: nowrap; }"
+    },
+    {
+      "name": "Top Bar",
       "kind": "nav",
-      "refersTo": null,
-      "description": "Quiet ink-secondary text link that warms to crimson on hover.",
-      "html": "<a class='ds-nav-link' href='#'>How it works</a>",
-      "css": ".ds-nav-link{font-family:Inter,sans-serif;font-weight:500;font-size:15px;color:#444;padding:8px 12px;border-radius:8px;text-decoration:none;transition:color .18s cubic-bezier(.4,0,.2,1)}.ds-nav-link:hover{color:#AF144B}.ds-nav-link:focus-visible{outline:2px solid #AF144B;outline-offset:3px}"
+      "refersTo": "top-bar",
+      "description": "72px sticky ruled bar; wordmark and byline left, links right, all seated on the bottom rule.",
+      "html": "<header class=\"ds-bar\"><a class=\"ds-who\" href=\"#\"><span class=\"ds-brand\"><svg viewBox=\"0 0 32 32\" fill=\"none\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"26\" height=\"26\" rx=\"7.5\" stroke=\"#1A1A1A\" stroke-width=\"2.2\"/><path d=\"M12 11L18 16L12 21\" stroke=\"#AF144B\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M20 21H22.5\" stroke=\"#AF144B\" stroke-width=\"2.6\" stroke-linecap=\"round\"/></svg>Frontier</span><span class=\"ds-byline\">by Brent Gordon</span></a><nav class=\"ds-links\"><a href=\"#\">Steps</a><a href=\"#\">GitHub</a><a href=\"#\">Install</a></nav></header>",
+      "css": ".ds-bar { height: 72px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 0 24px; background: rgba(255,255,255,.96); border-bottom: 1px solid #E4E1E2; } .ds-who { display: flex; flex-direction: column; gap: 4px; padding-bottom: 16px; text-decoration: none; color: #1A1A1A; } .ds-brand { display: inline-flex; align-items: center; gap: 8px; font: 600 20px/1 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; letter-spacing: -.01em; } .ds-brand svg { width: 24px; height: 24px; } .ds-byline { font: 400 13px/1 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; color: #6B6567; } .ds-links { display: flex; gap: 4px; padding-bottom: 16px; } .ds-links a { font: 500 14px/1 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; color: #474244; text-decoration: none; padding: 8px 12px; border-radius: 8px; } .ds-links a:hover { color: #1A1A1A; background: #F4F2F3; } .ds-links a:focus-visible { outline: 2px solid #AF144B; outline-offset: 4px; }"
     },
     {
-      "name": "Gate Panel",
-      "kind": "card",
-      "refersTo": null,
-      "description": "Signature component: freezes the review moment — a step queued, tagged, and held for Go.",
-      "html": "<div class='ds-gate-panel'><div class='ds-bar'><i></i><i></i><i></i></div><div class='ds-body'><div class='ds-step'><p class='ds-next'><code>/to-spec</code> writes the plan to your issue tracker.</p><span class='ds-tag'>Changes files · waits</span><div class='ds-ask'><span>Go ahead?</span><button class='ds-go'>Go →</button></div></div></div></div>",
-      "css": ".ds-gate-panel{background:#fff;border:1px solid #DEE2E6;border-radius:12px;overflow:hidden;font-family:Inter,sans-serif;max-width:420px}.ds-gate-panel .ds-bar{display:flex;align-items:center;gap:8px;padding:14px 16px;border-bottom:1px solid #DEE2E6;background:#F8F9FA}.ds-gate-panel .ds-bar i{width:10px;height:10px;border-radius:50%;background:#D4D7DB}.ds-gate-panel .ds-body{padding:24px}.ds-gate-panel .ds-step{border:1px solid #DEE2E6;border-radius:10px;background:#F8F9FA;padding:20px;display:flex;flex-direction:column;gap:16px}.ds-gate-panel .ds-next{font-size:15px;line-height:1.55;color:#1A1A1A;margin:0}.ds-gate-panel .ds-next code{font-family:'Fira Code',monospace;font-size:14px;color:#AF144B}.ds-gate-panel .ds-tag{align-self:flex-start;font-family:'Fira Code',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#AF144B;background:#FBF3F6;border:1px solid #F5C0C6;border-radius:9999px;padding:5px 10px}.ds-gate-panel .ds-ask{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #DEE2E6;padding-top:16px;font-weight:500;color:#1A1A1A}.ds-gate-panel .ds-go{font-family:Inter,sans-serif;font-weight:600;font-size:15px;color:#fff;background:#AF144B;border:none;border-radius:8px;padding:11px 18px;cursor:pointer}"
+      "name": "Ruled Step Row",
+      "kind": "custom",
+      "refersTo": "chip",
+      "description": "A step: crimson mono number, title and body, then its command chips; ruled at the bottom, uneven 48px / 4fr / 6fr split.",
+      "html": "<ol class=\"ds-steps\"><li class=\"ds-step\"><span class=\"ds-num\">01</span><div><h3>Question</h3><p>Hard questions until every decision about your idea is made.</p></div><div><button class=\"ds-chip\" type=\"button\">/frontier:grill-me</button></div></li></ol>",
+      "css": ".ds-steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid #E4E1E2; } .ds-step { display: grid; grid-template-columns: 48px 4fr 6fr; gap: 12px 24px; align-items: start; padding: 32px 0; border-bottom: 1px solid #E4E1E2; } .ds-num { font: 500 15px/1.6 'Fira Code', ui-monospace, Menlo, monospace; color: #AF144B; } .ds-step h3 { margin: 0; font: 600 24px/1.25 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; letter-spacing: -.015em; color: #1A1A1A; } .ds-step p { margin: 8px 0 0; font: 400 16px/1.55 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; color: #474244; max-width: 46ch; } .ds-chip { font: 400 14px/1.5 'Fira Code', ui-monospace, Menlo, monospace; color: #1A1A1A; background: #F4F2F3; border: 1px solid #E4E1E2; border-radius: 8px; padding: 8px 12px; cursor: pointer; } .ds-chip:hover { border-color: #CFCACC; background: #EFECED; }"
+    },
+    {
+      "name": "Ruled Table",
+      "kind": "custom",
+      "refersTo": "tag",
+      "description": "Rows divided by hairlines only; mono tabular numbers.",
+      "html": "<table class=\"ds-tbl\"><thead><tr><th>Author</th><th>What it does here</th><th>Stars</th></tr></thead><tbody><tr><td><a href=\"#\">Matt Pocock</a></td><td>Questions, plans, tickets, review</td><td class=\"ds-n\">313k</td></tr></tbody></table>",
+      "css": ".ds-tbl { width: 100%; border-collapse: collapse; font: 400 16px/1.5 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; border-top: 1px solid #E4E1E2; } .ds-tbl th { text-align: left; font: 500 13px/1.4 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; color: #6B6567; padding: 16px 16px 16px 0; border-bottom: 1px solid #E4E1E2; } .ds-tbl td { padding: 20px 16px 20px 0; border-bottom: 1px solid #E4E1E2; color: #474244; vertical-align: top; } .ds-tbl td:first-child { color: #1A1A1A; font-weight: 600; } .ds-tbl a { color: #1A1A1A; text-underline-offset: 4px; text-decoration-thickness: 1px; } .ds-tbl a:hover { color: #AF144B; } .ds-n { font: 500 16px/1.5 'Fira Code', ui-monospace, Menlo, monospace; color: #1A1A1A; font-variant-numeric: tabular-nums; }"
     }
   ],
   "narrative": {
-    "northStar": "The Review Desk",
-    "overview": "Frontier is drawn as a reviewer's desk: work is staged, labelled, and held for approval before anything runs. The page reads like a precise editorial surface — a centred sheet bounded by visible hairline rules, sections ruled off from one another, and every command and status set in monospace so it reads as a record, not decoration. The whole system exists to make one promise legible: nothing changes your files until you say go. The mood is calm, confident, and editorial, closer to a well-set documentation site or a financial ledger than a typical dev-tool landing page. Colour is rationed hard — crimson is the one saturated voice and it is spent on the single most important action in view. This world rejects the AI-SaaS defaults: no purple-to-blue gradients, no glows, no floating drop-shadowed cards, no three-up card rows. Depth comes from hairlines and tonal surfaces, not elevation.",
+    "northStar": "The Lit Field in the Ruled Column",
+    "overview": "Frontier is a white page held inside one hairline-ruled column, with a single warm, grainy colour field at the top. Everything below the field is paper and rules: sections are split by full-width hairlines, content sits in uneven two-part splits, and the only colour on the paper is crimson used as a signal (step numbers, the good path, the copied state). The field is the statement; the rest of the page is quiet on purpose.\n\nThe field is built from layered radial masses of crimson, scarlet, ember orange and a pale blush top-right, darkened toward the bottom-left where the white headline sits, with a film grain over it that drifts slowly. It reads as warm light, never as a tech gradient: there is no blue or violet anywhere in the system. Type is Inter throughout, heavy and tightly tracked at display size; Fira Code appears only where the reader is looking at something they type or count.\n\nThe system is flat. No shadows, no glows, no cards. Depth comes from the field itself and from the 1px rules that frame the column and divide it.",
     "keyCharacteristics": [
-      "A centred 1280px shell with visible left/right rules; sections divided by top hairlines.",
-      "Crimson (#AF144B) as the only saturated hue, used sparingly.",
-      "Inter for everything readable; Fira Code for every label, command, tag, and number.",
-      "Flat by doctrine — hairlines and off-white surfaces instead of shadows.",
-      "Exactly one bold element per view (the hero headline)."
+      "One colour field per page, at the top, inside the frame; white page everywhere else.",
+      "A 1200px column with hairline side rules; sections divided by full-width hairlines.",
+      "Inter for all words, Fira Code only for commands, numbers and the start-here bar.",
+      "Crimson as a signal on paper, never as a large fill outside the field.",
+      "Flat surfaces: no box-shadow anywhere; light theme only.",
+      "Motion limited to a slow grain drift, one hero fade-up and the copy state."
     ],
     "rules": [
-      { "name": "The One Red Column Rule", "body": "Crimson is the single saturated hue, and at most one fully-saturated crimson mark appears per view. Tints and the channel dots are muted on purpose so the one red mark keeps its weight.", "section": "colors" },
-      { "name": "The Mono Label Rule", "body": "If it is a command, a status, a number, a step index, or a category, it is set in Fira Code. If it is a sentence, it is set in Inter. Nothing in between.", "section": "typography" },
-      { "name": "The Flat Rule", "body": "No box-shadow, no glow, no gradient — ever. A surface that needs to stand out gets a hairline or a tonal fill, not elevation.", "section": "elevation" }
+      { "name": "The One Field Rule", "body": "The layered crimson field appears once per page, at the top, filling the column width. Its masses (blush, ember, scarlet, wine, field shadow) are never used as UI colours elsewhere.", "section": "colors" },
+      { "name": "The Warm Light Rule", "body": "Gradients exist only inside the field, and only in warm hues. No purple-to-blue gradients, no blue or violet anywhere in the system.", "section": "colors" },
+      { "name": "The Crimson Signal Rule", "body": "On white, crimson marks things to act on or follow: numbers, the good path, copied state, the start-here bar, focus. It is text and thin borders, never a large block fill outside the field.", "section": "colors" },
+      { "name": "The Light Only Rule", "body": "Light theme only (`color-scheme: light`). No dark mode, no theme switch.", "section": "colors" },
+      { "name": "The Mono Means Command Rule", "body": "Fira Code is used only for commands, step and list numbers, numeric table values, quoted prompts and the start-here bar. Headlines, body, labels, tags and nav are always Inter.", "section": "typography" },
+      { "name": "The Bare Headline Rule", "body": "Headlines stand alone. No eyebrow or kicker line above a headline; a lede sits below it instead.", "section": "typography" },
+      { "name": "The Plain Words Rule", "body": "No hype in any UI text: never revolutionize, seamless, empower, elevate, unleash, robust, supercharge, next-gen, game-changer, or \"unlock your potential\". Lead with the mechanism and a number.", "section": "typography" },
+      { "name": "The 4px Grid Rule", "body": "Every padding, margin and gap is a multiple of 4px (observed scale: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 96). No arbitrary values.", "section": "layout" },
+      { "name": "The Ruled Frame Rule", "body": "Structure is drawn with 1px Hairline rules: column edges, section tops, column dividers, list rows. Content never sits in cards.", "section": "layout" },
+      { "name": "The Uneven Split Rule", "body": "Side-by-side content uses unequal spans (5/7, 4/6). No rows of three equal cards, ever.", "section": "layout" },
+      { "name": "The One Bold Element Rule", "body": "Each view has exactly one statement element, and on this page it is the colour field with its display headline. Everything below stays in neutral ink on white.", "section": "layout" },
+      { "name": "The Flat Paper Rule", "body": "No shadows, no glows, no floating cards. If something needs separating, give it a hairline rule.", "section": "elevation" }
     ],
     "dos": [
-      "Do keep crimson rare — one saturated crimson mark per view, on the single most important action.",
-      "Do set every command, status, number, and category in Fira Code; everything readable in Inter.",
-      "Do build structure from 1px hairlines and off-white surfaces, and keep the shell's side-rules visible.",
-      "Do put every padding, margin, gap and size on the 4px grid.",
-      "Do pair any channel colour with a text label; the dot alone never carries meaning.",
-      "Do keep exactly one bold element per view (the hero headline on the landing page)."
+      "Do keep exactly one colour field per page, at the top, inside the ruled frame, with text seated on its darker bottom-left.",
+      "Do separate sections and list rows with 1px Hairline rules and divide columns with a vertical rule.",
+      "Do split side-by-side content unevenly (5fr / 7fr, or 48px / 4fr / 6fr).",
+      "Do keep every padding, margin and gap on the 4px grid.",
+      "Do use Fira Code for anything the reader types or counts, and Inter for everything else.",
+      "Do use crimson on white only as a signal: numbers, the good path, copied state, focus, the start-here bar.",
+      "Do make every command a tap-to-copy chip with a visible Copied state.",
+      "Do pause the grain and the fade-up under reduced motion."
     ],
     "donts": [
-      "Don't use shadows, glows, or gradients of any kind.",
-      "Don't place three equal cards in a row; vary spans or use a dense ruled table.",
-      "Don't reach for a purple-to-blue AI palette; the channel purple is a muted outline swatch, not a decorative gradient.",
-      "Don't add a second saturated element that competes with the hero headline or the one crimson action.",
-      "Don't use arbitrary off-grid values (13px, p-[7px])."
+      "Don't use purple-to-blue gradients, or any blue or violet; gradients exist only inside the warm field.",
+      "Don't add glows (blurred colour halos behind buttons or text) or any box-shadow, floating or offset.",
+      "Don't put content in cards, and never set three equal cards in a row.",
+      "Don't add a second bold element below the field; section headlines stay in Ink on white.",
+      "Don't put an eyebrow or kicker above a headline.",
+      "Don't set headlines, labels or tags in Fira Code.",
+      "Don't use the field masses (blush, ember, scarlet, wine) as UI colours on the white page.",
+      "Don't add a dark theme or a theme switch.",
+      "Don't write revolutionize, seamless, empower, elevate, unleash, robust, supercharge, next-gen, game-changer or \"unlock your potential\" in any UI text."
     ]
   }
 }
