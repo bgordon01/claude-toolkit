@@ -16,20 +16,23 @@ Once done, call the Skill tool with "code-review" to review the work.
 
 Commit your work to the current branch.
 
-## Branch and PR lifecycle (Frontier)
+## Branch and review lifecycle (Frontier)
 
-Frontier runs this skill **one ticket per branch**: each run starts on a clean branch cut from the latest `main` and ends with a draft PR that's ready to review. Apply these rules around the build steps above.
+Frontier runs this skill **one ticket per branch**: each run starts on a clean branch cut from the latest default branch and ends with the change ready for the user to review. The steps are the same for every tracker; only the hand-over at the end changes. Read `docs/agents/issue-tracker.md` (written by `setup-matt-pocock-skills`) to know which tracker this repo uses. If it's missing, stop and tell the user to run that setup first.
 
 **Before implementing — start clean:**
 
-1. Confirm the ticket is unblocked. Read its blockers from the issue tracker (GitHub's native dependencies, or a `Blocked by: #n` line). Every blocker must be **closed with its PR merged** before this ticket can start — use the tracker's *Count open blockers* check (`0` means startable). If any blocker is still open, or its PR isn't merged yet, stop and tell the user which one; don't start.
-2. Cut a fresh branch from the default branch: `git checkout main && git pull` (use the repo's default branch if it isn't `main`), then `git checkout -b <branch-named-for-this-ticket>`. Never implement on the default branch itself.
+1. Confirm the project uses git (`git rev-parse --is-inside-work-tree`). If it doesn't, stop and tell the user: a branch per ticket is how a change can be undone, so the build needs git. Offer `git init` plus a first commit; don't run it without a yes.
+2. Confirm the ticket is unblocked. Read its blockers the way the tracker file describes (native dependencies, or a `Blocked by:` line). Every blocker must be closed, and its change merged into the default branch, before this ticket starts. If one isn't, stop and name it.
+3. Cut a fresh branch from the default branch: switch to it, pull if there's a remote, then `git checkout -b <branch-named-for-this-ticket>`. Never implement on the default branch itself.
 
 Then do the build, tests and `code-review` above, committing to this branch.
 
-**After code-review — open a draft PR:**
+**After code-review — hand it over for review, by tracker:**
 
-3. Push the branch: `git push -u origin HEAD`.
-4. Open a **draft** PR against the default branch: `gh pr create --draft --title "<ticket title>" --body "<body>"`. Use a heredoc for the body, summarising what changed and linking the ticket it implements (`Closes #<n>` when this fully resolves the ticket, otherwise `Part of #<n>`). `gh` infers the repo from `git remote -v`. If the branch already has an open PR, the push above already updated it — just report its URL.
+- **GitHub:** `git push -u origin HEAD`, then open a **draft** PR with `gh pr create --draft`. Use a heredoc for the body: summarise the change and link the ticket (`Closes #<n>` when it fully resolves it, otherwise `Part of #<n>`).
+- **GitLab:** `git push -u origin HEAD`, then open a **draft** merge request with `glab mr create --draft`, linking the issue the same way.
+- **Jira, Linear or any other tracker:** push the branch if there's a remote, then follow the review step the tracker file describes (for example, a Bitbucket pull request with the ticket key in its title). If it describes none, stop after the push and give the user the branch name and ticket key to link by hand.
+- **Local markdown:** don't push. Leave the commits on the branch, mark the ticket file done, and give the user the one command that merges it when they're happy: `git checkout <default-branch> && git merge <branch>`.
 
-Leave it as a draft: don't mark it ready for review, don't enable auto-merge, and don't merge it. The user reviews the draft and decides what happens next. Report the PR URL when you're done.
+If the branch already has an open review, the push already updated it; just report its link. Leave every review as a draft: don't mark it ready, don't enable auto-merge, and don't merge it. The user decides. Report the link, or the branch name for a local tracker, when you're done.

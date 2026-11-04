@@ -27,6 +27,8 @@ These rules apply in every repo. A project's own CLAUDE.md overrides them where 
 - To improve an existing codebase, start read-only with `/improve-codebase-architecture`, then grill through what to fix.
 - Capture the result with `/to-spec`, break it down with `/to-tickets`, build one ticket at a time with `/implement` (test-first via `/tdd`).
 - Review with `/code-review`; use `/diagnosing-bugs` for hard bugs.
+- Tickets live wherever `/setup-matt-pocock-skills` recorded (GitHub, GitLab, Jira, Linear or local files). Never assume GitHub.
+- After a change to a screen, if Anthropic's `webapp-testing` skill is available, offer to check it in a browser. Skip the offer if it isn't.
 
 ## Design workflow (Impeccable, optional)
 - Fixing a screen: `/impeccable critique`, then `/impeccable polish`. Labels, buttons and errors: `/impeccable clarify`.
