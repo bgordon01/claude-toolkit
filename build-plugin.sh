@@ -47,6 +47,9 @@ for src in "$REPO_DIR"/vendor/*/; do
 done
 cp "$REPO_DIR/LICENSE" "$OUT/licenses/frontier-LICENSE"
 
+# Listing icon for the plugin directory (square PNG, 512px)
+cp "$REPO_DIR/site/assets/icon-512.png" "$OUT/.claude-plugin/icon.png"
+
 cat > "$OUT/.claude-plugin/plugin.json" <<EOF
 {
   "name": "frontier",

@@ -1,6 +1,6 @@
 # Maintaining Frontier
 
-How Frontier is built, how upstream changes come in, and how to change what's in it. Everything here runs only when you run it: there are no hooks, scheduled jobs or GitHub Actions.
+How Frontier is built, how upstream changes come in, and how to change what's in it. Everything here runs only when you run it: there are no hooks or scheduled jobs. The one GitHub Action publishes the landing page on push.
 
 ## Layout
 
@@ -32,6 +32,25 @@ frontier/
 Support skills are called by other skills (`grill-me` calls `grilling`, `tdd` calls `codebase-design`, and so on), so they must stay installed even though you rarely use them directly.
 
 Impeccable's automatic design-check hook is deliberately left out. Its detector script still runs when an `/impeccable` command needs it; on first use it downloads Impeccable's engine binary to `~/.impeccable/bin/`.
+
+## Install script (maintainers and cloud sessions)
+
+Users install the plugin (see the [README](README.md)). The script is for maintainers and cloud sessions. It gives bare command names (`/start` instead of `/frontier:start`) and links skills to this checkout, so edits take effect without a rebuild. Don't use it and the plugin on the same machine, or every skill appears twice.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash   # install, then restart Claude Code
+~/.frontier/update.sh                                                                     # update
+~/.frontier/uninstall.sh                                                                  # remove (delete ~/.frontier too if you want the files gone)
+```
+
+**Cloud sessions** (Code tab, claude.ai/code): paste this into the environment's **Setup script** once. There's no repo hook; the setup script is the only thing that installs it.
+
+```bash
+#!/bin/bash
+curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash || true
+```
+
+**From claude-toolkit:** run `~/.claude-toolkit/update.sh` once to move everything to `~/.frontier`. Plugin users remove **toolkit** and add **frontier**. The old cloud setup URL still redirects.
 
 ## What install.sh changes
 
@@ -106,10 +125,10 @@ If you add a skill that calls another skill (look for "Call the Skill tool with 
 
 Vendored files are replaced on every sync, so local changes live in `overrides/`:
 
-- **`overrides/<skill>.md`** is appended to that skill's `SKILL.md` under a `(Frontier)` heading. `impeccable`, `copywriting`, `copy-editing` and `stop-slop` carry a "Global rules override" that enforces the house copy rules; `implement` carries a "Branch and PR lifecycle" section — one ticket per branch cut from the latest `main` (only once its blockers' PRs are merged), ending in a draft PR for review.
+- **`overrides/<skill>.md`** is appended to that skill's `SKILL.md` under a `(Frontier)` heading. `impeccable`, `copywriting`, `copy-editing` and `stop-slop` carry a "Global rules override" that enforces the house copy rules; `implement` carries a "Branch and review lifecycle" section: one ticket per branch cut from the latest default branch (only once its blockers are merged), ending in a review that matches the tracker in `docs/agents/issue-tracker.md`. That means a draft PR on GitHub, a draft MR on GitLab, a pushed branch plus the tracker's own review step on Jira, Linear and others, or a local branch to merge for local markdown.
 - **`overrides/frontmatter.conf`** sets frontmatter keys. It makes skills invoke-only (`disable-model-invocation: true`), so they run only when typed and their descriptions stay out of Claude's context.
 
-Auto-triggering stays on for `start`, `impeccable`, `stop-slop` and the four support skills. The support skills have to stay on because other skills call them through the Skill tool.
+Auto-triggering stays on for `start`, `impeccable` and the four support skills. `stop-slop` is invoke-only: `start` hands it over at the end of every copy step. The support skills have to stay on because other skills call them through the Skill tool.
 
 `start` runs invoke-only skills by reading their `SKILL.md` directly, so the flag doesn't block it.
 
