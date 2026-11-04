@@ -4,15 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Frontier</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="18 Claude skills and one workflow that make Claude question, plan, test and review before anything ships.">
+<meta name="description" content="Claude skills that make Claude ask, plan, test and review before it changes your code. Add once, then say start here.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Frontier: plan first, then let Claude code">
-<meta property="og:description" content="18 skills and one workflow that make Claude question, plan, test and review before anything ships.">
+<meta property="og:description" content="Claude asks, plans, tests and reviews before it changes your code. Add once, then say start here.">
 <meta property="og:url" content="https://bgordon01.github.io/frontier/">
 <meta property="og:image" content="https://bgordon01.github.io/frontier/assets/og.png">
 <meta property="og:image:width" content="1200">
@@ -23,44 +22,26 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap">
 <style>
 :root {
-  /* Brand accent */
   --acc: #AF144B;
   --acc-h: #870A3C;
-  --acc-light: #FBF3F6;
-  --acc-border: #F5C0C6;
-
-  /* Ink */
+  --acc-tint: #FBF1F4;
   --ink: #1A1A1A;
-  --ink2: #444444;
-  --ink3: #6E6E6E;
-
-  /* Surfaces */
+  --ink2: #474244;
+  --ink3: #6B6567;
   --page: #FFFFFF;
-  --surf: #F8F9FA;
-  --light: #F2F3F5;
-
-  /* Borders */
-  --line: #DEE2E6;
-
-  /* Status channel (used for command/step categories) */
-  --c-core:   #AF144B;
-  --c-improve:#1A56A8;
-  --c-bug:    #1B7F3A;
-  --c-copy:   #D87000;
-  --c-design: #7B3FA0;
-
+  --chip: #F4F2F3;
+  --chip-line: #E4E1E2;
+  --rule: #E4E1E2;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --mono: "Fira Code", "SF Mono", SFMono-Regular, Consolas, Menlo, monospace;
-
-  --gut: 64px;
-  --sec: 120px;
-  --max: 1280px;
-  --ease: cubic-bezier(.4, 0, .2, 1);
+  --mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --pad: 24px;
   color-scheme: light;
 }
+@media (min-width: 768px) { :root { --pad: 48px; } }
 
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 88px; }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   margin: 0; background: var(--page); color: var(--ink);
@@ -68,594 +49,337 @@ body {
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
 }
 ::selection { background: var(--acc); color: #fff; }
-a { color: var(--ink); text-decoration: none; transition: color .18s var(--ease); }
-a:hover { color: var(--acc); }
-:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-radius: 6px; }
-h1, h2, h3, h4 { margin: 0; color: var(--ink); text-wrap: balance; }
-p { margin: 0; color: var(--ink2); text-wrap: pretty; }
-code { font-family: var(--mono); font-size: .92em; color: var(--acc); }
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+:focus-visible { outline: 2px solid var(--acc); outline-offset: 4px; border-radius: 4px; }
+.field :focus-visible { outline-color: #fff; }
+h1, h2, h3, p, ol, ul { margin: 0; }
+ol, ul { padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+code, .mono { font-family: var(--mono); }
+.skip { position: absolute; left: 8px; top: -48px; background: var(--ink); color: #fff; padding: 8px 12px; border-radius: 8px; z-index: 10; }
+.skip:focus { top: 8px; }
 
-/* Shell with visible side rules — the reference's signature frame */
-.shell { max-width: var(--max); margin: 0 auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
-.wrap { padding-inline: max(var(--gut), env(safe-area-inset-left, 0px)) max(var(--gut), env(safe-area-inset-right, 0px)); }
-.sec { padding-block: var(--sec); border-top: 1px solid var(--line); }
+/* The ruled frame */
+.frame { max-width: 1200px; margin: 0 auto; border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); min-height: 100vh; }
+.rule { border-top: 1px solid var(--rule); }
+.wrap { padding-left: var(--pad); padding-right: var(--pad); }
 
-/* Mono eyebrow / labels */
-.eyebrow { font: 500 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
-.mlabel { font: 500 12px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); }
-.h-sec { font: 700 clamp(32px, 4vw, 48px)/1.08 var(--sans); letter-spacing: -.02em; }
-.sub { font: 400 clamp(18px, 2vw, 20px)/1.55 var(--sans); color: var(--ink2); max-width: 60ch; }
-.lede { font: 400 18px/1.6 var(--sans); color: var(--ink2); max-width: 62ch; }
-.lede code { color: var(--ink); }
+/* Top bar */
+.bar { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--rule); }
+.bar-in { height: 72px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.who { display: flex; align-items: flex-end; gap: 12px; text-decoration: none; min-width: 0; }
+.who img { width: 81px; height: 72px; flex: none; object-fit: contain; object-position: bottom; }
+.who-txt { display: flex; flex-direction: column; gap: 4px; padding-bottom: 16px; }
+.brand { display: inline-flex; align-items: center; gap: 8px; font: 600 20px/1 var(--sans); letter-spacing: -.01em; }
+.brand svg { width: 24px; height: 24px; flex: none; }
+.byline { font: 400 13px/1 var(--sans); color: var(--ink3); }
+.bar-links { display: flex; align-items: center; gap: 4px; padding-bottom: 16px; }
+.bar-links a { font: 500 14px/1 var(--sans); color: var(--ink2); text-decoration: none; padding: 8px 12px; border-radius: 8px; }
+.bar-links a:hover { color: var(--ink); background: var(--chip); }
+.bar-links .hide-s { display: none; }
+@media (min-width: 640px) { .bar-links .hide-s { display: inline-block; } }
 
-/* Buttons */
-.btn { display: inline-flex; align-items: center; gap: 8px; font: 600 16px/1.25 var(--sans); padding: 14px 24px; border-radius: 8px; border: 1px solid transparent; cursor: pointer; white-space: nowrap; transition: background-color .18s var(--ease), border-color .18s var(--ease), color .18s var(--ease); }
-.btn.primary { background: var(--acc); color: #fff; }
-.btn.primary:hover { background: var(--acc-h); color: #fff; }
-.btn.secondary { background: #fff; color: var(--ink); border-color: var(--line); }
-.btn.secondary:hover { border-color: var(--ink); color: var(--ink); }
-.btn .arr { width: 16px; height: 16px; flex: none; transition: transform .25s var(--ease); }
-.btn:hover .arr { transform: translateX(3px); }
-.btn-sm { padding: 9px 16px; font-size: 14px; }
-
-/* Nav */
-.nav { position: sticky; top: 0; z-index: 30; background: #fff; border-bottom: 1px solid var(--line); }
-.nav-in { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
-.brand { display: inline-flex; align-items: center; gap: 10px; font: 600 18px/1 var(--sans); letter-spacing: -.01em; }
-.brand:hover { color: var(--ink); }
-.brand .mark { width: 28px; height: 28px; flex: none; }
-.nav-r { display: flex; align-items: center; gap: 20px; }
-.links { display: flex; gap: 4px; }
-.links a { font: 500 15px/1 var(--sans); color: var(--ink2); padding: 8px 12px; border-radius: 8px; }
-.links a:hover { color: var(--acc); }
-.by { font: 400 12px/1.4 var(--mono); color: var(--ink3); }
-.menu-btn { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: #fff; align-items: center; justify-content: center; cursor: pointer; color: var(--ink); }
-.menu-btn svg { width: 20px; height: 20px; }
-.m-panel { display: none; border-top: 1px solid var(--line); padding: 8px var(--gut) 24px; }
-.m-panel a { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--line); font: 500 18px/1 var(--sans); }
-.m-panel .btn { margin-top: 20px; }
-.nav-open .m-panel { display: block; }
-
-/* Hero */
-.hero { padding-top: 96px; padding-bottom: var(--sec); }
-.hero-grid { display: grid; gap: 40px; align-items: center; }
-@media (min-width: 1000px) { .hero-grid { grid-template-columns: minmax(0, 60fr) minmax(0, 40fr); gap: 56px; } }
-.hero h1 { font: 700 clamp(44px, 6.4vw, 72px)/1.02 var(--sans); letter-spacing: -.025em; margin-top: 24px; }
-.hero h1 .hl { color: var(--acc); }
-.hero .sub { margin-top: 24px; }
-.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
-.rule { height: 1px; background: var(--line); margin: 56px 0 40px; }
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
-.stat b { display: block; font: 500 32px/1.1 var(--mono); letter-spacing: -.01em; color: var(--ink); }
-.stat span { display: block; margin-top: 10px; font: 400 12px/1.45 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); }
-
-/* Hero gate panel — the review-gate moment */
-.gate-panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-.gp-bar { display: flex; align-items: center; gap: 8px; padding: 14px 16px; border-bottom: 1px solid var(--line); background: var(--surf); }
-.gp-bar i { width: 10px; height: 10px; border-radius: 50%; background: #D4D7DB; }
-.gp-bar .gp-title { margin-left: auto; font: 400 12px/1 var(--mono); color: var(--ink3); }
-.gp-body { padding: 24px 24px 28px; display: flex; flex-direction: column; gap: 14px; }
-.gp-done { display: flex; align-items: center; gap: 12px; font: 400 15px/1.4 var(--sans); color: var(--ink2); }
-.gp-check { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line); display: inline-flex; align-items: center; justify-content: center; flex: none; color: var(--ink2); }
-.gp-check svg { width: 12px; height: 12px; }
-.gp-step { margin-top: 2px; border: 1px solid var(--line); border-radius: 10px; background: var(--surf); padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-.gp-next { font: 400 15px/1.55 var(--sans); color: var(--ink); }
-.gp-next .lbl { display: inline-block; font: 500 11px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink3); margin-right: 10px; }
-.gp-next code { font: 500 14px/1.4 var(--mono); color: var(--acc); }
-.gp-tag { align-self: flex-start; font: 400 11px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; color: var(--acc); background: var(--acc-light); border: 1px solid var(--acc-border); }
-.gp-ask { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 4px; border-top: 1px solid var(--line); margin-top: 2px; padding-top: 16px; }
-.gp-ask .q { font: 500 16px/1.3 var(--sans); color: var(--ink); }
-.gp-go { display: inline-flex; align-items: center; gap: 8px; font: 600 15px/1 var(--sans); color: #fff; background: var(--acc); border-radius: 8px; padding: 11px 18px; }
-.gp-go svg { width: 15px; height: 15px; }
-.gp-anim { opacity: 0; transform: translateY(10px); }
-.gp-anim.run { animation: gp-in .5s var(--ease) forwards; }
-@keyframes gp-in { to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .gp-anim { opacity: 1; transform: none; animation: none !important; } }
-
-/* Section head row */
-.head-row { display: grid; gap: 16px; max-width: 760px; }
-.head-row .sub { margin-top: 4px; }
-
-/* Split (reads only vs changes files) */
-.split { margin-top: 56px; display: grid; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-@media (min-width: 720px) { .split { grid-template-columns: 1fr 1fr; } }
-.split > div { padding: 28px 32px; }
-.split > div + div { border-top: 1px solid var(--line); }
-@media (min-width: 720px) { .split > div + div { border-top: 0; border-left: 1px solid var(--line); } }
-.split .mlabel { display: flex; align-items: center; gap: 10px; color: var(--ink); margin-bottom: 14px; }
-.split .mlabel .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
-.split .mlabel .dot.read { background: #fff; border: 2px solid var(--ink); }
-.split .mlabel .dot.write { background: var(--acc); }
-.split p { font-size: 16px; }
-
-/* Numbered steps */
-.nsteps { list-style: none; margin: 56px 0 0; padding: 0; border-top: 1px solid var(--line); }
-.nsteps > li { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 16px 24px; padding: 24px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
-.nn { font: 500 28px/1.1 var(--mono); color: var(--ink); }
-.step-main h3 { font: 600 22px/1.25 var(--sans); letter-spacing: -.01em; }
-.step-main .cmds { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
-.step-main .cmds code { font: 400 13px/1.3 var(--mono); color: var(--ink); background: var(--surf); border: 1px solid var(--line); border-radius: 8px; padding: 4px 9px; }
-.step-main p { margin-top: 12px; font-size: 16px; max-width: 56ch; }
-.step-by { margin-top: 8px; font: 400 13px/1.4 var(--mono); color: var(--ink3); }
-.gate-tag { justify-self: end; font: 400 11px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink2); white-space: nowrap; }
-.gate-tag.write { color: var(--acc); border-color: var(--acc-border); background: var(--acc-light); }
-.done-line { display: flex; align-items: center; gap: 14px; margin-top: 28px; font: 600 18px/1.3 var(--sans); }
-.done-line .sq { width: 20px; height: 20px; border-radius: 6px; background: var(--acc); flex: none; }
-.done-line span { font-weight: 400; color: var(--ink2); }
-@media (max-width: 640px) {
-  .nsteps > li { grid-template-columns: 40px minmax(0, 1fr); }
-  .nn { font-size: 22px; }
-  .gate-tag { grid-column: 1 / -1; justify-self: start; }
+/* Hero: the one bold element */
+.field {
+  position: relative; overflow: hidden; color: #fff;
+  background:
+    radial-gradient(120% 70% at 0% 100%, rgba(74,6,28,.85) 0%, rgba(74,6,28,0) 60%),
+    linear-gradient(180deg, rgba(70,6,26,.08) 0%, rgba(70,6,26,.16) 30%, rgba(70,6,26,.8) 100%),
+    radial-gradient(42% 52% at 88% 8%, #F4C6D3 0%, rgba(244,198,211,.6) 40%, rgba(244,198,211,0) 100%),
+    radial-gradient(55% 65% at 60% 18%, #E8693A 0%, rgba(232,105,58,.55) 45%, rgba(232,105,58,0) 100%),
+    radial-gradient(70% 80% at 22% 30%, #D42A3C 0%, rgba(212,42,60,0) 100%),
+    radial-gradient(60% 70% at 100% 70%, #8E0E3B 0%, rgba(142,14,59,0) 100%),
+    #AF144B;
 }
-
-/* Dense hairline tables */
-.tblwrap { overflow-x: auto; margin-top: 56px; }
-.tbl { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.5; }
-.tbl th { font: 500 12px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); text-align: left; padding: 0 24px 14px 0; border-bottom: 1px solid var(--ink); }
-.tbl td { padding: 16px 24px 16px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink2); }
-.tbl tbody tr { transition: background-color .15s var(--ease); }
-.tbl tbody tr:hover td { background: var(--surf); }
-.tbl td:first-child { color: var(--ink); white-space: nowrap; }
-.tbl th:last-child, .tbl td:last-child { padding-right: 0; }
-.tbl.cmds-tbl td:first-child code { font: 500 14px/1.4 var(--mono); color: var(--ink); background: none; }
-.tag { display: inline-flex; align-items: center; gap: 8px; font: 400 12px/1.4 var(--mono); white-space: nowrap; color: var(--ink2); }
-.tag i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
-.i-core { background: var(--c-core); } .i-improve { background: var(--c-improve); } .i-bug { background: var(--c-bug); } .i-copy { background: var(--c-copy); } .i-design { background: #fff; border: 2px solid var(--c-design); }
-.support { margin-top: 20px; font-size: 15px; color: var(--ink3); max-width: 76ch; }
-@media (max-width: 640px) {
-  .tbl { min-width: 0; }
-  .tbl thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-  .tbl tr { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding-block: 16px; border-bottom: 1px solid var(--line); }
-  .tbl tbody tr:first-child { border-top: 1px solid var(--ink); }
-  .tbl td { padding: 0; border: 0; }
-  .tbl td:first-child { grid-column: 1; white-space: normal; }
-  .tbl td.col-last { grid-column: 2; grid-row: 1; justify-self: end; }
-  .tbl td.col-mid { grid-column: 1 / -1; color: var(--ink2); font-size: 15px; }
-  .tbl tbody tr:hover td { background: none; }
+.field::before {
+  content: ""; position: absolute; inset: -40px; pointer-events: none; opacity: .7; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: drift 24s steps(8) infinite;
 }
+@keyframes drift { 0% { transform: translate(0,0); } 25% { transform: translate(-16px,12px); } 50% { transform: translate(12px,-8px); } 75% { transform: translate(-8px,-16px); } 100% { transform: translate(0,0); } }
+@media (prefers-reduced-motion: reduce) { .field::before { animation: none; } }
+.field-in { position: relative; min-height: calc(100svh - 72px); max-height: 880px; display: flex; flex-direction: column; justify-content: flex-end; padding-top: 96px; padding-bottom: 48px; }
+@media (min-width: 768px) { .field-in { min-height: 640px; padding-bottom: 64px; } }
+.field h1 { font: 800 clamp(48px, 9vw, 96px)/.98 var(--sans); letter-spacing: -.035em; max-width: 11ch; text-wrap: balance; }
+.field .sub { margin-top: 24px; font: 400 clamp(18px, 2.2vw, 22px)/1.5 var(--sans); color: rgba(255,255,255,.92); max-width: 68ch; }
+.acts { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 600 16px/1 var(--sans); text-decoration: none; padding: 16px 24px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease); }
+.btn svg { width: 16px; height: 16px; transition: transform .2s var(--ease); }
+.btn:hover svg { transform: translateX(4px); }
+.btn-white { background: #fff; color: var(--acc); }
+.btn-white:hover { background: var(--acc-tint); color: var(--acc-h); }
+.then { font: 400 15px/1.4 var(--mono); color: rgba(255,255,255,.92); }
+.then b { font-weight: 500; color: #fff; }
+.field .fade { animation: up .9s var(--ease) both; }
+.field .fade:nth-child(2) { animation-delay: .08s; }
+.field .fade:nth-child(3) { animation-delay: .16s; }
+@keyframes up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .field .fade { animation: none; } }
 
-/* Rules grid — dense shared-hairline cells */
-.rules-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-@media (max-width: 860px) { .rules-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .rules-grid { grid-template-columns: minmax(0, 1fr); } }
-.rule-cell { background: #fff; padding: 28px; display: flex; flex-direction: column; gap: 10px; }
-.rule-cell .mlabel { color: var(--acc); }
-.rule-cell h3 { font: 700 20px/1.2 var(--sans); letter-spacing: -.01em; }
-.rule-cell p { font-size: 15px; }
+/* Sections */
+.sec { padding-top: 96px; padding-bottom: 96px; }
+@media (max-width: 767px) { .sec { padding-top: 64px; padding-bottom: 64px; } }
+.h2 { font: 700 clamp(32px, 4.4vw, 48px)/1.08 var(--sans); letter-spacing: -.025em; max-width: 20ch; text-wrap: balance; }
+.h3 { font: 700 clamp(24px, 3vw, 32px)/1.15 var(--sans); letter-spacing: -.02em; max-width: 16ch; text-wrap: balance; }
+.gate-txt { display: grid; gap: 16px; }
+.lede { margin-top: 16px; font: 400 18px/1.6 var(--sans); color: var(--ink2); max-width: 56ch; }
 
-/* Install steps */
-.install-grid { margin-top: 56px; display: grid; gap: 40px; }
-@media (min-width: 900px) { .install-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; } }
-.step-block { min-width: 0; }
-.step-block .mlabel { color: var(--acc); }
-.step-block h3 { margin-top: 10px; font: 600 22px/1.3 var(--sans); letter-spacing: -.01em; }
-.step-block > p { margin-top: 8px; font-size: 16px; }
-.step-block ol { margin: 16px 0 0; padding-left: 20px; display: grid; gap: 8px; font-size: 16px; color: var(--ink2); }
-.step-block ol strong { color: var(--ink); font-weight: 600; }
-.codebox { position: relative; margin-top: 16px; background: var(--surf); border: 1px solid var(--line); border-radius: 8px; }
-.codebox pre { margin: 0; padding: 48px 18px 18px; font: 400 14px/1.7 var(--mono); color: var(--ink); overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
-.copy { position: absolute; top: 10px; right: 10px; font: 500 13px/1 var(--mono); padding: 7px 12px; background: #fff; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); cursor: pointer; transition: border-color .18s var(--ease), color .18s var(--ease); }
-.copy:hover { border-color: var(--ink); }
-.copy.copied { color: var(--acc); border-color: var(--acc-border); }
-.micro { margin-top: 16px; font: 400 13px/1.6 var(--mono); color: var(--ink3); }
-.micro a { color: var(--ink2); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
-.micro a:hover { color: var(--acc); }
+/* Before / after */
+.ba { margin-top: 48px; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+@media (min-width: 900px) { .ba { grid-template-columns: 5fr 7fr; } }
+.ba-col { padding: 32px 0; }
+@media (min-width: 900px) { .ba-col { padding: 40px 48px 40px 0; } .ba-col + .ba-col { padding-left: 48px; padding-right: 0; border-left: 1px solid var(--rule); } }
+@media (max-width: 899px) { .ba-col + .ba-col { border-top: 1px solid var(--rule); } }
+.ba-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.ba-head h3 { font: 600 20px/1.3 var(--sans); letter-spacing: -.01em; }
+.tag { font: 500 12px/1 var(--sans); color: var(--ink3); border: 1px solid var(--chip-line); padding: 4px 8px; border-radius: 6px; white-space: nowrap; }
+.ask { margin-top: 16px; font: 400 15px/1.5 var(--mono); color: var(--ink2); }
+.trail { margin-top: 24px; display: grid; gap: 12px; counter-reset: s; }
+.trail li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; font: 400 16px/1.5 var(--sans); color: var(--ink2); }
+.trail li::before { counter-increment: s; content: counter(s, decimal-leading-zero); font: 500 13px/1.6 var(--mono); color: var(--ink3); }
+.trail.good li::before { color: var(--acc); }
+.trail li b { font-weight: 600; color: var(--ink); }
+.trail .wait { color: var(--ink); }
+.trail .wait b { color: var(--acc); }
+.result { margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--chip-line); font: 600 15px/1.5 var(--sans); color: var(--ink3); }
+.result.good { color: var(--acc); }
+
+.gates { margin-top: 48px; display: grid; gap: 16px; }
+@media (min-width: 900px) { .gates { grid-template-columns: 5fr 7fr; gap: 48px; } }
+.gates p { font: 400 16px/1.6 var(--sans); color: var(--ink2); }
+.gates p b { color: var(--ink); font-weight: 600; }
+
+/* Steps */
+.steps { margin-top: 48px; border-top: 1px solid var(--rule); }
+.step { display: grid; gap: 12px 24px; padding: 32px 0; border-bottom: 1px solid var(--rule); }
+@media (min-width: 900px) { .step { grid-template-columns: 48px 4fr 6fr; align-items: start; padding: 32px 0; } }
+.num { font: 500 15px/1.6 var(--mono); color: var(--acc); }
+.step h3 { font: 600 24px/1.25 var(--sans); letter-spacing: -.015em; }
+.step p { margin-top: 8px; font: 400 16px/1.55 var(--sans); color: var(--ink2); max-width: 46ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+@media (min-width: 900px) { .chips { padding-top: 4px; } }
+.chip { font: 400 14px/1 var(--mono); color: var(--ink); background: var(--chip); border: 1px solid var(--chip-line); border-radius: 8px; padding: 8px 12px; cursor: pointer; line-height: 1.5; transition: border-color .2s var(--ease), background-color .2s var(--ease); }
+.chip:hover { border-color: #CFCACC; background: #EFECED; }
+.chip.copied { border-color: var(--acc); color: var(--acc); background: var(--acc-tint); }
+.chip-note { flex-basis: 100%; font: 400 13px/1.5 var(--sans); color: var(--ink3); }
+.side { margin-top: 32px; font: 400 16px/1.6 var(--sans); color: var(--ink2); max-width: 60ch; }
+
+.startbar { margin-top: 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; max-width: 560px; font: 500 16px/1.2 var(--mono); color: var(--acc); background: var(--acc-tint); border: 1px solid #EBC6D2; border-radius: 12px; padding: 20px 24px; cursor: pointer; text-align: left; transition: border-color .2s var(--ease); }
+.startbar:hover { border-color: var(--acc); }
+.startbar svg { width: 16px; height: 16px; flex: none; }
+
+/* Install */
+.inst { margin-top: 48px; display: grid; gap: 0; border-top: 1px solid var(--rule); counter-reset: i; }
+.inst li { display: grid; grid-template-columns: 32px 1fr; gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--rule); font: 400 18px/1.55 var(--sans); }
+.inst li::before { counter-increment: i; content: counter(i, decimal-leading-zero); font: 500 15px/1.8 var(--mono); color: var(--acc); }
+.inst b { font-weight: 600; }
+.inst .chip { margin-left: 4px; vertical-align: middle; }
+.alt { margin-top: 32px; display: grid; gap: 12px; font: 400 16px/1.6 var(--sans); color: var(--ink2); max-width: 64ch; }
+.alt .chip { display: inline-block; margin-top: 8px; }
+
+/* Built on */
+.tbl-wrap { margin-top: 48px; overflow-x: auto; border-top: 1px solid var(--rule); }
+table { width: 100%; border-collapse: collapse; font: 400 16px/1.5 var(--sans); }
+th { text-align: left; font: 500 13px/1.4 var(--sans); color: var(--ink3); padding: 16px 16px 16px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+td { padding: 20px 16px 20px 0; border-bottom: 1px solid var(--rule); color: var(--ink2); vertical-align: top; }
+td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+td.n { font: 500 16px/1.5 var(--mono); color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td a { color: var(--ink); }
+@media (max-width: 639px) {
+  table, thead, tbody, tr, td { display: block; }
+  thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  tr { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 20px 0; border-bottom: 1px solid var(--rule); }
+  td { padding: 0; border: 0; }
+  td:nth-child(2) { grid-column: 1 / -1; grid-row: 2; }
+  td.n { grid-column: 2; grid-row: 1; text-align: right; }
+  td:nth-child(4) { grid-column: 1 / -1; grid-row: 3; font: 400 13px/1.5 var(--sans); color: var(--ink3); }
+}
+.nw { white-space: nowrap; }
+.chip { overflow-wrap: normal; word-break: normal; text-align: left; }
+.fine { margin-top: 16px; font: 400 14px/1.5 var(--sans); color: var(--ink3); max-width: 64ch; }
 
 /* Footer */
-.foot { border-top: 1px solid var(--line); padding-top: 72px; }
-.fcols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
-@media (max-width: 760px) { .fcols { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; } }
-.fcols h4 { margin: 0 0 20px; font: 500 12px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); }
-.fcols .brand { margin-bottom: 16px; }
-.fcols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-.fcols a { font-size: 16px; color: var(--ink2); }
-.fcols a:hover { color: var(--acc); }
-.fcols p { font-size: 15px; color: var(--ink3); max-width: 34ch; }
-.fbot { margin-top: 72px; border-top: 1px solid var(--line); padding: 28px 0 48px; display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: space-between; align-items: center; font: 400 14px/1.5 var(--mono); color: var(--ink3); }
-
-@media (max-width: 1024px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } .hero .gate-panel { margin-top: 8px; } }
-@media (max-width: 768px) {
-  :root { --gut: 20px; --sec: 72px; }
-  .links, .nav-r .by { display: none; }
-  .menu-btn { display: inline-flex; }
-  .hero { padding-top: 56px; }
-  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .btn, .copy, a, .links a, .tbl tbody tr { transition-duration: .18s; }
-}
+.foot { padding-top: 32px; padding-bottom: 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font: 400 14px/1.5 var(--sans); color: var(--ink3); }
+.foot nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.foot a { color: var(--ink2); }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="frame">
 
-<div class="shell">
-
-<header class="nav" id="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="#top" aria-label="Frontier home">
-      <svg class="mark" viewBox="0 0 28 28" aria-hidden="true">
-        <rect x="1.5" y="1.5" width="25" height="25" rx="7" fill="none" stroke="currentColor" stroke-width="2"/>
-        <path d="M10 9L15 14L10 19" fill="none" stroke="var(--acc)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M17 19H19" stroke="var(--acc)" stroke-width="2.4" stroke-linecap="round"/>
-      </svg>
-      Frontier
+<header class="bar">
+  <div class="bar-in wrap">
+    <a class="who" href="#top" aria-label="Frontier, by Brent Gordon. Back to top">
+      <img src="assets/brent.webp" width="81" height="72" alt="">
+      <span class="who-txt">
+        <span class="brand">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="7.5" stroke="#1A1A1A" stroke-width="2.2"/><path d="M12 11L18 16L12 21" stroke="#AF144B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 21H22.5" stroke="#AF144B" stroke-width="2.6" stroke-linecap="round"/></svg>
+          Frontier
+        </span>
+        <span class="byline">by Brent Gordon</span>
+      </span>
     </a>
-    <div class="nav-r">
-      <nav class="links" aria-label="Sections">
-        <a href="#workflow">How it works</a>
-        <a href="#commands">Commands</a>
-        <a href="https://github.com/bgordon01/frontier">GitHub</a>
-      </nav>
-      <span class="by">by Brent Gordon</span>
-      <a class="btn primary btn-sm" href="#install">Install</a>
-      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="m-panel" aria-label="Open menu">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6H21M3 12H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-    </div>
-  </div>
-  <div class="m-panel" id="m-panel">
-    <a href="#workflow">How it works</a>
-    <a href="#commands">Commands</a>
-    <a href="#install">Install</a>
-    <a href="https://github.com/bgordon01/frontier">GitHub</a>
-    <a class="btn primary" href="#install">Install</a>
+    <nav class="bar-links" aria-label="Sections">
+      <a class="hide-s" href="#steps">Steps</a>
+      <a class="hide-s" href="https://github.com/bgordon01/frontier">GitHub</a>
+      <a href="#install">Install</a>
+    </nav>
   </div>
 </header>
 
-<main id="top">
+<main id="main">
 
-<section class="hero wrap" aria-labelledby="hero-h">
-  <div class="hero-grid">
-    <div>
-      <p class="eyebrow">18 skills · one workflow</p>
-      <h1 id="hero-h">Plan first. Then let Claude <span class="hl">code.</span></h1>
-      <p class="sub">18 skills that make Claude ask questions, write a plan, test and review before it changes your code. Type <code>/start</code> and it takes you through each step.</p>
-      <div class="cta">
-        <a class="btn primary" href="#install">Add to Claude <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a class="btn secondary" href="#commands">See the commands</a>
-      </div>
-    </div>
-    <div class="gate-panel gp-anim" id="gate-panel" role="img" aria-label="Frontier paused mid-run: the idea is questioned and the decisions settled. It waits for you to press Go before the next step, /to-spec, writes the plan and changes any files.">
-      <div class="gp-bar" aria-hidden="true"><i></i><i></i><i></i><span class="gp-title">frontier · /start</span></div>
-      <div class="gp-body" aria-hidden="true">
-        <div class="gp-done"><span class="gp-check"><svg viewBox="0 0 12 12"><path d="M2.5 6.5L5 9L9.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Idea questioned</div>
-        <div class="gp-done"><span class="gp-check"><svg viewBox="0 0 12 12"><path d="M2.5 6.5L5 9L9.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Decisions settled</div>
-        <div class="gp-step">
-          <p class="gp-next"><span class="lbl">Next</span><code>/to-spec</code> writes the plan to your issue tracker.</p>
-          <span class="gp-tag">Changes files · waits</span>
-          <div class="gp-ask"><span class="q">Go ahead?</span><span class="gp-go">Go <svg viewBox="0 0 16 16"><path d="M2 8H13M9 4L13 8L9 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="rule"></div>
-  <div class="stats">
-    <div class="stat"><b>18</b><span>Skills</span></div>
-    <div class="stat"><b>6</b><span>Steps, start to done</span></div>
-    <div class="stat"><b>4</b><span>Authors</span></div>
-    <div class="stat"><b>&lt;1m</b><span>To install</span></div>
-  </div>
-</section>
-
-<section class="sec wrap" aria-labelledby="gates-h">
-  <div class="head-row">
-    <p class="eyebrow">Nothing runs behind your back</p>
-    <h2 class="h-sec" id="gates-h">Nothing changes your files until you say go.</h2>
-    <p class="sub">Before each step, Claude says in one sentence what it will do. Steps that only read run straight away. Steps that write ask first.</p>
-  </div>
-  <div class="split">
-    <div>
-      <p class="mlabel"><span class="dot read"></span>Reads only</p>
-      <p>Looks at your code or your idea and reports back. Nothing on disk changes, so it runs the moment you reach it. Grilling and review work this way.</p>
-    </div>
-    <div>
-      <p class="mlabel"><span class="dot write"></span>Changes files</p>
-      <p>Writes code, edits files or creates tickets. It states the change first and waits for your go. Spec, tickets and build work this way.</p>
+<section class="field" id="top" aria-labelledby="hero-h">
+  <div class="field-in wrap">
+    <h1 id="hero-h" class="fade">Plan first. Then let Claude code.</h1>
+    <p class="sub fade">Claude asks, plans and waits for your go before it changes a file.</p>
+    <div class="acts fade">
+      <a class="btn btn-white" href="#install">Add to Claude <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <span class="then">Then say <b>start here</b></span>
     </div>
   </div>
 </section>
 
-<section class="sec wrap" id="workflow" aria-labelledby="flow-h">
-  <div class="head-row">
-    <p class="eyebrow">The workflow</p>
-    <h2 class="h-sec" id="flow-h">Six steps, start to done.</h2>
-    <p class="sub">Type <code>/start</code> and it walks you through these in order. Each change traces back to a decision you made.</p>
+<section class="sec wrap" aria-labelledby="ba-h">
+  <h2 class="h2" id="ba-h">Same request. Two ways to build it.</h2>
+  <p class="lede">The difference is where the decisions get made: before the code, or after it breaks.</p>
+
+  <div class="ba">
+    <div class="ba-col">
+      <div class="ba-head"><h3>Prompt, code, hope</h3><span class="tag">Example</span></div>
+      <p class="ask">"Add a booking page to my salon site."</p>
+      <ol class="trail">
+        <li><span>Claude writes the page, the form and the database straight away.</span></li>
+        <li><span>Two clients book the same slot. You ask it to fix that.</span></li>
+        <li><span>The fix breaks the confirmation email. You ask again.</span></li>
+        <li><span>Nobody decided what happens on a cancellation, so it guesses.</span></li>
+      </ol>
+      <p class="result">You're debugging decisions nobody made.</p>
+    </div>
+    <div class="ba-col">
+      <div class="ba-head"><h3>With Frontier</h3><span class="tag">Example</span></div>
+      <p class="ask">"Add a booking page to my salon site."</p>
+      <ol class="trail good">
+        <li><span><b>Asks first:</b> what happens when two people pick the same slot? On a cancellation? Who gets the email?</span></li>
+        <li><span><b>Writes it down</b> as a one-page plan you can read and change.</span></li>
+        <li><span><b>Splits it</b> into small tickets: slots, booking, emails.</span></li>
+        <li class="wait"><span><b>Builds the first ticket</b>, test first, on its own branch, then stops and waits for your go.</span></li>
+      </ol>
+      <p class="result good">Every decision made before a line of code.</p>
+    </div>
   </div>
-  <ol class="nsteps">
-    <li>
-      <span class="nn">01</span>
-      <div class="step-main">
-        <h3>Start</h3>
-        <div class="cmds"><code>/start</code></div>
-        <p>One command. It asks what you want to do and picks the route from there.</p>
-        <p class="step-by">Frontier</p>
-      </div>
-      <span class="gate-tag">Reads only</span>
+
+  <div class="gates">
+    <h3 class="h3">Nothing changes until you say go.</h3>
+    <div class="gate-txt">
+      <p><b>Steps that only look</b> run straight away: questions, critiques, code reviews.</p>
+      <p><b>Steps that change files</b> tell you what will change, then wait. Each ticket is built on its own branch, so your working version stays untouched until you keep the change.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap rule" id="steps" aria-labelledby="steps-h">
+  <h2 class="h2" id="steps-h">Six steps, handed to you one at a time.</h2>
+  <p class="lede">You don't memorise these. Say <b>start here</b> and Frontier hands over each one. Tap a command to copy it.</p>
+
+  <ol class="steps">
+    <li class="step">
+      <span class="num">01</span>
+      <div><h3>Question</h3><p>Hard questions until every decision about your idea is made. Nothing is written yet.</p></div>
+      <div class="chips"><button class="chip" type="button" data-copy="/frontier:grill-me">/frontier:grill-me</button></div>
     </li>
-    <li>
-      <span class="nn">02</span>
-      <div class="step-main">
-        <h3>Grill</h3>
-        <div class="cmds"><code>/grill-me</code></div>
-        <p>Questions your idea, one round at a time, until every open decision is made.</p>
-        <p class="step-by">Skills by Matt Pocock</p>
-      </div>
-      <span class="gate-tag">Reads only</span>
+    <li class="step">
+      <span class="num">02</span>
+      <div><h3>Plan</h3><p>The agreed plan, written down where you already keep work: GitHub, GitLab, Jira, Linear or plain files.</p></div>
+      <div class="chips"><button class="chip" type="button" data-copy="/frontier:to-spec">/frontier:to-spec</button></div>
     </li>
-    <li>
-      <span class="nn">03</span>
-      <div class="step-main">
-        <h3>Spec</h3>
-        <div class="cmds"><code>/to-spec</code></div>
-        <p>Writes what you agreed into one spec in your issue tracker.</p>
-        <p class="step-by">Skills by Matt Pocock</p>
-      </div>
-      <span class="gate-tag write">Changes files · waits</span>
+    <li class="step">
+      <span class="num">03</span>
+      <div><h3>Split</h3><p>Small tickets, each one buildable and checkable on its own.</p></div>
+      <div class="chips"><button class="chip" type="button" data-copy="/frontier:to-tickets">/frontier:to-tickets</button></div>
     </li>
-    <li>
-      <span class="nn">04</span>
-      <div class="step-main">
-        <h3>Tickets</h3>
-        <div class="cmds"><code>/to-tickets</code></div>
-        <p>Splits the spec into small tickets, each with what blocks it.</p>
-        <p class="step-by">Skills by Matt Pocock</p>
-      </div>
-      <span class="gate-tag write">Changes files · waits</span>
+    <li class="step">
+      <span class="num">04</span>
+      <div><h3>Build</h3><p>One ticket at a time, test first, on its own branch. Your tests are re-run before it's ticked off.</p></div>
+      <div class="chips"><button class="chip" type="button" data-copy="/frontier:implement">/frontier:implement</button></div>
     </li>
-    <li>
-      <span class="nn">05</span>
-      <div class="step-main">
-        <h3>Build</h3>
-        <div class="cmds"><code>/implement</code><code>/tdd</code></div>
-        <p>Builds one ticket at a time on its own branch — a failing test first, then the code — then opens a draft PR.</p>
-        <p class="step-by">Skills by Matt Pocock</p>
-      </div>
-      <span class="gate-tag write">Changes files · waits</span>
+    <li class="step">
+      <span class="num">05</span>
+      <div><h3>Polish</h3><p>Screens critiqued and fixed. Words stripped of anything that sounds machine-written.</p></div>
+      <div class="chips"><button class="chip" type="button" data-copy="/frontier:impeccable critique">/frontier:impeccable critique</button><button class="chip" type="button" data-copy="/frontier:stop-slop">/frontier:stop-slop</button></div>
     </li>
-    <li>
-      <span class="nn">06</span>
-      <div class="step-main">
-        <h3>Review</h3>
-        <div class="cmds"><code>/code-review</code><code>/impeccable critique</code></div>
-        <p>Checks the change against the spec and the house rules before you move on.</p>
-        <p class="step-by">Skills by Matt Pocock, Paul Bakaus</p>
-      </div>
-      <span class="gate-tag">Reads only</span>
+    <li class="step">
+      <span class="num">06</span>
+      <div><h3>Review</h3><p>The change checked against the plan, then handed to you to keep or send back.</p></div>
+      <div class="chips"><button class="chip" type="button" data-copy="/frontier:code-review">/frontier:code-review</button></div>
     </li>
   </ol>
-  <p class="done-line"><span class="sq" aria-hidden="true"></span>Done. <span>A draft PR for the ticket, reviewed and traceable to your decisions — yours to merge.</span></p>
+
+  <p class="side">Fixing a bug, improving an old project, writing copy or settling a design? Same front door. Every route and command is in the <a href="https://github.com/bgordon01/frontier/blob/main/docs/guide.md">guide</a>.</p>
+  <button class="startbar" type="button" data-copy="start here"><span>Copy: start here</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 </section>
 
-<section class="sec wrap" aria-labelledby="routes-h">
-  <div class="head-row">
-    <p class="eyebrow">Other ways in</p>
-    <h2 class="h-sec" id="routes-h">Start somewhere other than Grill.</h2>
-    <p class="sub">Four shortcuts begin where they fit, then join the main steps.</p>
+<section class="sec wrap rule" id="install" aria-labelledby="inst-h">
+  <h2 class="h2" id="inst-h">Add it once. Four steps.</h2>
+  <p class="lede">In the Claude app. It reaches Claude Code on the same account too.</p>
+  <ol class="inst">
+    <li><span>Open <b>Customize → Plugins → Add → Add marketplace</b>.</span></li>
+    <li><span>Type <button class="chip" type="button" data-copy="bgordon01/frontier">bgordon01/frontier</button></span></li>
+    <li><span>Add <b>frontier</b> from <b>Discover</b>.</span></li>
+    <li><span>In any chat, say <b>start here</b>.</span></li>
+  </ol>
+  <div class="alt">
+    <p>Using Claude Code without the app? Run this instead:<br><button class="chip" type="button" data-copy="/plugin install frontier --marketplace bgordon01/frontier">/plugin install frontier <span class="nw">--marketplace</span> bgordon01/frontier</button></p>
+    <p>Update or remove it in the same place you added it.</p>
   </div>
-  <div class="tblwrap">
-    <table class="tbl">
-      <thead><tr><th scope="col">Shortcut</th><th scope="col">What it does</th><th scope="col">Joins at</th></tr></thead>
+</section>
+
+<section class="sec wrap rule" aria-labelledby="built-h">
+  <h2 class="h2" id="built-h">Built on skills people already trust.</h2>
+  <p class="lede">Frontier bundles four authors' skills, then adds one front door and house rules on top.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th scope="col">Author</th><th scope="col">What it does here</th><th scope="col">Stars</th><th scope="col">Licence</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Improve a project</td>
-          <td class="col-mid"><code>/improve-codebase-architecture</code> or <code>/impeccable critique</code> lists what's worth fixing. Changes nothing.</td>
-          <td class="col-last">Tickets</td>
-        </tr>
-        <tr>
-          <td>Fix a bug</td>
-          <td class="col-mid"><code>/diagnosing-bugs</code> finds the cause first, then fixes it test-first.</td>
-          <td class="col-last">Review</td>
-        </tr>
-        <tr>
-          <td>Write or edit copy</td>
-          <td class="col-mid"><code>/copywriting</code>, <code>/copy-editing</code>, then <code>/stop-slop</code> over the result.</td>
-          <td class="col-last">On its own</td>
-        </tr>
-        <tr>
-          <td>Design a screen</td>
-          <td class="col-mid"><code>/impeccable shape</code> writes a design brief. Once screens exist, <code>/impeccable critique</code> and one steer set the look, and <code>/impeccable document</code> records it in DESIGN.md.</td>
-          <td class="col-last">Spec</td>
-        </tr>
+        <tr><td><a href="https://github.com/mattpocock/skills">Matt Pocock</a></td><td>Questions, plans, tickets, test-first builds, review, bug hunting</td><td class="n">313k</td><td>MIT</td></tr>
+        <tr><td><a href="https://github.com/pbakaus/impeccable">Paul Bakaus</a></td><td>Impeccable: design critique, polish, UX copy</td><td class="n">103k</td><td>Apache 2.0</td></tr>
+        <tr><td><a href="https://github.com/coreyhaines31/marketingskills">Corey Haines</a></td><td>Copywriting and copy editing</td><td class="n">58.5k</td><td>MIT</td></tr>
+        <tr><td><a href="https://github.com/hardikpandya/stop-slop">Hardik Pandya</a></td><td>Stop-slop: removes machine-sounding phrasing</td><td class="n">18.6k</td><td>MIT</td></tr>
       </tbody>
     </table>
   </div>
+  <p class="fine">Stars are GitHub stars on each author's own repo, checked 4 November 2026. They're theirs, not Frontier's.</p>
 </section>
-
-<section class="sec wrap" aria-labelledby="rules-h">
-  <div class="head-row">
-    <p class="eyebrow">House rules</p>
-    <h2 class="h-sec" id="rules-h">Rules it follows in every project.</h2>
-    <p class="sub">Every skill follows these. If your project's CLAUDE.md says otherwise, yours wins.</p>
-  </div>
-  <div class="rules-grid">
-    <div class="rule-cell"><p class="mlabel">Design</p><h3>No AI look</h3><p>No purple gradients, glowing borders or floating card shadows.</p></div>
-    <div class="rule-cell"><p class="mlabel">Design</p><h3>Not everything in threes</h3><p>Variable column spans, side-aligned headlines and dense tables instead.</p></div>
-    <div class="rule-cell"><p class="mlabel">Design</p><h3>A 4px grid</h3><p>Every padding, margin and gap is a multiple of four pixels.</p></div>
-    <div class="rule-cell"><p class="mlabel">Design</p><h3>One bold thing per screen</h3><p>One statement element. Everything else stays quiet.</p></div>
-    <div class="rule-cell"><p class="mlabel">Copy</p><h3>Banned words</h3><p>"Seamless", "supercharge" and the rest of the slop never ship.</p></div>
-    <div class="rule-cell"><p class="mlabel">Copy</p><h3>Specifics over hype</h3><p>"Exports in 2 seconds", not "Blazing fast".</p></div>
-  </div>
-</section>
-
-<section class="sec wrap" id="commands" aria-labelledby="cmd-h">
-  <div class="head-row">
-    <p class="eyebrow">Reference</p>
-    <h2 class="h-sec" id="cmd-h">Every step is a command you can run.</h2>
-    <p class="sub">Or type <code>/start</code> and it picks the right one.</p>
-  </div>
-  <div class="tblwrap">
-    <table class="tbl cmds-tbl">
-      <thead><tr><th scope="col">Command</th><th scope="col">What it does</th><th scope="col">Group</th></tr></thead>
-      <tbody>
-        <tr><td><code>/start</code></td><td class="col-mid">Asks what you want to do and walks you through the right route.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/grill-me</code></td><td class="col-mid">Questions your idea until it holds up.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/to-spec</code></td><td class="col-mid">Turns the conversation into a spec in your issue tracker.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/to-tickets</code></td><td class="col-mid">Splits a spec into small tickets with a blocking order.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/implement</code></td><td class="col-mid">Builds a ticket on its own branch, then opens a draft PR for review.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/tdd</code></td><td class="col-mid">Builds test-first: red, green, refactor.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/code-review</code></td><td class="col-mid">Reviews changes since a commit or branch against your standards.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/diagnosing-bugs</code></td><td class="col-mid">Finds the real cause of a hard bug before fixing it.</td><td class="col-last"><span class="tag"><i class="i-bug"></i>Fix a bug</span></td></tr>
-        <tr><td><code>/improve-codebase-architecture</code></td><td class="col-mid">Scans a codebase and reports what's worth restructuring.</td><td class="col-last"><span class="tag"><i class="i-improve"></i>Improve</span></td></tr>
-        <tr><td><code>/impeccable critique</code></td><td class="col-mid">Reviews a screen's design without changing it.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/impeccable polish</code></td><td class="col-mid">Fixes a screen's layout, type, colour and spacing.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/impeccable clarify</code></td><td class="col-mid">Rewrites labels, buttons and errors so they read clearly.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-        <tr><td><code>/impeccable shape</code></td><td class="col-mid">Interviews you and writes a design brief before anything is drawn.</td><td class="col-last"><span class="tag"><i class="i-design"></i>Design</span></td></tr>
-        <tr><td><code>/impeccable bolder</code></td><td class="col-mid">Makes a safe or bland design more distinctive.</td><td class="col-last"><span class="tag"><i class="i-design"></i>Design</span></td></tr>
-        <tr><td><code>/impeccable quieter</code></td><td class="col-mid">Tones down a loud or busy design.</td><td class="col-last"><span class="tag"><i class="i-design"></i>Design</span></td></tr>
-        <tr><td><code>/impeccable typeset</code></td><td class="col-mid">Improves fonts, type sizes and hierarchy.</td><td class="col-last"><span class="tag"><i class="i-design"></i>Design</span></td></tr>
-        <tr><td><code>/impeccable colorize</code></td><td class="col-mid">Adds purposeful colour to a flat design.</td><td class="col-last"><span class="tag"><i class="i-design"></i>Design</span></td></tr>
-        <tr><td><code>/impeccable layout</code></td><td class="col-mid">Fixes spacing, alignment and visual rhythm.</td><td class="col-last"><span class="tag"><i class="i-design"></i>Design</span></td></tr>
-        <tr><td><code>/impeccable document</code></td><td class="col-mid">Writes DESIGN.md from your built screens so new ones stay on brand.</td><td class="col-last"><span class="tag"><i class="i-design"></i>Design</span></td></tr>
-        <tr><td><code>/impeccable extract</code></td><td class="col-mid">Turns repeated UI into shared components.</td><td class="col-last"><span class="tag"><i class="i-design"></i>Design</span></td></tr>
-        <tr><td><code>/copywriting</code></td><td class="col-mid">Writes marketing and landing-page copy.</td><td class="col-last"><span class="tag"><i class="i-copy"></i>Copy</span></td></tr>
-        <tr><td><code>/copy-editing</code></td><td class="col-mid">Tightens copy you already have.</td><td class="col-last"><span class="tag"><i class="i-copy"></i>Copy</span></td></tr>
-        <tr><td><code>/stop-slop</code></td><td class="col-mid">Removes phrasing that sounds machine-written.</td><td class="col-last"><span class="tag"><i class="i-core"></i>Core</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="support">Plus 5 support skills the others call for you — grilling, codebase-design, domain-modeling, setup-matt-pocock-skills and house-rules — and 4 helper agents from Impeccable.</p>
-</section>
-
-<section class="sec wrap" id="install" aria-labelledby="inst-h">
-  <div class="head-row">
-    <p class="eyebrow">Setup</p>
-    <h2 class="h-sec" id="inst-h">Install once. Then type <code>/start</code>.</h2>
-    <p class="sub">Pick where you use Claude. Each takes under a minute.</p>
-  </div>
-  <div class="install-grid">
-    <div class="step-block">
-      <p class="mlabel">Claude app</p>
-      <h3>Phone, web or desktop</h3>
-      <ol>
-        <li>Open <strong>Customize → Plugins</strong>.</li>
-        <li>Tap <strong>Add</strong>, then <strong>Add marketplace</strong>, and enter the name below.</li>
-        <li>Find <strong>frontier</strong> under <strong>Discover</strong> and tap <strong>Add</strong>.</li>
-      </ol>
-      <div class="codebox"><button class="copy" type="button" data-copy="c-market">Copy</button><pre id="c-market">bgordon01/frontier</pre></div>
-    </div>
-    <div class="step-block">
-      <p class="mlabel">Claude Code</p>
-      <h3>Run it in the terminal</h3>
-      <p>Paste this inside a Claude Code session.</p>
-      <div class="codebox"><button class="copy" type="button" data-copy="c-plugin">Copy</button><pre id="c-plugin">/plugin install frontier --marketplace bgordon01/frontier</pre></div>
-      <p class="mlabel" style="margin-top:32px">Cloud sessions</p>
-      <h3>Add it to your setup script</h3>
-      <p>Paste this once into your environment's <strong>Setup script</strong>.</p>
-      <div class="codebox"><button class="copy" type="button" data-copy="c-cloud">Copy</button><pre id="c-cloud">#!/bin/bash
-curl -fsSL https://raw.githubusercontent.com/bgordon01/frontier/main/install.sh | bash || true</pre></div>
-      <p class="micro">Upgrading from claude-toolkit? Remove <strong>toolkit</strong> and add <strong>frontier</strong>. For a Mac install script, see the <a href="https://github.com/bgordon01/frontier#install">README</a>.</p>
-    </div>
-  </div>
-</section>
-
-<section class="sec wrap" aria-labelledby="built-h">
-  <div class="head-row">
-    <p class="eyebrow">Credits</p>
-    <h2 class="h-sec" id="built-h">Built on skills by four authors.</h2>
-    <p class="sub">Frontier connects their skills into one workflow. Each keeps its own licence.</p>
-  </div>
-  <div class="tblwrap">
-    <table class="tbl">
-      <thead><tr><th scope="col">Author</th><th scope="col">What they wrote</th><th scope="col">Licence</th></tr></thead>
-      <tbody>
-        <tr><td><a href="https://github.com/mattpocock/skills">Matt Pocock</a></td><td class="col-mid">Planning, tickets, test-first building, code review, bug diagnosis.</td><td class="col-last">MIT</td></tr>
-        <tr><td><a href="https://github.com/pbakaus/impeccable">Paul Bakaus</a></td><td class="col-mid">Impeccable: design critique, polish and UX copy, with 4 helper agents.</td><td class="col-last">Apache 2.0</td></tr>
-        <tr><td><a href="https://github.com/hardikpandya/stop-slop">Hardik Pandya</a></td><td class="col-mid">Stop-slop: strips AI writing patterns from prose.</td><td class="col-last">MIT</td></tr>
-        <tr><td><a href="https://github.com/coreyhaines31/marketingskills">Corey Haines</a></td><td class="col-mid">Copywriting and copy editing for marketing pages.</td><td class="col-last">MIT</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<footer class="sec wrap foot">
-  <div class="fcols">
-    <div>
-      <a class="brand" href="#top" aria-label="Frontier home">
-        <svg class="mark" viewBox="0 0 28 28" aria-hidden="true">
-          <rect x="1.5" y="1.5" width="25" height="25" rx="7" fill="none" stroke="currentColor" stroke-width="2"/>
-          <path d="M10 9L15 14L10 19" fill="none" stroke="var(--acc)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M17 19H19" stroke="var(--acc)" stroke-width="2.4" stroke-linecap="round"/>
-        </svg>
-        Frontier
-      </a>
-      <p>Plan first. Then let Claude code.</p>
-    </div>
-    <div>
-      <h4>Workflow</h4>
-      <ul>
-        <li><a href="#workflow">How it works</a></li>
-        <li><a href="#commands">Commands</a></li>
-        <li><a href="#install">Install</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Source</h4>
-      <ul>
-        <li><a href="https://github.com/bgordon01/frontier">GitHub</a></li>
-        <li><a href="https://github.com/bgordon01/frontier#install">README</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Built on</h4>
-      <ul>
-        <li><a href="https://github.com/mattpocock/skills">Matt Pocock</a></li>
-        <li><a href="https://github.com/pbakaus/impeccable">Paul Bakaus</a></li>
-        <li><a href="https://github.com/hardikpandya/stop-slop">Hardik Pandya</a></li>
-        <li><a href="https://github.com/coreyhaines31/marketingskills">Corey Haines</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="fbot">
-    <span>Frontier · MIT licence · by Brent Gordon</span>
-    <a href="https://github.com/bgordon01/frontier">github.com/bgordon01/frontier</a>
-  </div>
-</footer>
 
 </main>
+
+<footer class="foot wrap rule">
+  <span>Frontier · MIT licence · by Brent Gordon</span>
+  <nav aria-label="Footer">
+    <a href="https://github.com/bgordon01/frontier/blob/main/docs/guide.md">Guide</a>
+    <a href="https://github.com/bgordon01/frontier">GitHub</a>
+  </nav>
+</footer>
+
 </div>
 
 <script>
 (function () {
-  // Mobile menu
-  var nav = document.getElementById('nav');
-  var btn = document.getElementById('menu-btn');
-  if (btn) {
-    btn.addEventListener('click', function () {
-      var open = nav.classList.toggle('nav-open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    document.querySelectorAll('#m-panel a').forEach(function (a) {
-      a.addEventListener('click', function () { nav.classList.remove('nav-open'); btn.setAttribute('aria-expanded', 'false'); });
-    });
-  }
-
-  // Hero gate panel: one entrance when it scrolls into view
-  var panel = document.getElementById('gate-panel');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (panel && !reduce && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (es, o) {
-      es.forEach(function (e) { if (e.isIntersecting) { panel.classList.add('run'); o.disconnect(); } });
-    }, { threshold: 0.3 }).observe(panel);
-  } else if (panel) {
-    panel.classList.add('run');
-  }
-
-  // Copy buttons
   document.querySelectorAll('[data-copy]').forEach(function (b) {
+    var label = b.innerHTML;
+    b.setAttribute('aria-label', 'Copy ' + b.getAttribute('data-copy'));
     b.addEventListener('click', function () {
-      var el = document.getElementById(b.getAttribute('data-copy'));
-      var text = el.textContent;
-      var done = function () { b.textContent = 'Copied'; b.classList.add('copied'); setTimeout(function () { b.textContent = 'Copy'; b.classList.remove('copied'); }, 1600); };
-      var fallback = function () {
-        var r = document.createRange(); r.selectNodeContents(el);
-        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-        b.textContent = 'Press ⌘C';
+      var text = b.getAttribute('data-copy');
+      var done = function () {
+        b.classList.add('copied');
+        if (b.classList.contains('startbar')) b.querySelector('span').textContent = 'Copied. Paste it into Claude';
+        else b.textContent = 'Copied';
+        setTimeout(function () { b.classList.remove('copied'); b.innerHTML = label; }, 1600);
       };
       try {
-        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
-        else fallback();
-      } catch (e) { fallback(); }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () {});
+      } catch (e) {}
     });
   });
 })();
