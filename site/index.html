@@ -51,7 +51,6 @@ body {
 ::selection { background: var(--acc); color: #fff; }
 a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 :focus-visible { outline: 2px solid var(--acc); outline-offset: 4px; border-radius: 4px; }
-.field :focus-visible { outline-color: #fff; }
 h1, h2, h3, p, ol, ul { margin: 0; }
 ol, ul { padding: 0; list-style: none; }
 img { display: block; max-width: 100%; }
@@ -79,42 +78,25 @@ code, .mono { font-family: var(--mono); }
 .bar-links .hide-s { display: none; }
 @media (min-width: 640px) { .bar-links .hide-s { display: inline-block; } }
 
-/* Hero: the one bold element */
-.field {
-  position: relative; overflow: hidden; color: #fff;
-  background:
-    radial-gradient(120% 70% at 0% 100%, rgba(74,6,28,.85) 0%, rgba(74,6,28,0) 60%),
-    linear-gradient(180deg, rgba(70,6,26,.08) 0%, rgba(70,6,26,.16) 30%, rgba(70,6,26,.8) 100%),
-    radial-gradient(42% 52% at 88% 8%, #F4C6D3 0%, rgba(244,198,211,.6) 40%, rgba(244,198,211,0) 100%),
-    radial-gradient(55% 65% at 60% 18%, #E8693A 0%, rgba(232,105,58,.55) 45%, rgba(232,105,58,0) 100%),
-    radial-gradient(70% 80% at 22% 30%, #D42A3C 0%, rgba(212,42,60,0) 100%),
-    radial-gradient(60% 70% at 100% 70%, #8E0E3B 0%, rgba(142,14,59,0) 100%),
-    #AF144B;
-}
-.field::before {
-  content: ""; position: absolute; inset: -40px; pointer-events: none; opacity: .7; mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: drift 24s steps(8) infinite;
-}
-@keyframes drift { 0% { transform: translate(0,0); } 25% { transform: translate(-16px,12px); } 50% { transform: translate(12px,-8px); } 75% { transform: translate(-8px,-16px); } 100% { transform: translate(0,0); } }
-@media (prefers-reduced-motion: reduce) { .field::before { animation: none; } }
-.field-in { position: relative; min-height: calc(100svh - 72px); max-height: 880px; display: flex; flex-direction: column; justify-content: flex-end; padding-top: 96px; padding-bottom: 48px; }
-@media (min-width: 768px) { .field-in { min-height: 640px; padding-bottom: 64px; } }
-.field h1 { font: 800 clamp(48px, 9vw, 96px)/.98 var(--sans); letter-spacing: -.035em; max-width: 11ch; text-wrap: balance; }
-.field .sub { margin-top: 24px; font: 400 clamp(18px, 2.2vw, 22px)/1.5 var(--sans); color: rgba(255,255,255,.92); max-width: 68ch; }
+/* Hero: the headline is the one bold element */
+.hero { padding-top: 96px; padding-bottom: 96px; }
+@media (min-width: 768px) { .hero { padding-top: 128px; padding-bottom: 112px; } }
+.hero h1 { font: 800 clamp(48px, 9vw, 96px)/.98 var(--sans); letter-spacing: -.035em; max-width: 11ch; text-wrap: balance; }
+.hero h1 .hl { color: var(--acc); }
+.hero .sub { margin-top: 24px; font: 400 clamp(18px, 2.2vw, 22px)/1.5 var(--sans); color: var(--ink2); max-width: 60ch; }
 .acts { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
 .btn { display: inline-flex; align-items: center; gap: 8px; font: 600 16px/1 var(--sans); text-decoration: none; padding: 16px 24px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease); }
 .btn svg { width: 16px; height: 16px; transition: transform .2s var(--ease); }
 .btn:hover svg { transform: translateX(4px); }
-.btn-white { background: #fff; color: var(--acc); }
-.btn-white:hover { background: var(--acc-tint); color: var(--acc-h); }
-.then { font: 400 15px/1.4 var(--mono); color: rgba(255,255,255,.92); }
-.then b { font-weight: 500; color: #fff; }
-.field .fade { animation: up .9s var(--ease) both; }
-.field .fade:nth-child(2) { animation-delay: .08s; }
-.field .fade:nth-child(3) { animation-delay: .16s; }
+.btn-primary { background: var(--acc); color: #fff; }
+.btn-primary:hover { background: var(--acc-h); }
+.then { font: 400 15px/1.4 var(--mono); color: var(--ink2); }
+.then b { font-weight: 500; color: var(--ink); }
+.hero .fade { animation: up .9s var(--ease) both; }
+.hero .fade:nth-child(2) { animation-delay: .08s; }
+.hero .fade:nth-child(3) { animation-delay: .16s; }
 @keyframes up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .field .fade { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .hero .fade { animation: none; } }
 
 /* Sections */
 .sec { padding-top: 96px; padding-bottom: 96px; }
@@ -230,18 +212,18 @@ td a { color: var(--ink); }
 
 <main id="main">
 
-<section class="field" id="top" aria-labelledby="hero-h">
-  <div class="field-in wrap">
-    <h1 id="hero-h" class="fade">Plan first. Then let Claude code.</h1>
+<section class="hero" id="top" aria-labelledby="hero-h">
+  <div class="wrap">
+    <h1 id="hero-h" class="fade">Plan first. Then let Claude <span class="hl">code.</span></h1>
     <p class="sub fade">Claude asks, plans and waits for your go before it changes a file.</p>
     <div class="acts fade">
-      <a class="btn btn-white" href="#install">Add to Claude <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn btn-primary" href="#install">Add to Claude <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <span class="then">Then say <b>start here</b></span>
     </div>
   </div>
 </section>
 
-<section class="sec wrap" aria-labelledby="ba-h">
+<section class="sec wrap rule" aria-labelledby="ba-h">
   <h2 class="h2" id="ba-h">Same request. Two ways to build it.</h2>
   <p class="lede">The difference is where the decisions get made: before the code, or after it breaks.</p>
 
