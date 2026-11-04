@@ -10,7 +10,7 @@ web
 Vibe coders: people who go straight from a prompt to code in Claude Code or the Claude app, and then spend their time re-prompting when things break. They arrive at the landing page curious but impatient, usually from a link or the GitHub repo.
 
 ## Product Purpose
-Frontier (repo `bgordon01/frontier`, plugin `frontier`) is a set of 18 Claude skills plus one workflow that makes Claude question, plan, test and review before anything ships. Success for the landing page is an install: "Add to Claude" via the Claude app marketplace, with Claude Code and cloud-session paths as secondary routes.
+Frontier (repo `bgordon01/frontier`, plugin `frontier`) is a set of 18 Claude skills plus one workflow that makes Claude question, plan, test and review before anything ships. Success for the landing page is an install: "Add to Claude" via the Claude app marketplace, then saying "start here". Claude Code gets one secondary line; the script install is maintainer-only.
 
 ## Positioning
 It moves the work to the parts only the user can do — deciding what to build and checking what got built — through one command (`/start`) that picks the next step, and review gates: nothing changes the user's files until they say go.
@@ -23,13 +23,13 @@ It moves the work to the parts only the user can do — deciding what to build a
 ## Capabilities and Constraints
 - Static `site/index.html`, no build step, deployed to GitHub Pages from `site/` on push to `main`.
 - No analytics.
-- Formerly claude-toolkit (plugin `toolkit`); the install section tells upgraders to remove `toolkit` and add `frontier`.
+- Formerly claude-toolkit (plugin `toolkit`). The upgrade note (remove `toolkit`, add `frontier`) lives in MAINTAINING.md, not on the landing page, which shows one install path only.
 - House rules (`rules/` and `frontier-rules.md`) apply: no AI-default palette, no three-equal-cards rows, 4px grid, one bold element per view, banned-words list.
 
 ## Brand Commitments
 - Name: Frontier.
-- Mark: a command-prompt chevron (`›`) and cursor in a rounded square (`site/assets/mark.svg`). The review gate shows in the UI as the "Changes files · waits" tag on steps that write.
-- Crimson accent: `#AF144B` (hover `#870A3C`). Inter for UI, Fira Code for commands and labels.
+- Mark: a command-prompt chevron (`›`) and cursor in a rounded square (`site/assets/mark.svg`). The review gate is stated in words on the landing page ("Nothing changes until you say go"), not as a tag.
+- Crimson accent: `#AF144B` (hover `#870A3C`). Inter for UI, headlines and labels; Fira Code for commands only.
 - Voice: blunt, second person, opinionated; mechanisms and numbers over adjectives. Concise: one-line ledes, nothing that doesn't earn its place.
 - Light theme only. No dark mode, no automatic or manual theme switch.
 - Clean, with generous white space.
