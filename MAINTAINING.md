@@ -160,6 +160,7 @@ Files in [`site/assets/`](site/assets):
 | `favicon.svg`, `favicon-32.png` | Browser tab icons |
 | `apple-touch-icon.png` (180×180), `icon-512.png` | Home-screen and app icons |
 | `og.png` (1200×630) | Social preview card |
+| `brent.webp` | Brent's cut-out portrait for the landing-page top bar (background removed with rembg; provenance in `brent.webp.json`) |
 
 ## Landing page
 
