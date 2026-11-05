@@ -215,7 +215,7 @@ td a { color: var(--ink); }
 <section class="hero" id="top" aria-labelledby="hero-h">
   <div class="wrap">
     <h1 id="hero-h" class="fade">Plan first. Then let Claude <span class="hl">code.</span></h1>
-    <p class="sub fade">Claude asks, plans and waits for your go before it changes a file.</p>
+    <p class="sub fade">Claude asks questions, writes a plan, and waits for your confirmation before it touches a file.</p>
     <div class="acts fade">
       <a class="btn btn-primary" href="#install">Add to Claude <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <span class="then">Then say <b>start here</b></span>
@@ -245,18 +245,18 @@ td a { color: var(--ink); }
       <ol class="trail good">
         <li><span><b>Asks first:</b> what happens when two people pick the same slot? On a cancellation? Who gets the email?</span></li>
         <li><span><b>Writes it down</b> as a one-page plan you can read and change.</span></li>
-        <li><span><b>Splits it</b> into small tickets: slots, booking, emails.</span></li>
-        <li class="wait"><span><b>Builds the first ticket</b>, test first, on its own branch, then stops and waits for your go.</span></li>
+        <li><span><b>Splits it</b> into small chunks of work (tickets): slots, booking, emails.</span></li>
+        <li class="wait"><span><b>Builds the first chunk</b> in a separate copy of your project (a branch), with a check that proves it works (a test). Then it waits for your confirmation.</span></li>
       </ol>
       <p class="result good">Every decision made before a line of code.</p>
     </div>
   </div>
 
   <div class="gates">
-    <h3 class="h3">Nothing changes until you say go.</h3>
+    <h3 class="h3">Nothing changes without your confirmation.</h3>
     <div class="gate-txt">
-      <p><b>Steps that only look</b> run straight away: questions, critiques, code reviews.</p>
-      <p><b>Steps that change files</b> tell you what will change, then wait. Each ticket is built on its own branch, so your working version stays untouched until you keep the change.</p>
+      <p><b>Steps that only read your project</b> run straight away: questions, design checks (critiques), code checks (code reviews).</p>
+      <p><b>Steps that change files</b> tell you what will change, then wait for your confirmation. Each chunk is built in a separate copy (a branch), so your working project stays untouched until you keep it.</p>
     </div>
   </div>
 </section>
@@ -273,22 +273,22 @@ td a { color: var(--ink); }
     </li>
     <li class="step">
       <span class="num">02</span>
-      <div><h3>Plan</h3><p>The agreed plan, written down where you already keep work: GitHub, GitLab, Jira, Linear or plain files.</p></div>
+      <div><h3>Plan</h3><p>Your answers, written up as a one-page plan (a spec) where you already keep work: GitHub, GitLab, Jira, Linear or plain files.</p></div>
       <div class="chips"><button class="chip" type="button" data-copy="/frontier:to-spec">/frontier:to-spec</button></div>
     </li>
     <li class="step">
       <span class="num">03</span>
-      <div><h3>Split</h3><p>Small tickets, each one buildable and checkable on its own.</p></div>
+      <div><h3>Split</h3><p>The plan cut into small chunks of work (tickets) you can build and check one at a time.</p></div>
       <div class="chips"><button class="chip" type="button" data-copy="/frontier:to-tickets">/frontier:to-tickets</button></div>
     </li>
     <li class="step">
       <span class="num">04</span>
-      <div><h3>Build</h3><p>One ticket at a time, test first, on its own branch. Your tests are re-run before it's ticked off.</p></div>
+      <div><h3>Build</h3><p>One chunk at a time. Claude writes a check (a test) first, then the code, and re-runs every check before the work is marked as done.</p></div>
       <div class="chips"><button class="chip" type="button" data-copy="/frontier:implement">/frontier:implement</button></div>
     </li>
     <li class="step">
       <span class="num">05</span>
-      <div><h3>Polish</h3><p>Screens critiqued and fixed. Words stripped of anything that sounds machine-written.</p></div>
+      <div><h3>Polish</h3><p>Screens checked (a critique) and fixed. Words stripped of anything that sounds machine-written.</p></div>
       <div class="chips"><button class="chip" type="button" data-copy="/frontier:impeccable critique">/frontier:impeccable critique</button><button class="chip" type="button" data-copy="/frontier:stop-slop">/frontier:stop-slop</button></div>
     </li>
     <li class="step">
@@ -304,7 +304,7 @@ td a { color: var(--ink); }
 
 <section class="sec wrap rule" id="install" aria-labelledby="inst-h">
   <h2 class="h2" id="inst-h">Add it once. Four steps.</h2>
-  <p class="lede">In the Claude app. It reaches Claude Code on the same account too.</p>
+  <p class="lede">In the Claude app. Claude Code on the same account picks it up too.</p>
   <ol class="inst">
     <li><span>Open <b>Customize → Plugins → Add → Add marketplace</b>.</span></li>
     <li><span>Type <button class="chip" type="button" data-copy="bgordon01/frontier">bgordon01/frontier</button></span></li>
@@ -324,7 +324,7 @@ td a { color: var(--ink); }
     <table>
       <thead><tr><th scope="col">Author</th><th scope="col">What it does here</th><th scope="col">Stars</th><th scope="col">Licence</th></tr></thead>
       <tbody>
-        <tr><td><a href="https://github.com/mattpocock/skills">Matt Pocock</a></td><td>Questions, plans, tickets, test-first builds, review, bug hunting</td><td class="n">313k</td><td>MIT</td></tr>
+        <tr><td><a href="https://github.com/mattpocock/skills">Matt Pocock</a></td><td>Questions, plans (specs), small chunks of work (tickets), check-first builds (TDD), review, bug hunting</td><td class="n">313k</td><td>MIT</td></tr>
         <tr><td><a href="https://github.com/pbakaus/impeccable">Paul Bakaus</a></td><td>Impeccable: design critique, polish, UX copy</td><td class="n">103k</td><td>Apache 2.0</td></tr>
         <tr><td><a href="https://github.com/coreyhaines31/marketingskills">Corey Haines</a></td><td>Copywriting and copy editing</td><td class="n">58.5k</td><td>MIT</td></tr>
         <tr><td><a href="https://github.com/hardikpandya/stop-slop">Hardik Pandya</a></td><td>Stop-slop: removes machine-sounding phrasing</td><td class="n">18.6k</td><td>MIT</td></tr>
