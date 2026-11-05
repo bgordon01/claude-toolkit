@@ -103,33 +103,24 @@ code, .mono { font-family: var(--mono); }
 @media (max-width: 767px) { .sec { padding-top: 64px; padding-bottom: 64px; } }
 .h2 { font: 700 clamp(32px, 4.4vw, 48px)/1.08 var(--sans); letter-spacing: -.025em; max-width: 20ch; text-wrap: balance; }
 .h3 { font: 700 clamp(24px, 3vw, 32px)/1.15 var(--sans); letter-spacing: -.02em; max-width: 16ch; text-wrap: balance; }
-.gate-txt { display: grid; gap: 16px; }
 .lede { margin-top: 16px; font: 400 18px/1.6 var(--sans); color: var(--ink2); max-width: 56ch; }
 
-/* Before / after */
-.ba { margin-top: 48px; display: grid; gap: 0; border-top: 1px solid var(--rule); }
-@media (min-width: 900px) { .ba { grid-template-columns: 5fr 7fr; } }
-.ba-col { padding: 32px 0; }
-@media (min-width: 900px) { .ba-col { padding: 40px 48px 40px 0; } .ba-col + .ba-col { padding-left: 48px; padding-right: 0; border-left: 1px solid var(--rule); } }
-@media (max-width: 899px) { .ba-col + .ba-col { border-top: 1px solid var(--rule); } }
-.ba-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-.ba-head h3 { font: 600 20px/1.3 var(--sans); letter-spacing: -.01em; }
-.tag { font: 500 12px/1 var(--sans); color: var(--ink3); border: 1px solid var(--chip-line); padding: 4px 8px; border-radius: 6px; white-space: nowrap; }
-.ask { margin-top: 16px; font: 400 15px/1.5 var(--mono); color: var(--ink2); }
-.trail { margin-top: 24px; display: grid; gap: 12px; counter-reset: s; }
-.trail li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; font: 400 16px/1.5 var(--sans); color: var(--ink2); }
-.trail li::before { counter-increment: s; content: counter(s, decimal-leading-zero); font: 500 13px/1.6 var(--mono); color: var(--ink3); }
-.trail.good li::before { color: var(--acc); }
-.trail li b { font-weight: 600; color: var(--ink); }
-.trail .wait { color: var(--ink); }
-.trail .wait b { color: var(--acc); }
-.result { margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--chip-line); font: 600 15px/1.5 var(--sans); color: var(--ink3); }
-.result.good { color: var(--acc); }
-
-.gates { margin-top: 48px; display: grid; gap: 16px; }
-@media (min-width: 900px) { .gates { grid-template-columns: 5fr 7fr; gap: 48px; } }
-.gates p { font: 400 16px/1.6 var(--sans); color: var(--ink2); }
-.gates p b { color: var(--ink); font-weight: 600; }
+/* Before / after: two chats */
+.ba { margin-top: 48px; display: grid; gap: 48px; }
+@media (min-width: 900px) { .ba { grid-template-columns: 1fr 1fr; gap: 0; } .ba-col + .ba-col { padding-left: 48px; border-left: 1px solid var(--rule); } .ba-col:first-child { padding-right: 48px; } }
+.ba-col h3 { font: 600 14px/1.4 var(--sans); letter-spacing: .02em; text-transform: uppercase; color: var(--ink3); padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.ba-col.good h3 { color: var(--acc); }
+.chat { margin-top: 24px; display: grid; gap: 12px; }
+.msg { max-width: 85%; padding: 12px 16px; border-radius: 16px; font: 400 16px/1.5 var(--sans); }
+.msg.you { justify-self: end; background: var(--acc-tint); color: var(--ink); border-bottom-right-radius: 4px; }
+.msg.claude { justify-self: start; background: var(--chip); color: var(--ink2); border-bottom-left-radius: 4px; }
+.msg.claude.go { background: var(--acc); color: #fff; }
+.msg .who { display: block; font: 500 12px/1.4 var(--sans); color: var(--ink3); margin-bottom: 4px; }
+.msg.go .who { color: rgba(255,255,255,.8); }
+.verdict { margin-top: 24px; font: 600 16px/1.5 var(--sans); color: var(--ink3); }
+.ba-col.good .verdict { color: var(--acc); }
+.gates { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule); font: 400 16px/1.6 var(--sans); color: var(--ink2); }
+.gates b { color: var(--ink); font-weight: 600; }
 
 /* Steps */
 .steps { margin-top: 48px; border-top: 1px solid var(--rule); }
@@ -225,40 +216,30 @@ td a { color: var(--ink); }
 
 <section class="sec wrap rule" aria-labelledby="ba-h">
   <h2 class="h2" id="ba-h">Same request. Two ways to build it.</h2>
-  <p class="lede">The difference is where the decisions get made: before the code, or after it breaks.</p>
-
   <div class="ba">
     <div class="ba-col">
-      <div class="ba-head"><h3>Prompt, code, hope</h3><span class="tag">Example</span></div>
-      <p class="ask">"Add a booking page to my salon site."</p>
-      <ol class="trail">
-        <li><span>Claude writes the page, the form and the database straight away.</span></li>
-        <li><span>Two clients book the same slot. You ask it to fix that.</span></li>
-        <li><span>The fix breaks the confirmation email. You ask again.</span></li>
-        <li><span>Nobody decided what happens on a cancellation, so it guesses.</span></li>
-      </ol>
-      <p class="result">You're debugging decisions nobody made.</p>
+      <h3>Without Frontier</h3>
+      <div class="chat">
+        <p class="msg you"><span class="who">You</span>Build a ticketing system so my team can track work.</p>
+        <p class="msg claude"><span class="who">Claude</span>Done. Tickets, a board and logins are ready.</p>
+        <p class="msg you"><span class="who">You</span>Two people grabbed the same ticket. Who&rsquo;s meant to close it?</p>
+        <p class="msg claude"><span class="who">Claude</span>Fixed. That changed how logins work, so the board needs updating too.</p>
+      </div>
+      <p class="verdict">You&rsquo;re debugging decisions nobody made.</p>
     </div>
-    <div class="ba-col">
-      <div class="ba-head"><h3>With Frontier</h3><span class="tag">Example</span></div>
-      <p class="ask">"Add a booking page to my salon site."</p>
-      <ol class="trail good">
-        <li><span><b>Asks first:</b> what happens when two people pick the same slot? On a cancellation? Who gets the email?</span></li>
-        <li><span><b>Writes it down</b> as a one-page plan you can read and change.</span></li>
-        <li><span><b>Splits it</b> into small chunks of work (tickets): slots, booking, emails.</span></li>
-        <li class="wait"><span><b>Builds the first chunk</b> in a separate copy of your project (a branch), with a check that proves it works (a test). Then it waits for your confirmation.</span></li>
-      </ol>
-      <p class="result good">Every decision made before a line of code.</p>
+    <div class="ba-col good">
+      <h3>With Frontier</h3>
+      <div class="chat">
+        <p class="msg you"><span class="who">You</span>Build a ticketing system so my team can track work.</p>
+        <p class="msg claude"><span class="who">Claude</span>Before I build: can two people own a ticket? Who can close it? Where do tickets go when someone leaves?</p>
+        <p class="msg you"><span class="who">You</span>One owner. Only the owner closes. Reassign them to me.</p>
+        <p class="msg claude go"><span class="who">Claude</span>Plan written and split into 4 pieces. The board is built in a separate copy, with checks that pass. Keep it?</p>
+      </div>
+      <p class="verdict">Every decision made before a line of code.</p>
     </div>
   </div>
 
-  <div class="gates">
-    <h3 class="h3">Nothing changes without your confirmation.</h3>
-    <div class="gate-txt">
-      <p><b>Steps that only read your project</b> run straight away: questions, design checks (critiques), code checks (code reviews).</p>
-      <p><b>Steps that change files</b> tell you what will change, then wait for your confirmation. Each chunk is built in a separate copy (a branch), so your working project stays untouched until you keep it.</p>
-    </div>
-  </div>
+  <p class="gates"><b>Nothing changes without your confirmation.</b> Each piece is built in a separate copy until you keep it.</p>
 </section>
 
 <section class="sec wrap rule" id="steps" aria-labelledby="steps-h">
